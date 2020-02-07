@@ -35,3 +35,19 @@ bool entity::addId()
 
 			
 }
+
+void entity::display()const
+{
+	memId.display();
+	return;
+}
+
+bool entity::isMatch(const entity & toSee)const
+{
+	return memId.compare(toSee.memId);
+}
+
+bool entity::isMatch(const class person & toSee)const
+{
+	return memId(toSee.memId);
+}

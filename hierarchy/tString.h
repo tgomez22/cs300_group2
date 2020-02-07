@@ -13,6 +13,7 @@ class tString
 		int compare(const tString & toCompare)const;
 		bool add(char * toAdd);
 		bool add(const tString & toAdd);
+		void display()const;
 		
 	private:
 		char * array;

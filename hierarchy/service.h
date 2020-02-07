@@ -8,7 +8,7 @@ class service: public entity
 {
 	public:
 		service();
-		service(const service & to_add);
+		service(const service & toAdd);
 		~service();
 		void display()const;
 		bool appendService();
@@ -16,13 +16,13 @@ class service: public entity
 		bool addService();
 
 	private:
-		String dos; //date of service
-		String currDate;
-		String currTime;
-		String servName;
-		String memName;
+		tString dos; //date of service
+		tString currDate;
+		tString currTime;
+		tString servName;
+		tString memName;
 		//has memNum from base class entity
-		String serviceCode;
+		tString serviceCode;
 		float serviceFee;
 		service * next;
 };

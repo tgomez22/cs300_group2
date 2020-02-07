@@ -1,5 +1,6 @@
 #include "tString.h"
 #include <cstring>
+#include <iostream>
 tString::tString()
 {
 	array = NULL;
@@ -69,4 +70,13 @@ bool tString::add(const tString & toAdd)
 		strcpy(array, toAdd.array);
 		return true;
 	}
+}
+
+void tString::display()const
+{
+	using namespace std;
+	if(array)
+		cout<<array;
+
+	return;
 }
