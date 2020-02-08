@@ -9,10 +9,11 @@ const int ID = 9;
 class entity
 {
 	public:
-		entity()
+		entity();
+		entity(const entity & toAdd);
 		~entity();
 		bool addId();
-		bool addId(const tString & ToAdd);
+		bool addId(const tString & toAdd);
 		bool addId(char * toAdd);
 		void display()const;
 		bool isMatch(const entity & toSee)const;

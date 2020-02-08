@@ -5,6 +5,11 @@ entity::entity()
 
 }
 
+entity::entity(const entity & toAdd)
+{
+	memId.add(toAdd.memId);	
+}
+
 entity::~entity()
 {
 
@@ -34,6 +39,16 @@ bool entity::addId()
 	return memId.add(temp);
 
 			
+}
+
+bool entity::addId(const tString & toAdd)
+{
+	memId.add(toAdd);
+}
+
+bool entity::addId(char * toAdd)
+{
+	memId.add(toAdd);
 }
 
 void entity::display()const

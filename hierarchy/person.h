@@ -7,16 +7,16 @@ class person: public entity
 {
 	public:
 		person();
-		person(const person & to_add);
-		~person();
+		person(const person & toAdd);
+		virtual ~person();
 		virtual void display()const = 0;
 		virtual bool append() = 0;
 
 	protected:
-		String name;
+		tString name;
 		//memNum exists in entity
-		String address;
-		String city;
-		String state;
-		String zip;
+		tString address;
+		tString city;
+		tString state;
+		tString zip;
 };

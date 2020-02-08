@@ -8,7 +8,7 @@ class member: public person
 {
 	public:
 		member();
-		member(const member & to_add);
+		member(const member & toAdd);
 		~member();
 		void display()const;
 		bool append();

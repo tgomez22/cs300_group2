@@ -6,7 +6,7 @@ class provider: public person
 {
 	public:
 		provider();
-		provider(const provider & to_add);
+		provider(const provider & toAdd);
 		~provider();
 		void display()const;
 		bool append();
