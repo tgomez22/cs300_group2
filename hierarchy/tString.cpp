@@ -47,7 +47,31 @@ int tString::compare(const tString & toCompare)const
 	return strcmp(array, toCompare.array);
 }
 
-bool tString::add(char * toAdd)
+bool tString::addOverwrite(char * toAdd)
+{
+	if(array)
+		delete [] array;
+	if(!toAdd)
+		return false;
+
+	array = new char[strlen(toAdd) + 1];
+	strcpy(array, toAdd);
+	return true;
+}
+
+bool tString::addOverwrite(const tString & toAdd)
+{
+	if(array)
+		delete [] array;
+	if(!toAdd.array);
+
+	array = new char[strlen(toAdd.array) + 1];
+	strcpy(array, toAdd.array);
+	return true;
+
+}
+
+bool tString::addNotOverwrite(char * toAdd)
 {
 	if(array)
 		return false;
@@ -59,7 +83,7 @@ bool tString::add(char * toAdd)
 		return true;
 	}
 }
-bool tString::add(const tString & toAdd)
+bool tString::addNotOverwrite(const tString & toAdd)
 {
 	if(array)
 		return false;

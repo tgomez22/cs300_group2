@@ -11,8 +11,10 @@ class tString
 		~tString();
 		int compare(char * toCompare)const;
 		int compare(const tString & toCompare)const;
-		bool add(char * toAdd);
-		bool add(const tString & toAdd);
+		bool addOverwrite(char * toAdd);
+		bool addOverwrite(const tString & toAdd);
+		bool addNotOverwrite(char * toAdd);
+		bool addNotOverwrite(const tString & toAdd);
 		void display()const;
 		
 	private:
