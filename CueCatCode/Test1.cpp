@@ -25,7 +25,6 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
  */
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -60,11 +59,11 @@ static char *getData(const char *input)
 	size_t size = input - pos - 1;
 	data = new char(size+1);
 	
-	for(int i=0; i < size+1; ++i)
+	for(size_t i=0; i < size+1; ++i)     //changing from int to size_t 
 	{
 	   data[i] = '\0';
 	}
-	strncpy(data, pos, size);
+	strncpy(data, pos, size);   
 
 	return data;
 }
@@ -72,25 +71,29 @@ static char *getData(const char *input)
 /* Decodes the data encrypted by the CueCat */
 static char *decode(char *in)
 {
-	int i, j;
+	size_t i, j;      //changing from int to size_t
 	size_t length = strlen(in) % 4;
-	char *decoded = new char(length+1);
 	
-	for(int i=0; i < length; ++i)     //length+1 was here
+	//char *decoded = calloc(100, sizeof(char));
+	
+	char *decoded = new char(100);  //changed from length+1
+/*	
+	for(size_t i=0; i < 100; ++i)     //length+1 was here   ... changing from int to size_t...changing from length to 100
 	{
 		decoded[i] = '\0';
 	}
+ */   
 
 	if (length != 0)
 		length = 4 - length;
 
-	for (i = 0; i < strlen(in); i++) {
+	for (i = 0; i < strlen(in); i++) {       //changed i to size_t
 		for (j = 0; in[i] != sequence[j]; j++);
 		in[i] = j;
 	}
 
-	for (i = 0, j = 0; i < strlen(in); i += 4) {
-		int tmp = ((in[i] << 6 | in[i+1]) << 6 | in[i+2]) << 6 | in[i+3];
+	for (i = 0, j = 0; i < strlen(in); i += 4) {  //changed i & j to size_t
+		int tmp = ((in[i] << 6 | in[i+1]) << 6 | in[i+2]) << 6 | in[i+3];   
 		decoded[j++] = (tmp >> 16) ^ XOR;
 		decoded[j++] = (tmp >> 8 & 255) ^ XOR;
 		decoded[j++] = (tmp & 255) ^ XOR; // in[i+3]^XOR
@@ -105,22 +108,28 @@ int main(void)
 {
 	char *input, *data, *decoded;
 
-	input = new char(255);
-	
-	for(int i=0; i < 255; ++i)
+	input = new char(255);   
+/*	
+	for(int i=0; i < 255; ++i) 
 	{
 		input[i] = '\0';
 	}
-	
+*/	
 	scanf("%254s", input);
 
 	data = getData(input);
 	decoded = decode(data);
+	
 	printf("%s\n", decoded);
 
-	delete(input);
-	delete(data);
-	delete(decoded);
+	if(input)
+	   delete(input);
+	
+	if(data)
+	   delete(data);
+	
+	if(decoded)
+	   delete(decoded);
 
 	return 0;
 }
