@@ -1,3 +1,4 @@
+//This code should work now.
 /*
  * CueCat Decoder
  *
