@@ -7,19 +7,25 @@
 
 const int SIZE = 101; //size of the hash table. Use only prime numbers to help get a good dispersal in the hashing function.
 
-const int multby = 109; //multiply the key by this prime number to get a number much larger than the array(hash table). Then mod by size of the array to get index value. 
+const int MULTBY = 109; //multiply the key by this prime number to get a number much larger than the array(hash table). Then mod by size of the array to get index value. 
 class dataCenter
 {
 
 	public:
 		dataCenter();
 		~dataCenter();
-
+		int authenticateUser();
 		
 
 	private:
-		sList services;
-		gList members;
-		gList providers;
+		int memberFunctions();
+		int providerFunctions();
+		int managerFunctions();
+
+		bool addMember();
+		bool addProvider();
+		sList services; //membersorted
+		pList authentication;
+		sList providers; //provider sorted
 
 };
