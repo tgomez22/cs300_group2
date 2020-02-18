@@ -14,7 +14,7 @@ class service: public entity
 		bool appendService();
 		service *& toNext();
 		bool addService();
-
+		
 	private:
 		tString dos; //date of service
 		tString currDate;

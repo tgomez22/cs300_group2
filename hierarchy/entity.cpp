@@ -15,6 +15,12 @@ entity::~entity()
 
 }
 
+bool addId(const entity & toAdd);
+{
+    memId.add(toAdd.memId);
+    return true;
+}
+
 bool entity::addId()
 {
 	char temp[ID];
@@ -65,4 +71,34 @@ bool entity::isMatch(const entity & toSee)const
 bool entity::isMatch(const class person & toSee)const
 {
 	return memId(toSee.memId);
+}
+
+int entity::getIdValue()const
+{
+	return memId.getArrayValue();
+}
+
+void entity::getMemId(tString & toUse)const
+{
+	memId.copyToArg(toUse);
+	return;
+}
+
+void entity::getMemId(entity & toUse)const
+{
+	memId.copyToArg(toUse.memId);
+	return;
+}
+		
+int compare(const entity & toCompare)const
+{
+	return memId.compare(toCompare.memId);
+}
+int compare(char * toCompare)const
+{
+	return memId.compare(toCompare);
+}
+int compare(const tString & toCompare)const
+{
+	return memId.compare(toCompare);
 }

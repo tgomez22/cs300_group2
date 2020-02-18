@@ -104,3 +104,43 @@ void tString::display()const
 
 	return;
 }
+
+int tString::getArrayValue()const
+{
+	if(!array)
+		return 0;
+
+	else
+	{
+		int length = strlen(array);
+		int value = 0;
+
+		for(int i = 0; i < length; ++i)
+			value += array[i];	
+
+		return value;
+	}
+}
+
+
+void copyToArg(tString & destination)const
+{
+	if(destination.array)
+		delete [] destination.array;
+
+	destination.array = new char[strlen(array) + 1];
+	strcpy(destination.array, array);
+
+	return true;	
+}
+
+void copyFromArg(const tString & source)
+{
+	if(array)
+		delete [] array;
+
+	array = new char[strlen(source.array) + 1];
+	strcpy(array, source);
+
+	return;
+}

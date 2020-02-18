@@ -16,6 +16,10 @@ class tString
 		bool addNotOverwrite(char * toAdd);
 		bool addNotOverwrite(const tString & toAdd);
 		void display()const;
+		int getArrayValue()const;
+
+		void copyToArg(tString & destination)const;
+		void copyFromArg(const tString & source);
 		
 	private:
 		char * array;
