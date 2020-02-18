@@ -14,17 +14,18 @@ class dataCenter
 	public:
 		dataCenter();
 		~dataCenter();
-		int memberFunctions();
-		int providerFunctions();
-		int managerFunctions();
 		int authenticateUser();
 		
 
 	private:
+		int memberFunctions();
+		int providerFunctions();
+		int managerFunctions();
+
 		bool addMember();
 		bool addProvider();
-		sList services;
+		sList services; //membersorted
 		pList authentication;
-		pList providers;
+		sList providers; //provider sorted
 
 };

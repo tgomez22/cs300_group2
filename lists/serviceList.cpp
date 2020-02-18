@@ -27,6 +27,9 @@ int serviceList::getKey(const int toUse)
 	int key = toUse * MULTBY;
 	key = key % SIZE;
 
+    if(key < 0)
+        key = -key;
+
 	return key;
 }
 
@@ -39,7 +42,7 @@ bool serviceList::addService(const service & toAdd)
 	if(table[index] == NULL)
 	{
 		table[index] = new sNode;
-		table[index].memNum.getMemId(toAdd);
+		table[index]->memNum.addId(toAdd);;
 		table[index]->head = new service(toAdd);
 		table[index]->next = NULL;
 
@@ -54,13 +57,15 @@ bool serviceList::addService(const service & toAdd)
 		{
 			temp = temp->next;
 		}
-
+        
+        //fell off list, member doesn't exist
 		if(!temp)
 		{
 			//must be an existing member to add a service.
 			return false;
 		}
-
+        
+        //found member, adding service
 		else
 		{
 			service * headHolder = temp->head;
