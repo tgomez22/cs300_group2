@@ -4,6 +4,9 @@
 
 #include "entity.h"
 
+//This class is derived from the most base class, entity. It contains a member number that was inherited
+//which allows the service to be tied to a member or provider. The service contains all specified information
+//for a service, and a pointer to another service. 
 class service: public entity
 {
 	public:

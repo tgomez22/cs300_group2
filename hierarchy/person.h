@@ -3,6 +3,11 @@
 //Worked on by Tristan Gomez(started: 2/5/2020)
 
 #include "entity.h"
+
+//Class person is an abstract base class which will be used as a generic pointer type
+//for its derived classes. This class contains all information that is associated with
+//a person who works for/is a member of ChocAn. This base class contains virtual functions
+//which will dynamically bind to the derived class functions.
 class person: public entity
 {
 	public:
