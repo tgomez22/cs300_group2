@@ -91,7 +91,7 @@ static char *decode(char *in)
 	return decoded;
 }
 
-int main(void)
+int mainn(void)
 {
 	char *input, *data, *decoded;
 
