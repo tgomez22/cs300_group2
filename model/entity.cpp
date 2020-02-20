@@ -49,6 +49,27 @@ bool entity::getIdFromTerm()
 	return id;
 }
 
+//checks the scanned ID number to see if it is valid
+bool entity::checkIdFromScan(char * scanID)
+{
+   int length = strlen(scanID);
+   using namespace std;
+   bool checkValue = false;
+
+   if(length < 9 || length > 9)
+   {
+      cout << "Sorry. User ID must be 9 digits long." << endl;
+      cout << "Please try again." << endl;
+      checkValue = false;
+   }
+   else
+   {
+      checkValue = true; 
+   }
+
+   return checkValue;
+}
+
 //Checks if the ID is valid and makes sure the input is correct
 char * entity::isIDValid(char * compare)
 {
