@@ -22,6 +22,8 @@ class datacenter
 
 		int addMember();
 		int addProvider();
+    std::ostream generateUserReport(int userID);
+    std::ostream generateFullReport(); //manager report function
 		entityTable serviceTable; //membersorted
 		entityTable providerTable;
 		entityTable members; //provider sorted

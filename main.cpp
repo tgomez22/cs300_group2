@@ -67,7 +67,7 @@ int main()
    entityTable the_entity_table;
    entity one_user;         //Creates an instance of one user/entity 
    member one_member;
-   person one_person;
+   person* one_person;      //changed to pointer, as person now contains an abstract function
    provider one_provider;
    service one_service;
    

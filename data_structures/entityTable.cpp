@@ -136,6 +136,10 @@ int entityTable::getIndex(int keyValue)
 
 }
 
+entity* entityTable::getEntity(int keyValue)
+{
+}
+
 int entityTable::providerFunctions()
 {
 

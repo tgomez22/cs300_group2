@@ -17,3 +17,7 @@ void member::append()
 {
 //Mikayla do you want to do this interface?
 }
+
+std::list<service> member::getServiceList()
+{
+}

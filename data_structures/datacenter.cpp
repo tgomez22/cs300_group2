@@ -54,3 +54,9 @@ int datacenter::addProvider()
 {
 
 }
+std::ostream datacenter::generateUserReport(int userID)
+{
+}
+std::ostream datacenter::generateFullReport()
+{
+}

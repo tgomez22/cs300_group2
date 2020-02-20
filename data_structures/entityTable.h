@@ -31,6 +31,7 @@ class entityTable
     		bool add(const entity & toAdd);
     		int getIndex(int keyValue);
     		void destroyEntity(entityNode *&);
+        entity* getEntity(int keyValue); //returns entity (do we need this and get index?)
     		entityNode ** table;
 };
 

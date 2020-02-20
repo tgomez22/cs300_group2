@@ -19,6 +19,9 @@ class member: public person
 		member(const member &other);
 		~member();
 		void append();
+
+    std::list<service> getServiceList(); //used by report generation functions. Only returns copy of protected data.
+
 	private:
 		bool suspended;
 };

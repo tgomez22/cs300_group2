@@ -14,6 +14,9 @@ class provider: public person
 		provider(const provider & toAdd);
 		~provider();
 		bool append();
+
+    std::list<service> getServiceList(); //used by report generation functions. Only returns copy of protected data.
+
 };
 
 #endif

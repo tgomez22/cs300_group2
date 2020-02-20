@@ -17,3 +17,7 @@ bool provider::append()
 {
 //Mikayla do you want to build this interface or should I?
 }
+
+std::list<service> provider::getServiceList()
+{
+}
