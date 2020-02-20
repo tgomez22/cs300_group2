@@ -31,9 +31,10 @@
 #include <string.h>
 #include <assert.h>
 
-#define BUF_SIZE 1024
-#define XOR 'C'
+#define CC_BUF_SIZE 1024
+#define CC_XOR 'C'
 
+namespace cuecat  {
 const char *sequence = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+-";
 const char *base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
@@ -81,16 +82,17 @@ static char *decode(char *in)
 
 	for (i = 0, j = 0; i < strlen(in); i += 4) {
 		int tmp = ((in[i] << 6 | in[i+1]) << 6 | in[i+2]) << 6 | in[i+3];
-		decoded[j++] = (tmp >> 16) ^ XOR;
-		decoded[j++] = (tmp >> 8 & 255) ^ XOR;
-		decoded[j++] = (tmp & 255) ^ XOR; // in[i+3]^XOR
+		decoded[j++] = (tmp >> 16) ^ CC_XOR;
+		decoded[j++] = (tmp >> 8 & 255) ^ CC_XOR;
+		decoded[j++] = (tmp & 255) ^ CC_XOR; // in[i+3]^XOR
 	}
 
 	memset(decoded+strlen(decoded) - length, 0, length);
 
 	return decoded;
 }
-
+}
+/*
 int mainn(void)
 {
 	char *input, *data, *decoded;
@@ -109,5 +111,6 @@ int mainn(void)
 
 	return 0;
 }
-
+*/
 // vim: et ts=4 sw=4 sts=4
+

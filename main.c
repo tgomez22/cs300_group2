@@ -14,6 +14,7 @@ using namespace std;        //for standard I/O
 #include "model/member.h"
 #include "model/provider.h"
 
+#include "CueCatCode/cuecatdecode.c"
 
 
 const int EXITVALUE = 99;   //exit value to exit the program
@@ -22,7 +23,8 @@ void welcomeFunction();     //Function to welcome the user
 int chooseIDEnter();        //for the user to choose how to enter the ID information
 int exitFunction();         //a function to make sure the user wants to exit
 void thankYouGoodbye();     //Function to thank the user for using ChocAn
-
+void scanId();
+void readId();
 
 int main()
 {
@@ -40,11 +42,13 @@ int main()
 	      //run menu choice again, invalid input
 	      keepGoing = 0;
       }
-      else if(menuChoice == 1 || menuChoice == 2)
+      else if(menuChoice == 1)
       {
-	      //the scan has taken place...functions haven't been incorporated yet
-	      cout << "We are in the input section.\n";
-	      keepGoing = 0;
+		scanId();
+      } 
+      else if(menuChoice == 2)
+      {
+		readId();
       }
       else if(menuChoice == EXITVALUE)
       {
@@ -169,4 +173,26 @@ void thankYouGoodbye()
    cout << "Goodbye and have a nice day!\n\n";
 
    return;
+}
+
+
+
+void scanId() {
+	char *input, *data, *decoded;
+
+	cout << "Scan the bar code now" << endl;
+
+	 input = (char *)calloc(255, sizeof(char));
+	//Hack to remove warning https://stackoverflow.com/a/13999461
+	(void)(scanf("%254s", input)+1);
+
+	data = cuecat::getData(input);
+	decoded = cuecat::decode(data);
+	printf("%s\n", decoded);
+
+	cout << "Hopefully that works!" << endl;
+}
+
+void readId() {
+	cout << "Errrmmmmmm" << endl;
 }

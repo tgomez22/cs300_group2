@@ -4,7 +4,7 @@
 #https://stackoverflow.com/a/14590222
 
 CC = g++
-CFLAGS = -c -Wall -g -Os
+CFLAGS = -c -Wall -Wno-unused  -g -Os
 LD = $(CC)
 #LDFLAGS = -lfoo
 
