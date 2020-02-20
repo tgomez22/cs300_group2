@@ -1,3 +1,18 @@
+//This is the main interface area for the ChocAn
+//simulator system version 1.0. This was created for CS300 with
+//Instructor Chris Gilmore. The student development 
+//team consists of: Kristin Bell, Chris Childs,
+//Tristan Gomez, Mikayla Maki, Shawn Spears, and
+//Abbie Utley. We are group 2, Winter term 2020.
+//
+//This program is outlined in the documentation 
+//that was submitted, but briefly, it is a computer
+//system that allows ChocAn providers and managers
+//to add and access information about patients and
+//provider services at ChocAn, an organization that
+//helps members combat chocolate addiction. 
+//
+//
 #include <iostream>         //for normal I/O functionality
 #include <cstring>          //for string functions like tolower/toupper, etc.
 
@@ -14,7 +29,6 @@ using namespace std;        //for standard I/O
 #include "model/member.h"
 #include "model/provider.h"
 
-#include "CueCatCode/CueCatDecoder.h"
 
 
 const int EXITVALUE = 99;   //exit value to exit the program
@@ -42,6 +56,7 @@ int main()
 	      //run menu choice again, invalid input
 	      keepGoing = 0;
       }
+
       else if(menuChoice == 1)
       {
 		scanId();
@@ -174,7 +189,6 @@ void thankYouGoodbye()
 
    return;
 }
-
 
 
 void scanId() {
