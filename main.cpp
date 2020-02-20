@@ -42,6 +42,7 @@ using namespace std;        //for standard I/O
 #include "model/member.h"
 #include "model/provider.h"
 
+#include "data_structures/test/datacenter_test.h"
 
 
 const int EXITVALUE = 99;   //exit value to exit the program
@@ -56,8 +57,22 @@ void thankYouGoodbye();     //Function to thank the user for using ChocAn
 int scanId(entity & one_user);
 int typeId(entity & one_user);            //Function to get one member ID by typing
 
-int main()
+int main(int argc, char* argv[])
 {
+   //Bypass all our terminal stuff for testing
+   if(argc >= 2) {
+     char* test = argv[1];
+     switch(test[0]) {
+	case 'd':
+	  datacenterTest();
+	  break;
+	default:
+	  cout << "unrecognized test, exiting" << endl;
+	  break;
+     }
+      exit(0);
+   }
+
    int menuChoice = 0;      //To catch which menu item the user wants
    int keepGoing = 0;       //To determine if the user wants to continue
    int checkValue = 0;      //To check if ID was entered correctly
