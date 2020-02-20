@@ -40,6 +40,8 @@ bool entity::addId()
 	cin.get(temp, ID, '\n');
 	cin.ignore(100, '\n');
 
+  strcpy(ID, isIDValid());
+
 	int length = strlen(temp);
 
 	while(length < 9 || length > 9)
@@ -69,6 +71,25 @@ bool entity::addId(const tString & toAdd)
 bool entity::addId(char * toAdd)
 {
 	memId.add(toAdd);
+}
+
+//Checks if the ID is valid and makes sure the input is correct
+char * entity::isIDValid(char * compare)
+{
+  int length = strlen(compare);
+  using namespace std;
+  
+  if(length < 9 || length > 9)
+  {
+    cout<<"User Identification number must be 9 digits long."<<endl;
+    cout<<"Please enter a new User Identification number: ";
+    cin.get(compare, '\n');
+    cin.ignore(100, '\n');
+
+    length = strlen(temp);
+    return isIDValid(compare);
+  }
+  return compare;
 }
 
 //displays stored private data(member number)
