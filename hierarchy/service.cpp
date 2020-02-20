@@ -8,6 +8,8 @@ service::service()
 //Mikayla do you want to add the interface to prompt the user to enter their info?
 }
 
+//copy constructor for the service class, initalizes the data members to the argument's data 
+//members values.
 service::service(const service & toAdd)
 {
 	dos.add(toAdd.dos);
@@ -20,11 +22,13 @@ service::service(const service & toAdd)
 	next = NULL;
 }
 
+//sets next pointer to null, no dynamic memory to deallocate.
 service::~service()
 {
 	next = NULL;
 }
 
+//Displays stored information for a service.
 void service::display()const
 {
 	using namespace std;
@@ -45,6 +49,7 @@ bool service::appendService()
 //Mikayla do you want to add this interface to prompt user to make changes?
 }
 
+//returns a pointer by reference to the next pointer.
 service *& service::toNext()
 {
 	return next;

@@ -12,9 +12,32 @@ serviceList::serviceList()
 	table -= SIZE;
 }
 
+//UNDER CONSTRUCTION
 serviceList::~serviceList()
 {
-//need to implement
+  serviceNode ** start = table;
+  for(int i = 0; i < 0; ++i)
+  {
+    destroyService(start[i]);
+  }
+}
+
+void destroyService(serviceNode *& to_destroy)
+{
+  if(!to_destroy->next)
+  {
+    to_destroy->head.~service();
+    delete to_destroy;
+    to_destroy = NULL;
+    return;
+  }
+  if(!to_destroy)
+    return;
+  to_destroy->head.~service();
+  deleteServices(to_destroy->head);
+  delete to_destroy;
+  to_destroy = NULL;
+  return;
 }
 
 int serviceList::memberFunctions()

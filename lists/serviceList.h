@@ -21,5 +21,7 @@ class serviceList
 		int getKey(const int toUse); //hashing function to get arr index
 		bool addService(const service & toAdd);
 		int getIndex(const int toUse);
+    void destroyService(serviceNode *&);
+    void deleteServices(serviceNode *&);
 		sNode ** table;
 } sList;
