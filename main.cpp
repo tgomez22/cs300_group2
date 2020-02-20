@@ -73,13 +73,11 @@ int main()
 	      keepGoing = 0;
       }
 
-      else if(menuChoice == 1)
+     else if(menuChoice == 1 || menuChoice == 2)
       {
-		scanId();
-      } 
-      else if(menuChoice == 2)
-      {
-		readId();
+	      //the scan has taken place...functions haven't been incorporated yet
+	      cout << "We are in the input section.\n";
+	      keepGoing = 0;
       }
       else if(menuChoice == EXITVALUE)
       {
