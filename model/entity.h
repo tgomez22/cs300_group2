@@ -16,6 +16,7 @@ class entity
 	    entity(const entity & toAdd);
 	    ~entity();
 	    bool getIdFromTerm();
+            bool checkIdFromScan(char * scanID);
 	    void setId(id_num id);
 	    int compare(const entity & toCompare)const;
 	    id_num getIdValue()const;
