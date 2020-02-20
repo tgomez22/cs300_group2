@@ -32,17 +32,16 @@
 #include <string.h>
 #include <assert.h>
 
-#define BUF_SIZE 1024
-#define XOR 'C'
+#include "CueCatDecoder.h"
 
-const char *sequence = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+-";
-const char *base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+#define CC_BUF_SIZE 1024
+#define CC_XOR 'C'
 
 /*
  * Returns just the barcode data, ignoring the CueCat's serial number and the
  * type of the barcode
  */
-static char *getData(const char *input)
+static char *cuecat::getData(const char *input)
 {
 	int nSeen;
 	char *data;
@@ -68,7 +67,7 @@ static char *getData(const char *input)
 }
 
 /* Decodes the data encrypted by the CueCat */
-static char *decode(char *in)
+static char *cuecat::decode(char *in)
 {
 	int i, j;
 	size_t length = strlen(in) % 4;
@@ -80,22 +79,22 @@ static char *decode(char *in)
 		length = 4 - length;
 
 	for (i = 0; i < strlen(in); i++) {
-		for (j = 0; in[i] != sequence[j]; j++);
+		for (j = 0; in[i] != cuecat::sequence[j]; j++);
 		in[i] = j;
 	}
 
 	for (i = 0, j = 0; i < strlen(in); i += 4) {
 		int tmp = ((in[i] << 6 | in[i+1]) << 6 | in[i+2]) << 6 | in[i+3];
-		decoded[j++] = (tmp >> 16) ^ XOR;
-		decoded[j++] = (tmp >> 8 & 255) ^ XOR;
-		decoded[j++] = (tmp & 255) ^ XOR; // in[i+3]^XOR
+		decoded[j++] = (tmp >> 16) ^ CC_XOR;
+		decoded[j++] = (tmp >> 8 & 255) ^ CC_XOR;
+		decoded[j++] = (tmp & 255) ^ CC_XOR; // in[i+3]^XOR
 	}
 
 	memset(decoded+strlen(decoded) - length, 0, length);
 
 	return decoded;
 }
-
+/*
 int main(void)
 {
 	char *input, *data, *decoded;
@@ -114,5 +113,5 @@ int main(void)
 
 	return 0;
 }
-
+*/
 // vim: et ts=4 sw=4 sts=4
