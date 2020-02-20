@@ -1,0 +1,11 @@
+Here are some sample numbers to try with the CueCat
+program in order to test it if you don't have the scanner.
+
+Just copy and past one line into the program and it will
+translate it into the 9 digit number for the ChocAn person.
+
+.C3nZC3nZC3n2D3D0E3T6DxnY.CNf7.CNnZC3nZC3nY.
+
+.C3nZC3nZC3n2D3D0E3T6DxnY.CNf7.CxnZC3nZC3nY.
+
+
