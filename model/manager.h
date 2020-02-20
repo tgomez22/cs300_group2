@@ -1,8 +1,11 @@
+#ifndef __MANAGER_H
+#define __MANAGER_H
 //CS300 Group #2
 //
 //Worked on by Tristan Gomez(started: 2/5/2020)
 
 #include "person.h"
+
 class manager: public person
 {
 	public:
@@ -16,3 +19,5 @@ class manager: public person
 
 	//???
 };
+
+#endif
