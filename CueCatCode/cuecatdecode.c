@@ -58,7 +58,7 @@ static char *getData(const char *input)
 	assert(pos != NULL);
 
 	size_t size = input - pos - 1;
-	data = calloc(size+1, sizeof(char));
+	data = (char *)calloc(size+1, sizeof(char));
 	strncpy(data, pos, size);
 
 	return data;
@@ -67,9 +67,9 @@ static char *getData(const char *input)
 /* Decodes the data encrypted by the CueCat */
 static char *decode(char *in)
 {
-	int i, j;
+	unsigned int i, j;
 	size_t length = strlen(in) % 4;
-	char *decoded = calloc(100, sizeof(char));
+	char *decoded = (char*)calloc(100, sizeof(char));
 
 	if (length != 0)
 		length = 4 - length;
@@ -95,8 +95,9 @@ int main(void)
 {
 	char *input, *data, *decoded;
 
-	input = calloc(255, sizeof(char));
-	scanf("%254s", input);
+	input = (char *)calloc(255, sizeof(char));
+	//Hack to remove warning https://stackoverflow.com/a/13999461
+	(void)(scanf("%254s", input)+1);
 
 	data = getData(input);
 	decoded = decode(data);
