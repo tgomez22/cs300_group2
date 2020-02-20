@@ -1,11 +1,14 @@
 #include "tString.h"
 #include <cstring>
 #include <iostream>
+
+//initalizes the sole data member to null.
 tString::tString()
 {
 	array = NULL;
 }
 
+//copy constructor, initalizes the data member to the value of the argument.
 tString::tString(char * toAdd)
 {
 
@@ -18,6 +21,7 @@ tString::tString(char * toAdd)
 	}
 }
 
+//copy constructor, initalizes the data member to the value of the argument.
 tString::tString(const tString & toAdd)
 {
 	if(!toAdd.array)
@@ -30,6 +34,7 @@ tString::tString(const tString & toAdd)
 
 }
 
+//deallocates all dynamic memory and sets pointer to NULL.
 tString::~tString()
 {
 	if(array)
@@ -37,16 +42,21 @@ tString::~tString()
 	array = NULL;
 }
 
+//compares argument to value stored in object.
 int tString::compare(char * toCompare)const
 {
 	return strcmp(array, toCompare);
 }
 
+//compares argument to value stored in object.
 int tString::compare(const tString & toCompare)const
 {
 	return strcmp(array, toCompare.array);
 }
 
+//clears stored memory and initializes data member to argument's value.
+//returns false if argument is empty.
+//returns true if succssfully adding. 
 bool tString::addOverwrite(char * toAdd)
 {
 	if(array)
@@ -59,6 +69,9 @@ bool tString::addOverwrite(char * toAdd)
 	return true;
 }
 
+//clears stores memory and initalizes data member to argument's value.
+//returns false if argument is empty.
+//returns true if succssfully adding. 
 bool tString::addOverwrite(const tString & toAdd)
 {
 	if(array)
@@ -71,6 +84,8 @@ bool tString::addOverwrite(const tString & toAdd)
 
 }
 
+//returns false if memory is stored. If calling object is empty, 
+//then datat member is initalized to argument's value.
 bool tString::addNotOverwrite(char * toAdd)
 {
 	if(array)
@@ -83,6 +98,9 @@ bool tString::addNotOverwrite(char * toAdd)
 		return true;
 	}
 }
+
+//returns false if memory is stored. If calling object is empty, 
+//then datat member is initalized to argument's value.
 bool tString::addNotOverwrite(const tString & toAdd)
 {
 	if(array)
@@ -96,6 +114,7 @@ bool tString::addNotOverwrite(const tString & toAdd)
 	}
 }
 
+//displays stored data in the object.
 void tString::display()const
 {
 	using namespace std;

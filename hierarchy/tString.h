@@ -2,6 +2,9 @@
 //
 //2/7/2020
 
+
+//This class abstracts char * functions by having an object of type tString manage it. This has 
+//many functions that allow easy comparison of strings and easy making of strings. 
 class tString
 {
 	public:

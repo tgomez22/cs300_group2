@@ -4,6 +4,11 @@
 
 #include "person.h"
 
+//This class is derived from class person. 
+//It contains relevant info to members of ChocAn.
+//A true or false if the member is suspended. 
+//If the member is suspended, then the amount due is set.
+//
 class member: public person
 {
 	public:

@@ -1,4 +1,5 @@
-//This code should work now.
+
+//Edited by Kristin Bell for use with ChocAn System
 /*
  * CueCat Decoder
  *
@@ -58,13 +59,10 @@ static char *getData(const char *input)
 	assert(pos != NULL);
 
 	size_t size = input - pos - 1;
-	data = new char(size+1);
+
+	data = (char *)calloc(size+1, sizeof(char));
 	
-	for(size_t i=0; i < size+1; ++i)     //changing from int to size_t 
-	{
-	   data[i] = '\0';
-	}
-	strncpy(data, pos, size);   
+	strncpy(data, pos, size);
 
 	return data;
 }
@@ -72,29 +70,22 @@ static char *getData(const char *input)
 /* Decodes the data encrypted by the CueCat */
 static char *decode(char *in)
 {
-	size_t i, j;      //changing from int to size_t
+	int i, j;
 	size_t length = strlen(in) % 4;
-	
-	//char *decoded = calloc(100, sizeof(char));
-	
-	char *decoded = new char(100);  //changed from length+1
-/*	
-	for(size_t i=0; i < 100; ++i)     //length+1 was here   ... changing from int to size_t...changing from length to 100
-	{
-		decoded[i] = '\0';
-	}
- */   
+        char * decoded;
+
+        decoded = (char *)calloc(100, sizeof(char));	
 
 	if (length != 0)
 		length = 4 - length;
 
-	for (i = 0; i < strlen(in); i++) {       //changed i to size_t
+	for (i = 0; i < strlen(in); i++) {
 		for (j = 0; in[i] != sequence[j]; j++);
 		in[i] = j;
 	}
 
-	for (i = 0, j = 0; i < strlen(in); i += 4) {  //changed i & j to size_t
-		int tmp = ((in[i] << 6 | in[i+1]) << 6 | in[i+2]) << 6 | in[i+3];   
+	for (i = 0, j = 0; i < strlen(in); i += 4) {
+		int tmp = ((in[i] << 6 | in[i+1]) << 6 | in[i+2]) << 6 | in[i+3];
 		decoded[j++] = (tmp >> 16) ^ XOR;
 		decoded[j++] = (tmp >> 8 & 255) ^ XOR;
 		decoded[j++] = (tmp & 255) ^ XOR; // in[i+3]^XOR
@@ -108,30 +99,20 @@ static char *decode(char *in)
 int main(void)
 {
 	char *input, *data, *decoded;
+        input = (char *)calloc(255, sizeof(char));
 
-	input = new char(255);   
-/*	
-	for(int i=0; i < 255; ++i) 
-	{
-		input[i] = '\0';
-	}
-*/	
+
 	scanf("%254s", input);
 
 	data = getData(input);
 	decoded = decode(data);
-	
 	printf("%s\n", decoded);
 
-	if(input)
-	   delete(input);
-	
-	if(data)
-	   delete(data);
-	
-	if(decoded)
-	   delete(decoded);
+	free(input);
+	free(data);
+	free(decoded);
 
 	return 0;
 }
 
+// vim: et ts=4 sw=4 sts=4
