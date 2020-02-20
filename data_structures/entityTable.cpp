@@ -2,15 +2,14 @@
 //
 //Worked on by: Tristan Gomez(Started 2/10/2020)
 
+#include "entityTable.h"
 
-#include "personList.h"
 
-
-//Pointer arithmetic is used to initalize the array of personNode pointers as the private data member. 
+//Pointer arithmetic is used to initalize the array of entityNode pointers as the private data member. 
 //At the end of initialization, the pointer is set back to the first element. 
-personList::personList()
+entityTable::entityTable()
 {
-  table = new *personNode[SIZE];
+  table = new entityNode*[SIZE];
 
   for(int i = 0; i < SIZE; ++i)
   {
@@ -21,18 +20,18 @@ personList::personList()
 }
 
 //UNDER CONSTRUCTION
-personList::~personList()
+entityTable::~entityTable()
 {
-  personNode ** start = table;
+  entityNode ** start = table;
   for(int i = 0; i < SIZE; ++i)
   {
-    destroyPerson(start[i]); // calls destroy so it can be recursive
+    destroyEntity(start[i]); // calls destroy so it can be recursive
   }
 
 }
 
 //For the destructor
-void personList::destroyPerson(personNode *& to_destroy)
+void entityTable::destroyEntity(entityNode *& to_destroy)
 {
   if(!to_destroy->next)
   {
@@ -42,24 +41,23 @@ void personList::destroyPerson(personNode *& to_destroy)
   }
   if(!to_destroy)
     return;
-  destroyPerson(to_destroy->next);
+  destroyEntity(to_destroy->next);
   delete to_destroy;
   to_destroy = NULL;
   return;
 }
 
 //UNDER CONSTRUCTION
-bool personList::add(const entity & toAdd)
+bool entityTable::add(const entity & toAdd)
 {
   int index = getIndex(toAdd.getIdValue());
 
   if(!table[index])
   {
-    table[index] = new personNode;
-    table[index]->person.addId(toAdd);
+    table[index] = new entityNode();
+    table[index]->ent = new entity(toAdd);//Copy constructor
     table[index]->next = NULL;
-    //logical check should be here to change personNode auth value
-
+    //logical check should be here to change entityNode auth value
 
 
     return true;
@@ -67,9 +65,9 @@ bool personList::add(const entity & toAdd)
 
   else
   {
-    personNode * temp = table[index];
+    entityNode * temp = table[index];
 
-    while(temp && temp->person.compare(toAdd) != 0)
+    while(temp && temp->ent->compare(toAdd) != 0)
     {
       temp = temp->next;
     }
@@ -78,12 +76,11 @@ bool personList::add(const entity & toAdd)
     if(!temp)
     {
       temp = table[index];
-      table[index] = new personNode;
-      table[index]->person.addId(toAdd);
+      table[index] = new entityNode;
+      table[index]->ent = new entity(toAdd); //copy constructor
       table[index]->next = temp;
       return true;
     }
-
     //if Duplicate then dont add
     else
     {
@@ -95,7 +92,7 @@ bool personList::add(const entity & toAdd)
 }
 
 
-int personList::authenticate(const entity & toCheck)
+int entityTable::authenticate(const entity & toCheck)
 {
   //check this fctn call
   int index = getIndex(toCheck.getIdValue());     
@@ -105,10 +102,10 @@ int personList::authenticate(const entity & toCheck)
 
   else
   {
-    personNode * temp = table[index];
+    entityNode * temp = table[index];
 
     //while still in chain and not found person
-    while(temp && temp->person.compare(toCheck) != 0)
+    while(temp && temp->ent->compare(toCheck) != 0)
     {
       temp = temp->next;
     }
@@ -125,7 +122,7 @@ int personList::authenticate(const entity & toCheck)
   }
 }
 
-int personList::getIndex(int keyValue)
+int entityTable::getIndex(int keyValue)
 {
   int index = keyValue;
   index = index * MULTBY;
@@ -139,11 +136,10 @@ int personList::getIndex(int keyValue)
 
 }
 
-int personList::providerFunctions()
+int entityTable::providerFunctions()
 {
 
 }
-int personList::managerFunctions()
+int entityTable::managerFunctions()
 {
-
 }

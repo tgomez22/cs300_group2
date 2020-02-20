@@ -4,13 +4,13 @@
 #https://stackoverflow.com/a/14590222
 
 CC = g++
-CFLAGS = -c -Wall -g -Os
+CFLAGS = -c -Wall -Wno-unused  -g -Os
 LD = $(CC)
 #LDFLAGS = -lfoo
 
 TARGET = ChocAn
 
-SOURCES=$(shell find . -type f -iname '*.c')
+SOURCES=$(shell find . -type f -iname '*.cpp')
 
 OBJECTS=$(foreach x, $(basename $(SOURCES)), $(x).o)
 

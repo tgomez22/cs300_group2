@@ -31,6 +31,19 @@ const char *base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345
 
 using namespace std;        //for standard I/O
 
+//Include everything to make sure it all compiles
+#include "data_structures/datacenter.h"
+#include "data_structures/entityTable.h"
+#include "data_structures/serviceList.h"
+
+#include "model/entity.h"
+#include "model/service.h"
+#include "model/person.h"
+#include "model/member.h"
+#include "model/provider.h"
+
+
+
 const int EXITVALUE = 99;   //exit value to exit the program
 
 static char *getData(const char *input);  //For CueCat code to get data
@@ -40,7 +53,8 @@ void welcomeFunction();     //Function to welcome the user
 int chooseIDEnter();        //for the user to choose how to enter the ID information
 int exitFunction();         //a function to make sure the user wants to exit
 void thankYouGoodbye();     //Function to thank the user for using ChocAn
-
+void scanId();
+void readId();
 
 int main()
 {
@@ -58,11 +72,14 @@ int main()
 	      //run menu choice again, invalid input
 	      keepGoing = 0;
       }
-      else if(menuChoice == 1 || menuChoice == 2)
+
+      else if(menuChoice == 1)
       {
-	      //the scan has taken place...functions haven't been incorporated yet
-	      cout << "We are in the input section.\n";
-	      keepGoing = 0;
+		scanId();
+      } 
+      else if(menuChoice == 2)
+      {
+		readId();
       }
       else if(menuChoice == EXITVALUE)
       {
@@ -182,7 +199,7 @@ int exitFunction()
 	
 }
 
-//Function to thank user for using ChocAn
+//Function to thank user for usning ChocAn
 void thankYouGoodbye()
 {
    cout << "Thank you for using ChocAn.\n";
