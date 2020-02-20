@@ -48,21 +48,29 @@ const int EXITVALUE = 99;   //exit value to exit the program
 
 static char *getData(const char *input);  //For CueCat code to get data
 static char *decode(char *in);            //For CueCat decodes the data
-void getCueCat(void);       //For CueCat runs the other functions
+bool getCueCat(entity & one_user);        //For CueCat runs the other functions
 void welcomeFunction();     //Function to welcome the user
 int chooseIDEnter();        //for the user to choose how to enter the ID information
 int exitFunction();         //a function to make sure the user wants to exit
 void thankYouGoodbye();     //Function to thank the user for using ChocAn
-void scanId();
-void readId();
+int scanId(entity & one_user);
+int typeId(entity & one_user);            //Function to get one member ID by typing
 
 int main()
 {
    int menuChoice = 0;      //To catch which menu item the user wants
    int keepGoing = 0;       //To determine if the user wants to continue
+   int checkValue = 0;      //To check if ID was entered correctly
 
    welcomeFunction();       //To welcome the user/give credit
 
+   entityTable the_entity_table;
+   entity one_user;         //Creates an instance of one user/entity 
+   member one_member;
+   person one_person;
+   provider one_provider;
+   service one_service;
+   
    //Do these things while the user does NOT want to exit; ie keepGoing is NOT EXITVALUE
    do
    {
@@ -75,11 +83,31 @@ int main()
 
       else if(menuChoice == 1)
       {
-		scanId();
+	 //if the scanId doesn't work go back to menu
+	 //otherwise do a different task
+         checkValue = scanId(one_user);
+	 if(checkValue == 0) 
+         {
+            keepGoing = 0;
+	 }
+	 else
+         {
+            //do something else
+         }
       } 
       else if(menuChoice == 2)
       {
-		readId();
+	 //if the typeId doesn't work go back to menu
+	 //otherwise do a different task
+         checkValue = typeId(one_user);
+	 if(checkValue == 0)
+	 {
+            keepGoing = 0;
+	 }
+	 else
+         {
+            //do something else
+	 }
       }
       else if(menuChoice == EXITVALUE)
       {
@@ -137,28 +165,26 @@ int chooseIDEnter()
    if(choiceToEnter == 1)
    {
       //run scan function
-      cout << "Please scan the ID with your CueCat now.\n";
-      getCueCat();
       choice = 1;	
    }
    else if(choiceToEnter == 2)
    {
       //run type function
-	  choice = 2;
+      choice = 2;
    }
    else if(choiceToEnter == 3)
    {
-	   //run exit function. if they want to exit set choice to 99, otherwise set choice to 0 to retry
-       exitChoice = exitFunction();
-       if(exitChoice == EXITVALUE)
-       {
-	      choice = EXITVALUE;
-	   }
-	   else if(exitChoice == 0)
-	   {
-	      cout << "Please try again.\n";
-          choice = 0;
-	   }
+      //run exit function. if they want to exit set choice to 99, otherwise set choice to 0 to retry
+      exitChoice = exitFunction();
+      if(exitChoice == EXITVALUE)
+      {
+         choice = EXITVALUE;
+      }
+      else if(exitChoice == 0)
+      {
+         cout << "Please try again.\n";
+         choice = 0;
+      }
    }
    else
    {
@@ -206,6 +232,65 @@ void thankYouGoodbye()
    cout << "Goodbye and have a nice day!\n\n";
 
    return;
+}
+
+int scanId(entity & one_user)
+{
+   bool checkValue = false;
+   int errorValue = 0;
+   int keepGoing = 0;
+   char answerYN = 'n';
+
+   do{
+      cout << "Please scan the ID with your CueCat now.\n";
+      checkValue = getCueCat(one_user);
+      if(checkValue == false)
+      {
+	 errorValue = 0;
+         cout << "Would you like to try again?\n";
+	 cin >> answerYN;
+	 cin.ignore(100, '\n');
+	
+	 answerYN = tolower(answerYN);
+	 if(answerYN == 'y') 
+	 { 
+            keepGoing = 0;
+	 }
+	 else
+         {
+            keepGoing = 1;
+         }
+      }
+      else
+      {
+         errorValue = 1;  
+         keepGoing = 1;
+
+      }
+   } while (keepGoing == 0); 
+
+   return errorValue;
+}
+
+int typeId(entity & one_user)
+{
+   bool checkValue = false;
+   int errorValue = 0;
+
+   checkValue = one_user.getIdFromTerm();
+
+   if(checkValue == false)
+   {
+      cout << "Sorry. That does not work. Try again.\n";
+      errorValue = 0;
+   }
+   else
+   {
+      cout << "Success adding ID.\n";
+      errorValue = 1;
+   }
+
+   return errorValue; 
 }
 
 //Edited by Kristin Bell for use with ChocAn System
@@ -295,11 +380,13 @@ static char *decode(char *in)
    return decoded;
 }
 
-void getCueCat(void)
+bool getCueCat(entity & one_user)
 {
    char *input, *data, *decoded;
         input = (char *)calloc(255, sizeof(char));
 
+   bool checkValue = false;
+   bool errorValue = false;
 
    scanf("%254s", input);
 
@@ -307,11 +394,21 @@ void getCueCat(void)
    decoded = decode(data);
    printf("%s\n", decoded);
 
+   checkValue = one_user.checkIdFromScan(decoded);
+   if(checkValue == false)
+   {
+      errorValue = false;
+   }   
+   else
+   {
+      errorValue = true;
+   }
+
    free(input);
    free(data);
    free(decoded);
 
-   return;
+   return errorValue;
 }
 
 // vim: et ts=4 sw=4 sts=4
