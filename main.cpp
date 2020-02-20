@@ -66,6 +66,10 @@ int main(int argc, char* argv[])
 	case 'd':
 	  datacenterTest();
 	  break;
+	//If you want to make more testing files, just add more cases and call whatever you want.
+	//I've used single letters to keep things simple, just run ./ChocAn [letter] and then add [letter]
+	//To this switch statement, and set it to call whatever you need. That way we can run tests
+	//Without going through the entire terminal setup
 	default:
 	  cout << "unrecognized test, exiting" << endl;
 	  break;
