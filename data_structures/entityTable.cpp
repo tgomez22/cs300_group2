@@ -3,9 +3,9 @@
 //Worked on by: Tristan Gomez(Started 2/10/2020)
 
 
-#include "generalList.h"
+#include "entity_table.h"
 
-generalList::generalList()
+entityTable::entityTable()
 {
 	table = new *gNode[SIZE];
 
@@ -17,7 +17,7 @@ generalList::generalList()
 	table -= SIZE;
 }
 
-generalList::~generalList()
+entityTable::~entityTable()
 {
 //needs to be implemented.
 }

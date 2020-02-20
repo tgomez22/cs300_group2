@@ -6,6 +6,7 @@
 
 #include <string>
 
+#include "../data_structures/serviceList.h"
 #include "entity.h"
 
 
@@ -23,7 +24,7 @@ class person: public entity
 		std::string city;
 		std::string state;
 		std::string zip;
-		sList services;
+		serviceList services;
 };
 
 #endif

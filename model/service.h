@@ -4,7 +4,7 @@
 //
 //Worked on by Tristan Gomez(started:2/5/2020)
 
-#include <time>
+#include <ctime>
 
 #include "entity.h"
 

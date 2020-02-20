@@ -1,30 +1,30 @@
 
-#include "dataCenter.h"
+#include "datacenter.h"
 
-dataCenter::dataCenter() 
+datacenter::dataCenter() 
 {
 }
 
-dataCenter::~dataCenter()
+datacenter::~dataCenter()
 {
 }
 
-int dataCenter::memberFunctions()
+int datacenter::memberFunctions()
 {
 	//call functions for members of ChocAn
 }
 
-int dataCenter::providerFunctions()
+int datacenter::providerFunctions()
 {
 	//call functions for providers of ChocAn
 }
 
-int dataCenter::managerFunctions()
+int datacenter::managerFunctions()
 {
 	//call functions for managers of ChocAn
 }
 
-int dataCenter::authenticateUser()
+int datacenter::authenticateUser()
 {
 	//prompt a user to enter their member number, or tell me what args you need if you want to do it from main.
     //may have to pass in entity obj.
@@ -44,12 +44,12 @@ int dataCenter::authenticateUser()
         return 0;
 }
 
-int dataCenter::addMember()
+int datacenter::addMember()
 {
 	//prompt user 
 }
 
-int dataCenter::addProvider()
+int datacenter::addProvider()
 {
 
 }

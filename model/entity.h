@@ -5,7 +5,6 @@
 //Worked on by Tristan Gomez (Started 2/5/2020)
 
 #include <iostream>
-#include "tString.h"
 
 using id_num = unsigned int;
 const int ID = 9;
@@ -16,7 +15,7 @@ class entity
 		entity();
 		entity(const entity & other); //Copy Constructor
 		~entity();
-		setId();
+		void setId();
 		bool isMatch(const entity & other)const;
 		int getId()const;
 		int compare(const entity & toCompare)const;
