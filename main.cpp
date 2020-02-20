@@ -74,52 +74,51 @@ int main()
    //Do these things while the user does NOT want to exit; ie keepGoing is NOT EXITVALUE
    do
    {
-      menuChoice = chooseIDEnter();
-      if(menuChoice == 0)
-      {
+     menuChoice = chooseIDEnter();
+     if(menuChoice == 0)
+     {
 	      //run menu choice again, invalid input
 	      keepGoing = 0;
-      }
-
-      else if(menuChoice == 1)
-      {
-	 //if the scanId doesn't work go back to menu
-	 //otherwise do a different task
-         checkValue = scanId(one_user);
-	 if(checkValue == 0) 
-         {
+     }
+     else if(menuChoice == 1)
+     {
+	      //if the scanId doesn't work go back to menu
+     	  //otherwise do a different task
+        checkValue = scanId(one_user);
+	      if(checkValue == 0) 
+        {
             keepGoing = 0;
-	 }
-	 else
-         {
+	      }
+	      else
+        {
             //do something else
-         }
-      } 
-      else if(menuChoice == 2)
-      {
-	 //if the typeId doesn't work go back to menu
-	 //otherwise do a different task
-         checkValue = typeId(one_user);
-	 if(checkValue == 0)
-	 {
-            keepGoing = 0;
-	 }
-	 else
-         {
-            //do something else
-	 }
-      }
-      else if(menuChoice == EXITVALUE)
-      {
-	      //exit program;
-	      keepGoing = EXITVALUE;
-      }
-      else
-      {
-	      cout << "Error. Try again.\n";
-	      keepGoing = 0;
-      }
-   } while (keepGoing != EXITVALUE);
+        }
+     } 
+     else if(menuChoice == 2)
+     {
+	      //if the typeId doesn't work go back to menu
+	      //otherwise do a different task
+        checkValue = typeId(one_user);
+	      if(checkValue == 0)
+	      {
+           keepGoing = 0;
+     	 }
+	      else
+        {
+           //do something else
+	      }
+     }
+     else if(menuChoice == EXITVALUE)
+     {
+	     //exit program;
+	     keepGoing = EXITVALUE;
+     }
+     else
+     {
+	     cout << "Error. Try again.\n";
+	     keepGoing = 0;
+     }
+  } while (keepGoing != EXITVALUE);
 
    thankYouGoodbye();
 
