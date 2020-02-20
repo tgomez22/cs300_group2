@@ -15,7 +15,7 @@ class person: public entity
 	public:
 		person();
 		person(const person & toAdd);
-		virtual ~person();
+		~person();
 
 	protected:
 		std::string name;

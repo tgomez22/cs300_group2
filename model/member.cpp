@@ -9,6 +9,10 @@ member::member(const member & toAdd):person(toAdd)
 	suspended = toAdd.suspended;
 }
 
+member::~member() {
+
+}
+
 void member::append()
 {
 //Mikayla do you want to do this interface?
