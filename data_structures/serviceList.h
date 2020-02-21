@@ -7,6 +7,10 @@
 #include "defs.h"
 #include "../model/service.h"
 
+//This is the linked list that members and providers will hold
+//to keep a record of every service they have undergone.
+//it's a linked list of services (or service keys), sorted
+//by appointment date
 class serviceList
 {
 	struct serviceNode

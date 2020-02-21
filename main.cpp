@@ -1,21 +1,22 @@
 //This is the main interface area for the ChocAn
 //simulator system version 1.0. This was created for CS300 with
-//Instructor Chris Gilmore. The student development 
+//Instructor Chris Gilmore. The student development
 //team consists of: Kristin Bell, Chris Childs,
 //Tristan Gomez, Mikayla Maki, Shawn Spears, and
 //Abbie Utley. We are group 2, Winter term 2020.
 //
-//This program is outlined in the documentation 
+//This program is outlined in the documentation
 //that was submitted, but briefly, it is a computer
 //system that allows ChocAn providers and managers
 //to add and access information about patients and
 //provider services at ChocAn, an organization that
-//helps members combat chocolate addiction. 
+//helps members combat chocolate addiction.
 //
 //
 
 
-
+#define CATCH_CONFIG_RUNNER //for catch testing framework
+#include "testing/catch.hpp"//for catch testing framework
 #include <iostream>         //for normal I/O functionality
 #include <cstring>          //for string functions like tolower/toupper, etc.
 #include <stdlib.h>         //for CueCat code
@@ -42,6 +43,7 @@ using namespace std;        //for standard I/O
 #include "model/member.h"
 #include "model/provider.h"
 
+#include "data_structures/test/datacenter_test.h"
 
 
 const int EXITVALUE = 99;   //exit value to exit the program
@@ -56,8 +58,26 @@ void thankYouGoodbye();     //Function to thank the user for using ChocAn
 int scanId(entity & one_user);
 int typeId(entity & one_user);            //Function to get one member ID by typing
 
-int main()
+int main(int argc, char* argv[])
 {
+   //Bypass all our terminal stuff for testing
+   if(argc >= 2) {
+     char* test = argv[1];
+     switch(test[0]) {
+	case 'd':
+	  datacenterTest();
+	  break;
+	//If you want to make more testing files, just add more cases and call whatever you want.
+	//I've used single letters to keep things simple, just run ./ChocAn [letter] and then add [letter]
+	//To this switch statement, and set it to call whatever you need. That way we can run tests
+	//Without going through the entire terminal setup
+	default:
+	  cout << "unrecognized test, exiting" << endl;
+	  break;
+     }
+      exit(0);
+   }
+
    int menuChoice = 0;      //To catch which menu item the user wants
    int keepGoing = 0;       //To determine if the user wants to continue
    int checkValue = 0;      //To check if ID was entered correctly
@@ -65,12 +85,12 @@ int main()
    welcomeFunction();       //To welcome the user/give credit
 
    entityTable the_entity_table;
-   entity one_user;         //Creates an instance of one user/entity 
+   entity one_user;         //Creates an instance of one user/entity
    member one_member;
    person* one_person;      //changed to pointer, as person now contains an abstract function
    provider one_provider;
    service one_service;
-   
+
    //Do these things while the user does NOT want to exit; ie keepGoing is NOT EXITVALUE
    do
    {
@@ -85,7 +105,7 @@ int main()
 	      //if the scanId doesn't work go back to menu
      	  //otherwise do a different task
         checkValue = scanId(one_user);
-	      if(checkValue == 0) 
+	      if(checkValue == 0)
         {
             keepGoing = 0;
 	      }
@@ -93,7 +113,7 @@ int main()
         {
             //do something else
         }
-     } 
+     }
      else if(menuChoice == 2)
      {
 	      //if the typeId doesn't work go back to menu
@@ -122,7 +142,8 @@ int main()
 
    thankYouGoodbye();
 
-   return 0;
+   int result = Catch::Session().run( argc, argv ); //Catch testing
+   return result;
 }
 
 //Function to welcome the user/give credits
@@ -141,7 +162,7 @@ void welcomeFunction()
    cout << "and Abbie Utley\n\n\n";
 
    return;
-	
+
 }
 
 
@@ -164,7 +185,7 @@ int chooseIDEnter()
    if(choiceToEnter == 1)
    {
       //run scan function
-      choice = 1;	
+      choice = 1;
    }
    else if(choiceToEnter == 2)
    {
@@ -190,7 +211,7 @@ int chooseIDEnter()
       cout << "Invalid choice. Please try again.\n";
       choice = 0;
    }
-   
+
    return choice;
 }
 
@@ -221,7 +242,7 @@ int exitFunction()
    }
 
    return exitChoice;
-	
+
 }
 
 //Function to thank user for usning ChocAn
@@ -249,10 +270,10 @@ int scanId(entity & one_user)
          cout << "Would you like to try again?\n";
 	 cin >> answerYN;
 	 cin.ignore(100, '\n');
-	
+
 	 answerYN = tolower(answerYN);
-	 if(answerYN == 'y') 
-	 { 
+	 if(answerYN == 'y')
+	 {
             keepGoing = 0;
 	 }
 	 else
@@ -262,11 +283,11 @@ int scanId(entity & one_user)
       }
       else
       {
-         errorValue = 1;  
+         errorValue = 1;
          keepGoing = 1;
 
       }
-   } while (keepGoing == 0); 
+   } while (keepGoing == 0);
 
    return errorValue;
 }
@@ -289,7 +310,7 @@ int typeId(entity & one_user)
       errorValue = 1;
    }
 
-   return errorValue; 
+   return errorValue;
 }
 
 //Edited by Kristin Bell for use with ChocAn System
@@ -344,7 +365,7 @@ static char *getData(const char *input)
    size_t size = input - pos - 1;
 
    data = (char *)calloc(size+1, sizeof(char));
-   
+
    strncpy(data, pos, size);
 
    return data;
@@ -357,7 +378,7 @@ static char *decode(char *in)
    size_t length = strlen(in) % 4;
         char * decoded;
 
-        decoded = (char *)calloc(100, sizeof(char));	
+        decoded = (char *)calloc(100, sizeof(char));
 
    if (length != 0)
       length = 4 - length;
@@ -397,7 +418,7 @@ bool getCueCat(entity & one_user)
    if(checkValue == false)
    {
       errorValue = false;
-   }   
+   }
    else
    {
       errorValue = true;

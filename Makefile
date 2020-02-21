@@ -3,12 +3,10 @@
 #and
 #https://stackoverflow.com/a/14590222
 
-CC = g++
-CFLAGS = -c -Wall -Wno-unused  -g -Os
-LD = $(CC)
+CXX=g++
+CPPFLAGS= -std=c++11
+LD=$(CC)
 #LDFLAGS = -lfoo
-
-TARGET = ChocAn
 
 SOURCES=$(shell find . -type f -iname '*.cpp')
 
@@ -17,7 +15,7 @@ OBJECTS=$(foreach x, $(basename $(SOURCES)), $(x).o)
 TARGET=ChocAn
 
 $(TARGET): $(OBJECTS)
-	$(CC) $^ -o $@
+	$(CXX) $^ -o $@
 
 clean:
 	rm -f $(TARGET) $(OBJECTS)
