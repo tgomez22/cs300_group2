@@ -7,7 +7,7 @@
 #include <iostream>
 
 using id_num = unsigned int;
-const int ID = 9;
+const int ID = 10;
 
 class entity
 {
