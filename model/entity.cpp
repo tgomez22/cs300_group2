@@ -31,13 +31,14 @@ bool entity::getIdFromTerm()
 	cin.get(temp, ID, '\n');
 	cin.ignore(100, '\n');
 
-  strcpy(temp, isIDValid(temp));
+        
+        strcpy(temp, isIDValid(temp));
 
 	int length = strlen(temp);
 
 	while(length < 9 || length > 9)
 	{
-		cout<<"User Identification number must be 9 digits long."<<endl;
+		cout<<"IN GET ID FROM TERM.User Identification number must be 9 digits long."<<endl;
 		cout<<"Please enter a new User Identification number: ";
 		cin.get(temp, ID, '\n');
 		cin.ignore(100, '\n');
@@ -78,7 +79,7 @@ char * entity::isIDValid(char * compare)
   
   if(length < 9 || length > 9)
   {
-    cout<<"User Identification number must be 9 digits long."<<endl;
+    cout<<"IN IS ID VALID.User Identification number must be 9 digits long."<<endl;
     cout<<"Please enter a new User Identification number: ";
     cin.get(compare, '\n');
     cin.ignore(100, '\n');
