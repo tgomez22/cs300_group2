@@ -16,7 +16,7 @@
 
 
 #define CATCH_CONFIG_RUNNER //for catch testing framework
-#include "catch.hpp"        //for catch testing framework
+#include "testing/catch.hpp"//for catch testing framework
 #include <iostream>         //for normal I/O functionality
 #include <cstring>          //for string functions like tolower/toupper, etc.
 #include <stdlib.h>         //for CueCat code
@@ -142,7 +142,8 @@ int main(int argc, char* argv[])
 
    thankYouGoodbye();
 
-   return 0;
+   int result = Catch::Session().run( argc, argv ); //Catch testing
+   return result;
 }
 
 //Function to welcome the user/give credits
