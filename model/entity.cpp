@@ -25,10 +25,16 @@ entity::~entity()
 //a valid length member id. returns false if can't add. 
 bool entity::getIdFromTerm()
 {
-	char temp[ID];
+	char temp[100];
 	using namespace std;
+
+	for (int i=0; i < 100; ++i)
+	{
+           temp[i] = '\0';
+	} 
+
 	cout<<"Please enter a new User Identification number: ";
-	cin.get(temp, ID, '\n');
+	cin.get(temp, 100, '\n');  //changed this to allow for too many
 	cin.ignore(100, '\n');
 
         
@@ -47,6 +53,8 @@ bool entity::getIdFromTerm()
 		
 	}
 	id = atoi(temp);
+
+	cout << "ID Number is: " << temp << endl;
 	return id;
 }
 
@@ -65,6 +73,7 @@ bool entity::checkIdFromScan(char * scanID)
    }
    else
    {
+      cout << "ID Number is: " << scanID << endl;
       checkValue = true; 
    }
 
@@ -81,7 +90,7 @@ char * entity::isIDValid(char * compare)
   {
     cout<<"User Identification number must be 9 digits long."<<endl;
     cout<<"Please enter a new User Identification number: ";
-    cin.get(compare, '\n');
+    cin.get(compare, 100, '\n');
     cin.ignore(100, '\n');
 
     length = strlen(compare);
