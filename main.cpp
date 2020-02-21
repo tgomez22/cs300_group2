@@ -1,21 +1,22 @@
 //This is the main interface area for the ChocAn
 //simulator system version 1.0. This was created for CS300 with
-//Instructor Chris Gilmore. The student development 
+//Instructor Chris Gilmore. The student development
 //team consists of: Kristin Bell, Chris Childs,
 //Tristan Gomez, Mikayla Maki, Shawn Spears, and
 //Abbie Utley. We are group 2, Winter term 2020.
 //
-//This program is outlined in the documentation 
+//This program is outlined in the documentation
 //that was submitted, but briefly, it is a computer
 //system that allows ChocAn providers and managers
 //to add and access information about patients and
 //provider services at ChocAn, an organization that
-//helps members combat chocolate addiction. 
+//helps members combat chocolate addiction.
 //
 //
 
 
-
+#define CATCH_CONFIG_RUNNER //for catch testing framework
+#include "catch.hpp"        //for catch testing framework
 #include <iostream>         //for normal I/O functionality
 #include <cstring>          //for string functions like tolower/toupper, etc.
 #include <stdlib.h>         //for CueCat code
@@ -84,12 +85,12 @@ int main(int argc, char* argv[])
    welcomeFunction();       //To welcome the user/give credit
 
    entityTable the_entity_table;
-   entity one_user;         //Creates an instance of one user/entity 
+   entity one_user;         //Creates an instance of one user/entity
    member one_member;
    person one_person;
    provider one_provider;
    service one_service;
-   
+
    //Do these things while the user does NOT want to exit; ie keepGoing is NOT EXITVALUE
    do
    {
@@ -104,7 +105,7 @@ int main(int argc, char* argv[])
 	      //if the scanId doesn't work go back to menu
      	  //otherwise do a different task
         checkValue = scanId(one_user);
-	      if(checkValue == 0) 
+	      if(checkValue == 0)
         {
             keepGoing = 0;
 	      }
@@ -112,7 +113,7 @@ int main(int argc, char* argv[])
         {
             //do something else
         }
-     } 
+     }
      else if(menuChoice == 2)
      {
 	      //if the typeId doesn't work go back to menu
@@ -160,7 +161,7 @@ void welcomeFunction()
    cout << "and Abbie Utley\n\n\n";
 
    return;
-	
+
 }
 
 
@@ -183,7 +184,7 @@ int chooseIDEnter()
    if(choiceToEnter == 1)
    {
       //run scan function
-      choice = 1;	
+      choice = 1;
    }
    else if(choiceToEnter == 2)
    {
@@ -209,7 +210,7 @@ int chooseIDEnter()
       cout << "Invalid choice. Please try again.\n";
       choice = 0;
    }
-   
+
    return choice;
 }
 
@@ -240,7 +241,7 @@ int exitFunction()
    }
 
    return exitChoice;
-	
+
 }
 
 //Function to thank user for usning ChocAn
@@ -268,10 +269,10 @@ int scanId(entity & one_user)
          cout << "Would you like to try again?\n";
 	 cin >> answerYN;
 	 cin.ignore(100, '\n');
-	
+
 	 answerYN = tolower(answerYN);
-	 if(answerYN == 'y') 
-	 { 
+	 if(answerYN == 'y')
+	 {
             keepGoing = 0;
 	 }
 	 else
@@ -281,11 +282,11 @@ int scanId(entity & one_user)
       }
       else
       {
-         errorValue = 1;  
+         errorValue = 1;
          keepGoing = 1;
 
       }
-   } while (keepGoing == 0); 
+   } while (keepGoing == 0);
 
    return errorValue;
 }
@@ -308,7 +309,7 @@ int typeId(entity & one_user)
       errorValue = 1;
    }
 
-   return errorValue; 
+   return errorValue;
 }
 
 //Edited by Kristin Bell for use with ChocAn System
@@ -363,7 +364,7 @@ static char *getData(const char *input)
    size_t size = input - pos - 1;
 
    data = (char *)calloc(size+1, sizeof(char));
-   
+
    strncpy(data, pos, size);
 
    return data;
@@ -376,7 +377,7 @@ static char *decode(char *in)
    size_t length = strlen(in) % 4;
         char * decoded;
 
-        decoded = (char *)calloc(100, sizeof(char));	
+        decoded = (char *)calloc(100, sizeof(char));
 
    if (length != 0)
       length = 4 - length;
@@ -416,7 +417,7 @@ bool getCueCat(entity & one_user)
    if(checkValue == false)
    {
       errorValue = false;
-   }   
+   }
    else
    {
       errorValue = true;
