@@ -360,13 +360,22 @@ static char *getData(const char *input)
       }
    }
 
-   assert(pos != NULL);
+//   assert(pos != NULL);
+   if(pos != NULL)
+   {
+      size_t size = input - pos - 1;
 
-   size_t size = input - pos - 1;
+      data = (char *)calloc(size+1, sizeof(char));
 
-   data = (char *)calloc(size+1, sizeof(char));
+      strncpy(data, pos, size);
+   }
+   else
+   {
+      size_t size2 = 1;
+      data = (char *)calloc(size2, sizeof(char));
+      data[0] = 'x';
 
-   strncpy(data, pos, size);
+   }
 
    return data;
 }
@@ -407,22 +416,34 @@ bool getCueCat(entity & one_user)
 
    bool checkValue = false;
    bool errorValue = false;
+   int doAgain = 0;
 
-   scanf("%254s", input);
+   do{
+      scanf("%254s", input);
 
-   data = getData(input);
-   decoded = decode(data);
-   printf("%s\n", decoded);
+      data = getData(input);
+      if(data[0] == 'x')
+      {
+         doAgain = 0;
+	 cout << "You must scan the ID. Try again.\n";
+      }
+      else
+      {
+	 doAgain = 1;
+         decoded = decode(data);
+         printf("%s\n", decoded);
 
-   checkValue = one_user.checkIdFromScan(decoded);
-   if(checkValue == false)
-   {
-      errorValue = false;
-   }
-   else
-   {
-      errorValue = true;
-   }
+         checkValue = one_user.checkIdFromScan(decoded);
+         if(checkValue == false)
+         {
+            errorValue = false;
+         }
+         else
+         {
+            errorValue = true;
+         }
+      }
+   } while(doAgain == 0);
 
    free(input);
    free(data);
