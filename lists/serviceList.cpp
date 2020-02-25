@@ -1,102 +1,42 @@
 #include "serviceList.h"
+#include "service.h"
+#include "entity.h"
+#include "person.h"
+#include "provider.h"
+#include "member.h"
+#include <ctime>
+#include <cstdlib>
+using namespace std;
+const int ID = 10;
+const int SIZE = 101;
+const int MULTBY = 97;
 
-serviceList::serviceList()
+int getWeek()
 {
-	table = new sNode[SIZE];
+  time_t timeToGet;
+  timeToGet = NULL;
 
-	for(int i = 0; i < SIZE; ++i)
-	{
-		*table++ = NULL;
-	}
+  timeToGet -= 604800;
+  time(&timeToGet);
 
-	table -= SIZE;
-}
-
-//UNDER CONSTRUCTION
-serviceList::~serviceList()
-{
-  serviceNode ** start = table;
-  for(int i = 0; i < 0; ++i)
+  cout << "This was a week ago: " << ctime(&timeToGet);
+  
+  //to find everything that was a week ago:
+  //search through the table to find the service that matches the date
+  for(int i = 0; i < SIZE; ++i)
   {
-    destroyService(start[i]);
+    if(table[i])
+    {
+      service * current = new service;
+      current = table[i]->head;
+      while(current)
+      {
+        if(table[i]->head.numberTime >= timeToGet)
+          //put this in the report function? For now we will just display???
+          //reports peeps call your function here? Or something of that
+          table[i]->head.display();
+          current = current->next;
+      }
+    }
   }
-}
-
-void destroyService(serviceNode *& to_destroy)
-{
-  if(!to_destroy->next)
-  {
-    to_destroy->head.~service();
-    delete to_destroy;
-    to_destroy = NULL;
-    return;
-  }
-  if(!to_destroy)
-    return;
-  to_destroy->head.~service();
-  deleteServices(to_destroy->head);
-  delete to_destroy;
-  to_destroy = NULL;
-  return;
-}
-
-int serviceList::memberFunctions()
-{
-
-}
-
-int serviceList::getKey(const int toUse)
-{
-	int key = toUse * MULTBY;
-	key = key % SIZE;
-
-    if(key < 0)
-        key = -key;
-
-	return key;
-}
-
-
-///check logic again???
-bool serviceList::addService(const service & toAdd)
-{
-	int index = getKey(toAdd.getIdValue());	
-
-	if(table[index] == NULL)
-	{
-		table[index] = new sNode;
-		table[index]->memNum.addId(toAdd);;
-		table[index]->head = new service(toAdd);
-		table[index]->next = NULL;
-
-		return true;
-	} 
-
-	else
-	{
-		sNode * temp = table[index];
-	
-		while(temp && temp->memNum.compare(toAdd)!= 0)
-		{
-			temp = temp->next;
-		}
-        
-        //fell off list, member doesn't exist
-		if(!temp)
-		{
-			//must be an existing member to add a service.
-			return false;
-		}
-        
-        //found member, adding service
-		else
-		{
-			service * headHolder = temp->head;
-			temp->head = new service(toAdd);
-			temp->head.to_next() = headHolder;
-			return true;
-
-		}
-	}
-
 }
