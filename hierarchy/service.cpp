@@ -1,62 +1,85 @@
-#include "service.h"
-#include "tString.h"
+#include <time.h>
 #include <iostream>
+#include "service.h"
+using namespace std;
 
-service::service()
+service::service();
 {
-	next = NULL;
-//Mikayla do you want to add the interface to prompt the user to enter their info?
+  time_t numberTime;
+  time(&numberTime); //This puts a number in numberTime of current time. (you don't have to enter the time of day. It automatically 
+                      //tells you at allocation
+
 }
 
-//copy constructor for the service class, initalizes the data members to the argument's data 
-//members values.
 service::service(const service & toAdd)
 {
-	dos.add(toAdd.dos);
-	currDate.add(toAdd.currDate);
-	currTime.add(toAdd.currTime);
-	servName.add(toAdd.ServName);
-	memName.add(toAdd.memName);
-	serviceCode.add(toAdd.serviceCode);
-	serviceFee = toAdd.serviceFee;
-	next = NULL;
+  dos(toAdd.dos);
+  numberTime = toadd.numberTime;
+  servName(toAdd.servName);
+  memName(toAdd.memName);
+  serviceCode(toAdd.serviceCode);
+  serviceFee = toAdd.serviceFee;
+  next = NULL;
+
 }
 
-//sets next pointer to null, no dynamic memory to deallocate.
 service::~service()
 {
-	next = NULL;
+
 }
 
-//Displays stored information for a service.
-void service::display()const
+void service::display(void) const
 {
-	using namespace std;
-
-	cout<<"Service: "<<servName<<endl;
-	cout<<"Service code: "<<servCode.display()<<endl;
-	cout<<"Administered on: "<<dos.display()<<endl;
-	cout<<"Filed on: "<<currDate.display()<<" at "<<currTime.display()<<endl;
-	cout<<"Member: "<<memName.display()<<endl;
-	cout<<"Member number: "<<entity::display()<<endl;
-	cout<<"Fee for service provided: $"<<serviceFee<<endl;
-
-	return;
+  cout << "date of service: " << dos.display() << endl 
+      << "Service name: " << servName.display() << endl 
+      << "Member name: " << memName.display() << endl
+      << "service code: " << servCode.display() << endl
+      << "service fee: " << serviceFee << endl << endl;
 }
 
-bool service::appendService()
+void service::displayTime(void)
 {
-//Mikayla do you want to add this interface to prompt user to make changes?
+  time(&numberTime);
+  cout << "Current time is: " << ctime(&numberTime);
+
 }
 
-//returns a pointer by reference to the next pointer.
-service *& service::toNext()
+void service::convertDate()
 {
-	return next;
+  time_t = curr_time;
+  time(&curr_time);
+  
+  dos(ctime(&curr_time));
+
+  return;
 }
-bool service::addService()
+
+
+int service::getWeek()
 {
-//Mikayla do you want to implement this interface?
+  time_t timeToGet;
+  time(&timeToGet);
+
+  timeToGet -= 604800;
+
+  cout << "This was a week ago: " << ctime(&timeToGet);
+  
+  //to find everything that was a week ago:
+  //search through the table to find the service that matches the date
+  for(int i = 0; i < SIZE; ++i)
+  {
+    if(table[i])
+    {
+      service * current = new service;
+      current = table[i]->head;
+      while(current)
+      {
+        if(table[i]->head.numberTime >= timeToGet)
+          //put this in the report function? For now we will just display???
+          //reports peeps call your function here? Or something of that
+          table[i]->head.display();
+          current = current->next;
+      }
+    }
+  }
 }
-
-

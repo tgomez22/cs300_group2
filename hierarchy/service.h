@@ -3,6 +3,7 @@
 //Worked on by Tristan Gomez(started:2/5/2020)
 
 #include "entity.h"
+#include <time.h>
 
 //This class is derived from the most base class, entity. It contains a member number that was inherited
 //which allows the service to be tied to a member or provider. The service contains all specified information
@@ -17,11 +18,14 @@ class service: public entity
 		bool appendService();
 		service *& toNext();
 		bool addService();
+    void convertDate(time_t toConvert); //use this function to turn the date into a string. 
+                                        //very easy implementation. tells you the current date
+    void displayTime(); //this will display the time in a readable form.
+    int getWeek();
 		
 	private:
-		tString dos; //date of service
-		tString currDate;
-		tString currTime;
+		tString dos; //date of service in form: www mmm dd hh:mm:ss yyyy
+    long numberTime; //number of seconds since jan 1st 1970 00:00:00 (good for week calculations
 		tString servName;
 		tString memName;
 		//has memNum from base class entity

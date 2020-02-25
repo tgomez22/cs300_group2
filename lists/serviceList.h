@@ -16,7 +16,6 @@ class serviceList
 		serviceList();
 		~serviceList();
 		int memberFunctions();//use this function as a wrapper for member only functions. Put those functions into the private section. 
-    int getWeek();
 
 	private:
 		int getKey(const int toUse); //hashing function to get arr index
