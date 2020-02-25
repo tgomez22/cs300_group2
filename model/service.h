@@ -1,29 +1,29 @@
-#ifndef __SERVICE_H
-#define __SERVICE_H
 //CS300 group #2
 //
 //Worked on by Tristan Gomez(started:2/5/2020)
-
-#include <ctime>
-
+#ifndef SERVICE_H
+#define SERVICE_H
 #include "entity.h"
-
 class service: public entity
 {
-	public:
+    public:
 		service();
-		service(const service &other);
+		service(const service & toAdd);
 		~service();
-		bool  getServiceFromTerm();
-		
+		void display()const;
+		service *& toNext();
+		bool addService();
+
 	private:
-		std::time_t dos; //date of service
-		std::time_t currTime;
-		std::string servName;
-		std::string memName;
+		tString dos; //date of service change to struct time
+	    tString currDate; //change to struct time
+		tString currTime; //change to struct time
+		tString servName;
+		tString memName;
 		//has memNum from base class entity
-		id_num serviceCode;
+		int serviceCode;
 		float serviceFee;
+		service * next;
 };
 
-#endif 
+#endif
