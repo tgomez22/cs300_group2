@@ -15,12 +15,36 @@ class entity
 		entity();
 		entity(const entity & other); //Copy Constructor
 		~entity();
-		void setId();
-		bool isMatch(const entity & other)const;
 		int getId()const;
-		int compare(const entity & toCompare)const;
 	protected:
 		 id_num memId;
+
+        //terminal people fctn. prompt user to directly enter their memId to store.
+		bool addId();
+
+        //copies arg into data member
+		bool addId(const class tString & toAdd);
+        bool addId(const entity & toAdd);
+		bool addId(char * toAdd);
+
+
+		void display()const;
+
+        //returns true if matches arg.
+		bool isMatch(const entity & toSee)const;
+
+        //returns 1,2,3 depending on user type. if not value user, returns 0;
+        int getFirstIndex()const;
+
+        //returns sum of ascii values of stored data. Used in hashing fctn.
+        int getIdValue()const;
+
+        //strcmps arg against stored data. returns 0 if match
+        int compare(const entity & toCompare)const;
+        int compare(char * toCompare)const;
+
+        //FILE IO PEOPLE!!! prototype to write out to file.
+        bool writeOut();
 };
 
 #endif

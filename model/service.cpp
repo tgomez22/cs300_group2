@@ -8,8 +8,12 @@ service::service()
 //Mikayla do you want to add the interface to prompt the user to enter their info?
 }
 
-//copy constructor for the service class, initalizes the data members to the argument's data 
+//copy constructor for the service class, initalizes the data members to the argument's data
 //members values.
+const int MULTBY = 97;
+const int ID = 10;
+const int SIZE = 101;
+
 service::service(const service & toAdd)
 {
 	dos.add(toAdd.dos);
@@ -54,9 +58,8 @@ service *& service::toNext()
 {
 	return next;
 }
+
 bool service::addService()
 {
 //Mikayla do you want to implement this interface?
 }
-
-

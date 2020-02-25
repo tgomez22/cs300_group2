@@ -9,7 +9,6 @@
 #include "../data_structures/serviceList.h"
 #include "entity.h"
 
-
 class person: public entity
 {
 	public:
@@ -25,6 +24,16 @@ class person: public entity
 		std::string state;
 		std::string zip;
 		serviceList services;
+		virtual void display()const = 0;
+
+        //Shawn let me know if this prototype needs to change.
+        virtual void writeOut() = 0;
+
+        //For terminal folks! used in member and provider classes.
+        virtual bool readIn() = 0;
+
+        //Displays all private data, for terminal people.
+        void showInfo()const;
 };
 
 #endif

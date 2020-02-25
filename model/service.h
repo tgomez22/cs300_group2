@@ -14,7 +14,12 @@ class service: public entity
 		service();
 		service(const service &other);
 		~service();
-		
+
+		void display()const;
+		service *& toNext();
+		bool addService();
+
+
 	private:
 		std::time_t dos; //date of service
 		std::time_t currTime;
@@ -23,6 +28,9 @@ class service: public entity
 		//has memNum from base class entity
 		id_num serviceCode;
 		float serviceFee;
+
+  	service * next;
+
 };
 
-#endif 
+#endif
