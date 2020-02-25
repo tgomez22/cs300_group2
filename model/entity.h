@@ -5,9 +5,8 @@
 //Worked on by Tristan Gomez (Started 2/5/2020)
 
 #include <iostream>
-
-using id_num = unsigned int;
-const int ID = 9;
+#include "tString.h"
+const int ID = 10;
 
 class entity
 {
@@ -17,10 +16,13 @@ class entity
 		~entity();
 		int getId()const;
 	protected:
-		 id_num memId;
+		 tString memId;
 
+       // char * isIDValid(char * compare);
+        
+        
         //terminal people fctn. prompt user to directly enter their memId to store.
-		bool addId();
+		//bool addId();
 
         //copies arg into data member
 		bool addId(const class tString & toAdd);

@@ -1,4 +1,5 @@
 #include "entity.h"
+#include "tString.h"
 #include <cstring>
 
 //default constructor, no data members to initalize.
@@ -21,17 +22,17 @@ entity::~entity()
 
 }
 
-<<<<<<< Updated upstream
-bool addId(const entity & toAdd);
+bool addId(const entity & toAdd)
 {
     memId.add(toAdd.memId);
     return true;
 }
 
-=======
 //prompts user to add an id number. Returns true if successfully added
 //a valid length member id. returns false if can't add. 
->>>>>>> Stashed changes
+
+/*
+ * commented out to allow for preliminary compilation. /////TERMINAL PEOPLE!
 bool entity::addId()
 {
 	char temp[ID];
@@ -59,7 +60,7 @@ bool entity::addId()
 
 			
 }
-
+*/
 
 //adds id, initalizes id value to the argument.
 bool entity::addId(const tString & toAdd)
@@ -73,6 +74,11 @@ bool entity::addId(char * toAdd)
 	memId.add(toAdd);
 }
 
+/*
+ * commented out to allow for preliminary compilation. ///////////TERMINAL PEOPLE
+ *
+ *
+ *
 //Checks if the ID is valid and makes sure the input is correct
 char * entity::isIDValid(char * compare)
 {
@@ -92,6 +98,9 @@ char * entity::isIDValid(char * compare)
   return compare;
 }
 
+*/
+
+
 //displays stored private data(member number)
 void entity::display()const
 {
@@ -104,12 +113,7 @@ bool entity::isMatch(const entity & toSee)const
 {
 	return memId.compare(toSee.memId);
 }
-<<<<<<< Updated upstream
 
-bool entity::isMatch(const class person & toSee)const
-{
-	return memId(toSee.memId);
-}
 
 int entity::getIdValue()const
 {
@@ -140,5 +144,3 @@ int compare(const tString & toCompare)const
 {
 	return memId.compare(toCompare);
 }
-=======
->>>>>>> Stashed changes
