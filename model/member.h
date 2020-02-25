@@ -3,24 +3,32 @@
 
 //CS300 Group #2
 //
+//CS300 Group #2
+//
 //Worked on by Tristan Gomez(Started: 2/5/2020)
 
-#include "person.h"
+#ifndef MEMBER_H
+#define MEMBER_H
 
-//This class is derived from class person. 
-//It contains relevant info to members of ChocAn.
-//A true or false if the member is suspended. 
-//If the member is suspended, then the amount due is set.
-//
+#include "person.h"
+#include "entity.h"
 class member: public person
 {
 	public:
 		member();
-		member(const member &other);
+		member(const member & toAdd);
 		~member();
-		void append();
+		void display()const;
+
+       //FILE IO group!
+        void writeOut();
+
+        //Terminal group.
+        bool readIn();
+
 	private:
 		bool suspended;
+		float amtDue;
 };
 
 #endif

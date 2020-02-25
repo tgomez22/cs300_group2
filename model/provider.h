@@ -1,19 +1,26 @@
-#ifndef __PROVIDER_H
-#define __PROVIDER_H
-
 //Tristan Gomez
 
+
+#ifndef PROVIDER_H
+#define PROVIDER_H
 #include "person.h"
 
-//This class is derived from class person. It contains relevant information that a provider will have 
-//associated with them, such as a weekly fee owned and the number of consults in a week. 
 class provider: public person
 {
 	public:
 		provider();
 		provider(const provider & toAdd);
 		~provider();
-		bool append();
+		void display()const;
+
+        //FIle IO
+        void writeOut();
+
+        //Terminal
+        bool readIn();
+	private:
+		int consultNum;
+		float weeklyFee;
 };
 
 #endif
