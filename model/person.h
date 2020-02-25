@@ -1,16 +1,29 @@
+#ifndef __PERSON_H
+#define __PERSON_H
 //CS300 Group #2
 //
 //Worked on by Tristan Gomez(started: 2/5/2020)
-#ifndef PERSON_H
-#define PERSON_H
+
+#include <string>
+
+#include "../data_structures/serviceList.h"
 #include "entity.h"
-#include "tString.h"
+
 class person: public entity
 {
 	public:
 		person();
 		person(const person & toAdd);
 		virtual ~person();
+
+	protected:
+		std::string name;
+		//memNum exists in entity
+		std::string address;
+		std::string city;
+		std::string state;
+		std::string zip;
+		serviceList services;
 		virtual void display()const = 0;
 
         //Shawn let me know if this prototype needs to change.
@@ -21,14 +34,6 @@ class person: public entity
 
         //Displays all private data, for terminal people.
         void showInfo()const;
-
-	protected:
-		tString name;
-		//memNum exists in entity
-		tString address;
-		tString city;
-		tString state;
-		tString zip;
 };
 
 #endif

@@ -3,20 +3,17 @@
 
 //CS300 Group #2
 //
-//CS300 Group #2
-//
 //Worked on by Tristan Gomez(Started: 2/5/2020)
 
-#ifndef MEMBER_H
-#define MEMBER_H
 
 #include "person.h"
 #include "entity.h"
+
 class member: public person
 {
 	public:
 		member();
-		member(const member & toAdd);
+		member(const member &other);
 		~member();
 		void display()const;
 
@@ -28,7 +25,6 @@ class member: public person
 
 	private:
 		bool suspended;
-		float amtDue;
 };
 
 #endif

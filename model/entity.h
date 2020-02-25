@@ -1,18 +1,23 @@
+#ifndef __ENTITY_H
+#define __ENTITY_H
 //CS300 group #2
 //
 //Worked on by Tristan Gomez (Started 2/5/2020)
-#ifndef ENTITY_H
-#define ENTITY_H
-#include "tString.h"
+
+#include <iostream>
+
+using id_num = unsigned int;
+const int ID = 9;
+
 class entity
 {
 	public:
-        //default constructor, sets null values
 		entity();
-
-        //initializes to arg values
-		entity(const entity & toAdd);
+		entity(const entity & other); //Copy Constructor
 		~entity();
+		int getId()const;
+	protected:
+		 id_num memId;
 
         //terminal people fctn. prompt user to directly enter their memId to store.
 		bool addId();
@@ -40,8 +45,6 @@ class entity
 
         //FILE IO PEOPLE!!! prototype to write out to file.
         bool writeOut();
-	protected:
-		tString memId;
 };
 
 #endif

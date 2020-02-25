@@ -1,8 +1,8 @@
+#ifndef __PROVIDER_H
+#define __PROVIDER_H
+
 //Tristan Gomez
 
-
-#ifndef PROVIDER_H
-#define PROVIDER_H
 #include "person.h"
 
 class provider: public person

@@ -2,72 +2,64 @@
 #include "tString.h"
 #include <iostream>
 
-const int MULTBY = 97;
-const int ID = 10;
-const int SIZE = 101;
 service::service()
 {
 	next = NULL;
-    serviceCode = 0;
-    serviceFee = 0;
+//Mikayla do you want to add the interface to prompt the user to enter their info?
 }
+
+//copy constructor for the service class, initalizes the data members to the argument's data
+//members values.
+const int MULTBY = 97;
+const int ID = 10;
+const int SIZE = 101;
 
 service::service(const service & toAdd)
 {
 	dos.add(toAdd.dos);
 	currDate.add(toAdd.currDate);
 	currTime.add(toAdd.currTime);
-	servName.add(toAdd.servName);
+	servName.add(toAdd.ServName);
 	memName.add(toAdd.memName);
-	serviceCode = toAdd.serviceCode;
+	serviceCode.add(toAdd.serviceCode);
 	serviceFee = toAdd.serviceFee;
 	next = NULL;
 }
 
+//sets next pointer to null, no dynamic memory to deallocate.
 service::~service()
 {
 	next = NULL;
 }
 
+//Displays stored information for a service.
 void service::display()const
 {
 	using namespace std;
 
-	cout<<"Service: ";
-    servName.display();
-    cout<<endl;
-
-	cout<<"Service code: "<<serviceCode<<endl;
-
-	cout<<"Administered on: ";
-    dos.display();
-    cout<<endl;
-
-	cout<<"Filed on: ";
-    currDate.display();
-    cout<<" at ";
-    currTime.display();
-    cout<<endl;
-
-	cout<<"Member: ";
-    memName.display();
-    cout<<endl;
-	cout<<"Member number: ";
-    entity::display();
-    cout<<endl;
-
+	cout<<"Service: "<<servName<<endl;
+	cout<<"Service code: "<<servCode.display()<<endl;
+	cout<<"Administered on: "<<dos.display()<<endl;
+	cout<<"Filed on: "<<currDate.display()<<" at "<<currTime.display()<<endl;
+	cout<<"Member: "<<memName.display()<<endl;
+	cout<<"Member number: "<<entity::display()<<endl;
 	cout<<"Fee for service provided: $"<<serviceFee<<endl;
 
 	return;
 }
 
+bool service::appendService()
+{
+//Mikayla do you want to add this interface to prompt user to make changes?
+}
+
+//returns a pointer by reference to the next pointer.
 service *& service::toNext()
 {
 	return next;
 }
 
-//add this
 bool service::addService()
 {
-    return true;
+//Mikayla do you want to implement this interface?
 }
