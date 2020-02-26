@@ -2,8 +2,8 @@
 #include "tString.h"
 #include <cstring>
 #include <iostream>
-const int SIZE = 101;
-const int MULTBY = 97;
+//const int SIZE = 101;
+//const int MULTBY = 97;
 //default constructor, no data members to initalize.
 entity::entity()
 {

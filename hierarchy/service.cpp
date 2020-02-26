@@ -3,7 +3,7 @@
 #include "service.h" 
 #include "../model/tString.h"
 
-service::service();
+service::service()
 {
   time_t numberTime;
   time(&numberTime); //This puts a number in numberTime of current time. (you don't have to enter the time of day. It automatically 
@@ -15,11 +15,11 @@ service::service();
 
 service::service(const service & toAdd)
 {
-  dos(toAdd.dos);
-  numberTime = toadd.numberTime;
-  servName(toAdd.servName);
-  memName(toAdd.memName);
-  serviceCode(toAdd.serviceCode);
+  dos.add(toAdd.dos);
+  numberTime = toAdd.numberTime;
+  servName.add(toAdd.servName);
+  memName.add(toAdd.memName);
+  serviceCode.add(toAdd.serviceCode);
   serviceFee = toAdd.serviceFee;
   next = NULL;
 
@@ -33,42 +33,63 @@ service::~service()
 void service::display(void) const
 {
     using namespace std;
-  cout << "date of service: " << dos.display() << endl 
-  cout << "Service name: " << servName.display() << endl 
-      cout << "Member name: " << memName.display() << endl
-      cout << "service code: " << servCode.display() << endl
-      cout << "service fee: " << serviceFee << endl << endl;
+  cout << "date of service: ";
+  dos.display();
+  cout << endl;
+
+  cout << "Service name: ";
+  servName.display() ;
+      cout<< endl ;
+
+      cout << "Member name: ";
+      memName.display();
+      cout<< endl;
+      cout << "service code: ";
+      serviceCode.display();
+      cout<< endl;
+      cout << "service fee: ";
+      cout<< serviceFee << endl;
 }
 
 void service::displayTime(void)
 {
+    using namespace std;
   time(&numberTime);
   cout << "Current time is: " << ctime(&numberTime);
 
 }
 
-void service::convertDate(time_t toConvert)
+//ABBIE!!! I commented these out because curr_time doesnt
+//seem to exist in this class as a data member. Maybe it got 
+//deleted???
+void service::convertDate(time_t & toConvert)
 {
-  time_t = curr_time;
-  time(&curr_time);
+    
+  //toConvert = curr_time;
+  //time(&curr_time);
   
-  dos(ctime(&curr_time));
+  //dos(ctime(&curr_time));
 
   return;
 }
 
-
+//ABBIE!!! table exists in service list. Most of this code should be moves there.
 int service::getWeek()
 {
+    using namespace std;
   time_t timeToGet;
   time(&timeToGet);
 
   timeToGet -= 604800;
 
   cout << "This was a week ago: " << ctime(&timeToGet);
-  
+ 
+
+
   //to find everything that was a week ago:
   //search through the table to find the service that matches the date
+  /*
+   *
   for(int i = 0; i < SIZE; ++i)
   {
     if(table[i])
@@ -85,9 +106,10 @@ int service::getWeek()
       }
     }
   }
+  */
 }
 
-service *& toNext()
+service *& service::toNext()
 {
     return next;
 }

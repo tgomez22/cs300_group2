@@ -19,7 +19,7 @@ class service: public entity
 		void display()const;
 		service *& toNext();
 		bool addService();
-    void convertDate(time_t toConvert); //use this function to turn the date into a string. 
+    void convertDate(time_t & toConvert); //use this function to turn the date into a string. 
                                         //very easy implementation. tells you the current date
     void displayTime(void); //this will display the time in a readable form.
     int getWeek();

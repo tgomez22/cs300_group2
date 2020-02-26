@@ -139,5 +139,5 @@ bool tString::copyToArg(char * toUse)const
 
 bool tString::copyToArg(tString & toUse)const
 {
-    return copyToArg(toUse.memId);
+    return copyToArg(toUse.array);
 }

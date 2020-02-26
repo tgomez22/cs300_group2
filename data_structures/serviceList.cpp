@@ -1,13 +1,14 @@
-#include "../hierarchy/serviceList.h"
+#include "serviceList.h"
 #include "../hierarchy/service.h"
 #include "../model/entity.h"
 #include "../model/person.h"
 #include "../model/provider.h"
 #include "../model/member.h"
+#include "defs.h"
 #include <cstdlib>
-const int ID = 10;
-const int SIZE = 101;
-const int MULTBY = 97;
+//const int ID = 10;
+//const int SIZE = 101;
+//const int MULTBY = 97;
 
 serviceList::serviceList()
 {

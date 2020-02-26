@@ -6,7 +6,8 @@
 
 #include <iostream>
 #include "tString.h"
-const int ID = 10;
+#include "../data_structures/defs.h"
+//const int ID = 10;
 
 class entity
 {
@@ -17,8 +18,6 @@ class entity
 		//int getId()const;
         void getMemId(tString & toUse)const;
         void getMemId(entity & toUse)const;
-	protected:
-		 tString memId;
 
        // char * isIDValid(char * compare);
                 
@@ -50,6 +49,8 @@ class entity
 
         //FILE IO PEOPLE!!! prototype to write out to file.
         bool writeOut();
+	protected:
+		 tString memId;
 };
 
 #endif
