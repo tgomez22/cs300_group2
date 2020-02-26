@@ -5,22 +5,25 @@
 //Worked on by Tristan Gomez (Started 2/5/2020)
 
 #include <iostream>
-
-using id_num = unsigned int;
-const int ID = 9;
+#include "tString.h"
+#include "../data_structures/defs.h"
+//const int ID = 10;
 
 class entity
 {
 	public:
 		entity();
-		entity(const entity & other); //Copy Constructor
+		entity(const entity & toAdd); //Copy Constructor
 		~entity();
-		int getId()const;
-	protected:
-		 id_num memId;
+		//int getId()const;
+        void getMemId(tString & toUse)const;
+        void getMemId(entity & toUse)const;
 
+       // char * isIDValid(char * compare);
+                
+        
         //terminal people fctn. prompt user to directly enter their memId to store.
-		bool addId();
+		//bool addId();
 
         //copies arg into data member
 		bool addId(const class tString & toAdd);
@@ -42,9 +45,12 @@ class entity
         //strcmps arg against stored data. returns 0 if match
         int compare(const entity & toCompare)const;
         int compare(char * toCompare)const;
+        int compare(const tString & toCompare)const;
 
         //FILE IO PEOPLE!!! prototype to write out to file.
         bool writeOut();
+	protected:
+		 tString memId;
 };
 
 #endif

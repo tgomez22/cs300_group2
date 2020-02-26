@@ -1,6 +1,9 @@
 #include "entity.h"
+#include "tString.h"
 #include <cstring>
-
+#include <iostream>
+//const int SIZE = 101;
+//const int MULTBY = 97;
 //default constructor, no data members to initalize.
 entity::entity()
 {
@@ -21,17 +24,38 @@ entity::~entity()
 
 }
 
-<<<<<<< Updated upstream
-bool addId(const entity & toAdd);
+bool entity::addId(const entity & toAdd)
 {
     memId.add(toAdd.memId);
     return true;
 }
 
-=======
+
+//FILE IO PEOPLE//////////////////
+bool entity::writeOut()
+{
+    //Insert here!;
+    //
+    //
+    //I think this function will help you. It returns a char * 
+    //to the data stored within memId. I was thinking that this would
+    //be a good way to pull out the necessary data.
+    //
+    //char * toUse = memId.getString();
+    //
+
+    //placeholder so it compiles.
+    return true;
+}
+/////////////END FILE IO?//////////
+
+
+
 //prompts user to add an id number. Returns true if successfully added
 //a valid length member id. returns false if can't add. 
->>>>>>> Stashed changes
+
+/*
+ * commented out to allow for preliminary compilation. /////TERMINAL PEOPLE!
 bool entity::addId()
 {
 	char temp[ID];
@@ -59,7 +83,7 @@ bool entity::addId()
 
 			
 }
-
+*/
 
 //adds id, initalizes id value to the argument.
 bool entity::addId(const tString & toAdd)
@@ -73,6 +97,11 @@ bool entity::addId(char * toAdd)
 	memId.add(toAdd);
 }
 
+/*
+ * commented out to allow for preliminary compilation. ///////////TERMINAL PEOPLE
+ *
+ *
+ *
 //Checks if the ID is valid and makes sure the input is correct
 char * entity::isIDValid(char * compare)
 {
@@ -92,6 +121,9 @@ char * entity::isIDValid(char * compare)
   return compare;
 }
 
+*/
+
+
 //displays stored private data(member number)
 void entity::display()const
 {
@@ -104,12 +136,7 @@ bool entity::isMatch(const entity & toSee)const
 {
 	return memId.compare(toSee.memId);
 }
-<<<<<<< Updated upstream
 
-bool entity::isMatch(const class person & toSee)const
-{
-	return memId(toSee.memId);
-}
 
 int entity::getIdValue()const
 {
@@ -128,17 +155,20 @@ void entity::getMemId(entity & toUse)const
 	return;
 }
 		
-int compare(const entity & toCompare)const
+int entity::compare(const entity & toCompare)const
 {
 	return memId.compare(toCompare.memId);
 }
-int compare(char * toCompare)const
+int entity::compare(char * toCompare)const
 {
 	return memId.compare(toCompare);
 }
-int compare(const tString & toCompare)const
+int entity::compare(const tString & toCompare)const
 {
 	return memId.compare(toCompare);
 }
-=======
->>>>>>> Stashed changes
+
+int entity::getFirstIndex()const
+{
+    return memId.getFirstIndex();
+}

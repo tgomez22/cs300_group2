@@ -1,8 +1,10 @@
 //CS300 group #2
 //
 //Worked on by Tristan Gomez(started:2/5/2020)
+#ifndef SERVICE_H
+#define SERVICE_H
 
-#include "entity.h"
+#include "../model/entity.h"
 #include <time.h>
 
 //This class is derived from the most base class, entity. It contains a member number that was inherited
@@ -15,12 +17,11 @@ class service: public entity
 		service(const service & toAdd);
 		~service();
 		void display()const;
-		bool appendService();
 		service *& toNext();
 		bool addService();
-    void convertDate(time_t toConvert); //use this function to turn the date into a string. 
+    void convertDate(time_t & toConvert); //use this function to turn the date into a string. 
                                         //very easy implementation. tells you the current date
-    void displayTime(); //this will display the time in a readable form.
+    void displayTime(void); //this will display the time in a readable form.
     int getWeek();
 		
 	private:
@@ -33,3 +34,5 @@ class service: public entity
 		float serviceFee;
 		service * next;
 };
+
+#endif

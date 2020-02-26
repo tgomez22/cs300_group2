@@ -1,14 +1,14 @@
 #include "serviceList.h"
-
-#include "service.h"
-#include "entity.h"
-#include "person.h"
-#include "provider.h"
-#include "member.h"
+#include "../hierarchy/service.h"
+#include "../model/entity.h"
+#include "../model/person.h"
+#include "../model/provider.h"
+#include "../model/member.h"
+#include "defs.h"
 #include <cstdlib>
-const int ID = 10;
-const int SIZE = 101;
-const int MULTBY = 97;
+//const int ID = 10;
+//const int SIZE = 101;
+//const int MULTBY = 97;
 
 serviceList::serviceList()
 {
@@ -69,7 +69,7 @@ void serviceList::removeServices(service *& toRemove)
 
 int serviceList::memberFunctions()
 {
-
+    return 0;
 }
 
 int serviceList::addPerson(const person & toAdd)

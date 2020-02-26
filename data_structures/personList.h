@@ -4,7 +4,8 @@
 
 #ifndef PERSONNODE_H
 #define PERSONNODE_H
-#include "entity.h"
+#include "../model/entity.h"
+#include "defs.h"
 struct personNode
 {
 	entity anEntity;

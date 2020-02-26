@@ -7,9 +7,9 @@
 #include <iostream>
 #include <cstring>
 
-const int ID = 10;
-const int SIZE = 101;
-const int MULTBY = 97;
+//const int ID = 10;
+//const int SIZE = 101;
+//const int MULTBY = 97;
 
 //Pointer arithmetic is used to initalize the array of personNode pointers as the private data member.
 //At the end of initialization, the pointer is set back to the first element.

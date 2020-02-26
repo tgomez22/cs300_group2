@@ -33,12 +33,18 @@ const char *base64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345
 using namespace std;        //for standard I/O
 
 //Include everything to make sure it all compiles
-#include "data_structures/datacenter.h"
-#include "data_structures/entityTable.h"
+
+//datacenter.h no longer exists
+//entity.h no longer exists
+//#include "data_structures/datacenter.h"
+//#include "data_structures/entityTable.h"
+
+
+
 #include "data_structures/serviceList.h"
 
 #include "model/entity.h"
-#include "model/service.h"
+#include "hierarchy/service.h"
 #include "model/person.h"
 #include "model/member.h"
 #include "model/provider.h"
@@ -84,10 +90,16 @@ int main(int argc, char* argv[])
 
    welcomeFunction();       //To welcome the user/give credit
 
-   entityTable the_entity_table;
+   //entityTable no longer exists as an object.
+   //entityTable the_entity_table;
    entity one_user;         //Creates an instance of one user/entity
    member one_member;
-   person one_person;
+
+   //person has virtual functions and is an abstract base class
+   //C++ doesn't allow objects to be made of it.
+   //person one_person;
+   
+   
    provider one_provider;
    service one_service;
 
@@ -296,8 +308,10 @@ int typeId(entity & one_user)
 {
    bool checkValue = false;
    int errorValue = 0;
-
-   checkValue = one_user.getIdFromTerm();
+    
+   //Entity doesn't have this function at all.
+   //So i commented it out for now -Tristan
+   //checkValue = one_user.getIdFromTerm();
 
    if(checkValue == false)
    {
@@ -413,8 +427,11 @@ bool getCueCat(entity & one_user)
    data = getData(input);
    decoded = decode(data);
    printf("%s\n", decoded);
-
-   checkValue = one_user.checkIdFromScan(decoded);
+    
+   //Entity doesn't have this function, so im commenting
+   //out this line for now
+   //checkValue = one_user.checkIdFromScan(decoded);
+   
    if(checkValue == false)
    {
       errorValue = false;
