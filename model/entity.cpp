@@ -54,21 +54,25 @@ bool entity::writeOut()
 //prompts user to add an id number. Returns true if successfully added
 //a valid length member id. returns false if can't add. 
 
-/*
- * commented out to allow for preliminary compilation. /////TERMINAL PEOPLE!
-bool entity::addId()
+bool entity::addIdFromTerm()
 {
-	char temp[ID];
+	char temp[SIZE];
 	using namespace std;
-	cout<<"Please enter a new User Identification number: ";
-	cin.get(temp, ID, '\n');
-	cin.ignore(100, '\n');
 
-  strcpy(ID, isIDValid());
+	for(int i=0; i < SIZE; ++i)
+	{
+           temp[i] = '\0';
+	}
+
+	cout<<"Please enter a new User Identification number: ";
+	cin.get(temp, SIZE, '\n');
+	cin.ignore(SIZE, '\n');
+
+        strcpy(temp, isIDValid(temp));
 
 	int length = strlen(temp);
 
-	while(length < 9 || length > 9)
+	while(length != 9)
 	{
 		cout<<"User Identification number must be 9 digits long."<<endl;
 		cout<<"Please enter a new User Identification number: ";
@@ -83,7 +87,27 @@ bool entity::addId()
 
 			
 }
-*/
+
+bool entity::checkIdFromScan(char * scanID)
+{
+   int length = strlen(scanID);
+   using namespace std;
+   bool checkValue = false;
+
+   if(length != 9)
+   {
+      cout << "Sorry. User ID must be 9 digits long." << endl;
+      cout << "Please try again." << endl;
+      checkValue = false;
+   }
+   else
+   {
+      memId.add(scanID);
+      checkValue = true;
+   }
+
+   return checkValue;
+}
 
 //adds id, initalizes id value to the argument.
 bool entity::addId(const tString & toAdd)
@@ -97,31 +121,24 @@ bool entity::addId(char * toAdd)
 	memId.add(toAdd);
 }
 
-/*
- * commented out to allow for preliminary compilation. ///////////TERMINAL PEOPLE
- *
- *
- *
 //Checks if the ID is valid and makes sure the input is correct
 char * entity::isIDValid(char * compare)
 {
   int length = strlen(compare);
   using namespace std;
   
-  if(length < 9 || length > 9)
+  if(length != 9)
   {
     cout<<"User Identification number must be 9 digits long."<<endl;
     cout<<"Please enter a new User Identification number: ";
-    cin.get(compare, '\n');
-    cin.ignore(100, '\n');
+    cin.get(compare, SIZE, '\n');
+    cin.ignore(SIZE, '\n');
 
-    length = strlen(temp);
+    length = strlen(compare);
     return isIDValid(compare);
   }
   return compare;
 }
-
-*/
 
 
 //displays stored private data(member number)

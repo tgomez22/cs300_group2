@@ -297,7 +297,10 @@ int scanId(entity & one_user)
       {
          errorValue = 1;
          keepGoing = 1;
-
+	 cout << "Success Adding ID!" << endl;
+         cout << "The ID Number is: "; 
+         one_user.display();
+         cout  << endl;
       }
    } while (keepGoing == 0);
 
@@ -309,9 +312,7 @@ int typeId(entity & one_user)
    bool checkValue = false;
    int errorValue = 0;
     
-   //Entity doesn't have this function at all.
-   //So i commented it out for now -Tristan
-   //checkValue = one_user.getIdFromTerm();
+   checkValue = one_user.addIdFromTerm();
 
    if(checkValue == false)
    {
@@ -321,6 +322,9 @@ int typeId(entity & one_user)
    else
    {
       cout << "Success adding ID.\n";
+      cout << "The ID Number is: "; 
+      one_user.display();
+      cout  << endl;
       errorValue = 1;
    }
 
@@ -374,13 +378,22 @@ static char *getData(const char *input)
       }
    }
 
-   assert(pos != NULL);
+  // assert(pos != NULL);
 
-   size_t size = input - pos - 1;
+   if(pos != NULL)
+   {
+      size_t size = input - pos - 1;
 
-   data = (char *)calloc(size+1, sizeof(char));
+      data = (char *)calloc(size+1, sizeof(char));
 
-   strncpy(data, pos, size);
+      strncpy(data, pos, size);
+   }
+   else
+   {
+      size_t size2 = 1;
+      data = (char *)calloc(size2, sizeof(char));
+      data[0] = 'x';
+   }
 
    return data;
 }
@@ -390,9 +403,9 @@ static char *decode(char *in)
 {
    int i, j;
    size_t length = strlen(in) % 4;
-        char * decoded;
+   char * decoded;
 
-        decoded = (char *)calloc(100, sizeof(char));
+   decoded = (char *)calloc(100, sizeof(char));
 
    if (length != 0)
       length = 4 - length;
@@ -428,9 +441,7 @@ bool getCueCat(entity & one_user)
    decoded = decode(data);
    printf("%s\n", decoded);
     
-   //Entity doesn't have this function, so im commenting
-   //out this line for now
-   //checkValue = one_user.checkIdFromScan(decoded);
+   checkValue = one_user.checkIdFromScan(decoded);
    
    if(checkValue == false)
    {
