@@ -204,3 +204,72 @@ bool serviceList::addService(const class service & toAdd)
 	}
 
 }
+
+
+//Search and pull records function for chris.
+//I can change the prototype to accept a char * or tString object to search for.
+//Pass in a blank/empty serviceNode to be copied into.
+//returns false if no person doesn't exist, returns true if successful copy.
+bool serviceList::getInfo(const entity & toFind, serviceNode & copy)
+{
+    int index = getKey(toFind.getIdValue());
+    
+    //no member/provider exists.
+    if(!table[index])
+        return false;
+
+    else
+    {
+        serviceNode * temp = table[index];
+
+        while(temp && temp->aPerson->compare(toFind))
+        {
+            temp = temp->next;
+        }
+        
+        //pointer fell off list, no match exists.
+        if(!temp)
+            return false;
+        
+        //person found.
+        else
+        {
+            //casting to find out if provider or member.
+            const member * ptr = dynamic_cast<const member*>(*&temp->aPerson); 
+            if(ptr)
+            {
+                copy.aPerson = new member(*ptr);
+                copy.next = NULL;
+                copyServices(copy.head, temp->head);
+            }
+
+            else
+            {
+                const provider * ptr2 = dynamic_cast<const provider*>(*&temp->aPerson);
+                if(ptr2)
+                {
+                    copy.aPerson = new provider(*ptr2);
+                    copy.next = NULL;
+                    copyServices(copy.head, temp->head);
+                }
+            }
+
+
+        }
+
+        return true;
+    }
+}
+
+bool serviceList::copyServices(service *& dest, service * source)const
+{
+    if(!source)
+        return false;
+    
+    dest = new service(*source);
+    dest->toNext() = NULL;
+
+    copyServices(dest->toNext(), source->toNext());
+
+    return true;
+}
