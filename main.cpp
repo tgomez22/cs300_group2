@@ -298,7 +298,9 @@ int scanId(entity & one_user)
          errorValue = 1;
          keepGoing = 1;
 	 cout << "Success Adding ID!" << endl;
-//	 cout << "The ID number is: " << one_user.display() << endl;
+         cout << "The ID Number is: "; 
+         one_user.display();
+         cout  << endl;
       }
    } while (keepGoing == 0);
 
@@ -320,7 +322,9 @@ int typeId(entity & one_user)
    else
    {
       cout << "Success adding ID.\n";
-//      cout << "The ID Number is: " << one_user.display() << endl;
+      cout << "The ID Number is: "; 
+      one_user.display();
+      cout  << endl;
       errorValue = 1;
    }
 
