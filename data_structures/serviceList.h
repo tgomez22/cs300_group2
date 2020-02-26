@@ -11,8 +11,8 @@
 
 struct serviceNode
 {
-    person * aPerson;//to hold key to ensure proper data is fetched.
-  service * head;
+    class person * aPerson;//to hold key to ensure proper data is fetched.
+  class service * head;
   serviceNode * next;
 
 };
@@ -28,8 +28,7 @@ class serviceList
 	public:
 		serviceList();
 		~serviceList();
-		int getKey(const id_num); //hashing function to get arr index
-		int getIndex(const id_num);
+		int getKey(const int toUse); //hashing function to get arr index
     int memberFunctions();//use this function as a wrapper for member only functions. Put those functions into the private section.
     int addPerson(const person & toAdd);
 		bool addService(const service & toAdd);
@@ -39,7 +38,6 @@ private:
     void removeServices(service *& toRemove);
 
     //int addPerson(const person & toAdd);
-		int getKey(const int toUse); //hashing function to get arr index
 
 		//bool addService(const class service & toAdd);
 		int getIndex(const int toUse);
