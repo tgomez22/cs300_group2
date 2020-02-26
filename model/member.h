@@ -25,6 +25,7 @@ class member: public person
 
 	private:
 		bool suspended;
+        float amtDue;
 };
 
 #endif

@@ -1,7 +1,9 @@
 #include "entity.h"
 #include "tString.h"
 #include <cstring>
-
+#include <iostream>
+const int SIZE = 101;
+const int MULTBY = 97;
 //default constructor, no data members to initalize.
 entity::entity()
 {
@@ -22,11 +24,32 @@ entity::~entity()
 
 }
 
-bool addId(const entity & toAdd)
+bool entity::addId(const entity & toAdd)
 {
     memId.add(toAdd.memId);
     return true;
 }
+
+
+//FILE IO PEOPLE//////////////////
+bool entity::writeOut()
+{
+    //Insert here!;
+    //
+    //
+    //I think this function will help you. It returns a char * 
+    //to the data stored within memId. I was thinking that this would
+    //be a good way to pull out the necessary data.
+    //
+    //char * toUse = memId.getString();
+    //
+
+    //placeholder so it compiles.
+    return true;
+}
+/////////////END FILE IO?//////////
+
+
 
 //prompts user to add an id number. Returns true if successfully added
 //a valid length member id. returns false if can't add. 
@@ -132,15 +155,20 @@ void entity::getMemId(entity & toUse)const
 	return;
 }
 		
-int compare(const entity & toCompare)const
+int entity::compare(const entity & toCompare)const
 {
 	return memId.compare(toCompare.memId);
 }
-int compare(char * toCompare)const
+int entity::compare(char * toCompare)const
 {
 	return memId.compare(toCompare);
 }
-int compare(const tString & toCompare)const
+int entity::compare(const tString & toCompare)const
 {
 	return memId.compare(toCompare);
+}
+
+int entity::getFirstIndex()const
+{
+    return memId.getFirstIndex();
 }

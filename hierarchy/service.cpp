@@ -1,13 +1,15 @@
 #include <time.h>
 #include <iostream>
-#include "service.h"
-using namespace std;
+#include "service.h" 
+#include "../model/tString.h"
 
 service::service();
 {
   time_t numberTime;
   time(&numberTime); //This puts a number in numberTime of current time. (you don't have to enter the time of day. It automatically 
                       //tells you at allocation
+  next = NULL;
+  serviceFee = 0;
 
 }
 
@@ -30,11 +32,12 @@ service::~service()
 
 void service::display(void) const
 {
+    using namespace std;
   cout << "date of service: " << dos.display() << endl 
-      << "Service name: " << servName.display() << endl 
-      << "Member name: " << memName.display() << endl
-      << "service code: " << servCode.display() << endl
-      << "service fee: " << serviceFee << endl << endl;
+  cout << "Service name: " << servName.display() << endl 
+      cout << "Member name: " << memName.display() << endl
+      cout << "service code: " << servCode.display() << endl
+      cout << "service fee: " << serviceFee << endl << endl;
 }
 
 void service::displayTime(void)
@@ -44,7 +47,7 @@ void service::displayTime(void)
 
 }
 
-void service::convertDate()
+void service::convertDate(time_t toConvert)
 {
   time_t = curr_time;
   time(&curr_time);
@@ -82,4 +85,9 @@ int service::getWeek()
       }
     }
   }
+}
+
+service *& toNext()
+{
+    return next;
 }

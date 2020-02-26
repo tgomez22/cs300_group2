@@ -122,3 +122,22 @@ int tString::getFirstIndex()const
         return 0;
 
 }
+
+bool tString::copyToArg(char * toUse)const
+{
+    if(!array)
+        return false;
+
+    if(toUse)
+        delete [] toUse;
+
+    toUse = new char[strlen(array) + 1];
+    strcpy(toUse, array);
+
+    return true;
+}
+
+bool tString::copyToArg(tString & toUse)const
+{
+    return copyToArg(toUse.memId);
+}

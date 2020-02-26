@@ -1,8 +1,12 @@
 #include "member.h"
+#include "entity.h"
+#include "person.h"
+#include <iostream>
 
 member::member():person()
 {
-	suspended = amtDue = 0;
+	suspended = false;
+    amtDue = 0;
 }
 
 member::member(const member & toAdd):person(toAdd)
@@ -11,7 +15,36 @@ member::member(const member & toAdd):person(toAdd)
 	amtDue = toAdd.amtDue;
 }
 
-void member::append()
+member::~member()
 {
-//Mikayla do you want to do this interface?
+
+}
+
+//Here's your prototype Shawn for writing out.
+void member::writeOut()
+{
+}
+
+//prototype for terminal group.
+bool member::readIn()
+{
+    return true;
+}
+
+//fior terminal group. feel free to change.
+void member::display()const
+{
+    using namespace std;
+    if(suspended)
+    {
+        cout<<"Your account is suspended. "<<endl;
+        cout<<"You owe: $"<<amtDue<<endl;
+    }
+
+    else
+    {
+        showInfo();
+    }
+
+    return;
 }

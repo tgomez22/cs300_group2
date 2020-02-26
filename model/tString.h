@@ -41,7 +41,8 @@ class tString
 
         //use for hashing, returns ascii sum of all stored data.
         int getArrayValue()const;
-
+        bool copyToArg(char * toUse)const;
+        bool copyToArg(tString & toUse)const;
 	private:
 		char * array;
 };

@@ -4,7 +4,6 @@
 //
 //Worked on by Tristan Gomez(started: 2/5/2020)
 
-#include <string>
 
 #include "../data_structures/serviceList.h"
 #include "entity.h"
@@ -17,13 +16,12 @@ class person: public entity
 		virtual ~person();
 
 	protected:
-		std::string name;
+		tString name;
 		//memNum exists in entity
-		std::string address;
-		std::string city;
-		std::string state;
-		std::string zip;
-		serviceList services;
+		tString address;
+		tString city;
+		tString state;
+	    tString zip;
 		virtual void display()const = 0;
 
         //Shawn let me know if this prototype needs to change.

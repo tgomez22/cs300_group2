@@ -1,10 +1,9 @@
-#include "serviceList.h"
-
-#include "service.h"
-#include "entity.h"
-#include "person.h"
-#include "provider.h"
-#include "member.h"
+#include "../hierarchy/serviceList.h"
+#include "../hierarchy/service.h"
+#include "../model/entity.h"
+#include "../model/person.h"
+#include "../model/provider.h"
+#include "../model/member.h"
 #include <cstdlib>
 const int ID = 10;
 const int SIZE = 101;
@@ -69,7 +68,7 @@ void serviceList::removeServices(service *& toRemove)
 
 int serviceList::memberFunctions()
 {
-
+    return 0;
 }
 
 int serviceList::addPerson(const person & toAdd)

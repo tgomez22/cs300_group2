@@ -12,14 +12,16 @@ class entity
 {
 	public:
 		entity();
-		entity(const entity & other); //Copy Constructor
+		entity(const entity & toAdd); //Copy Constructor
 		~entity();
-		int getId()const;
+		//int getId()const;
+        void getMemId(tString & toUse)const;
+        void getMemId(entity & toUse)const;
 	protected:
 		 tString memId;
 
        // char * isIDValid(char * compare);
-        
+                
         
         //terminal people fctn. prompt user to directly enter their memId to store.
 		//bool addId();
@@ -44,6 +46,7 @@ class entity
         //strcmps arg against stored data. returns 0 if match
         int compare(const entity & toCompare)const;
         int compare(char * toCompare)const;
+        int compare(const tString & toCompare)const;
 
         //FILE IO PEOPLE!!! prototype to write out to file.
         bool writeOut();

@@ -1,10 +1,10 @@
-#ifndef __SERVICE_LIST_H
-#define __SERVICE_LIST_H
 
 //CS300 Group #2
 //
 //Worked on by Tristan Gomez(started: 2/5/2020)
-#include "../model/service.h"
+#ifndef SERVICENODE_H
+#define SERVICENODE_H
+#include "../hierarchy/service.h"
 #include "../model/person.h"
 #include "../model/member.h"
 #include "../model/provider.h"
@@ -16,7 +16,13 @@ struct serviceNode
   serviceNode * next;
 
 };
+#endif
 
+#ifndef __SERVICE_LIST_H
+#define __SERVICE_LIST_H
+#include "../model/person.h"
+#include "../model/member.h"
+#include "../model/provider.h"
 class serviceList
 {
 	public:
