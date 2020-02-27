@@ -70,18 +70,20 @@ int main(int argc, char* argv[])
    if(argc >= 2) {
      char* test = argv[1];
      switch(test[0]) {
-	case 'd':
-	  datacenterTest();
-	  break;
-	//If you want to make more testing files, just add more cases and call whatever you want.
-	//I've used single letters to keep things simple, just run ./ChocAn [letter] and then add [letter]
-	//To this switch statement, and set it to call whatever you need. That way we can run tests
-	//Without going through the entire terminal setup
-	default:
-	  cout << "unrecognized test, exiting" << endl;
-	  break;
+  	   case 'd':
+         datacenterTest();
+         break;
+			 case 't':
+			   return Catch::Session().run(); //Calls tests in testing/tests.cpp
+       //If you want to make more testing files, just add more cases and call whatever you want.
+       //I've used single letters to keep things simple, just run ./ChocAn [letter] and then add [letter]
+       //To this switch statement, and set it to call whatever you need. That way we can run tests
+       //Without going through the entire terminal setup
+       default:
+         cout << "unrecognized test, exiting" << endl;
+         break;
      }
-      exit(0);
+     exit(0);
    }
 
    int menuChoice = 0;      //To catch which menu item the user wants
@@ -98,8 +100,6 @@ int main(int argc, char* argv[])
    //person has virtual functions and is an abstract base class
    //C++ doesn't allow objects to be made of it.
    //person one_person;
-   
-   
    provider one_provider;
    service one_service;
 
@@ -153,9 +153,7 @@ int main(int argc, char* argv[])
   } while (keepGoing != EXITVALUE);
 
    thankYouGoodbye();
-
-   int result = Catch::Session().run( argc, argv ); //Catch testing
-   return result;
+	 return 0;
 }
 
 //Function to welcome the user/give credits
@@ -298,7 +296,7 @@ int scanId(entity & one_user)
          errorValue = 1;
          keepGoing = 1;
 	 cout << "Success Adding ID!" << endl;
-         cout << "The ID Number is: "; 
+         cout << "The ID Number is: ";
          one_user.display();
          cout  << endl;
       }
@@ -311,7 +309,7 @@ int typeId(entity & one_user)
 {
    bool checkValue = false;
    int errorValue = 0;
-    
+
    checkValue = one_user.addIdFromTerm();
 
    if(checkValue == false)
@@ -322,7 +320,7 @@ int typeId(entity & one_user)
    else
    {
       cout << "Success adding ID.\n";
-      cout << "The ID Number is: "; 
+      cout << "The ID Number is: ";
       one_user.display();
       cout  << endl;
       errorValue = 1;
@@ -440,9 +438,9 @@ bool getCueCat(entity & one_user)
    data = getData(input);
    decoded = decode(data);
    printf("%s\n", decoded);
-    
+
    checkValue = one_user.checkIdFromScan(decoded);
-   
+
    if(checkValue == false)
    {
       errorValue = false;
