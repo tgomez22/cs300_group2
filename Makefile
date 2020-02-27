@@ -4,7 +4,7 @@
 #https://stackoverflow.com/a/14590222
 
 CXX=g++
-CPPFLAGS= -std=c++11
+CPPFLAGS= -std=c++11 -I.
 LD=$(CC)
 #LDFLAGS = -lfoo
 
@@ -19,4 +19,3 @@ $(TARGET): $(OBJECTS)
 
 clean:
 	rm -f $(TARGET) $(OBJECTS)
-
