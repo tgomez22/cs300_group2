@@ -42,7 +42,7 @@ class entity
                 int compare(char * toCompare)const;
                 int compare(const tString & toCompare)const;
 
-                //FILE IO PEOPLE!!! prototype to write out to file.
+                //returns true if text file is successfully opened and written to, otherwise returns false.
                 bool writeOut();
 	protected:
 		 tString memId;
