@@ -2,6 +2,8 @@
 #include "tString.h"
 #include <cstring>
 #include <iostream>
+#include <fstream>
+using namespace std;
 //const int SIZE = 101;
 //const int MULTBY = 97;
 //default constructor, no data members to initalize.
@@ -10,11 +12,11 @@ entity::entity()
 
 }
 
-//copy constructor, allows the memId to be initalized to the 
+//copy constructor, allows the memId to be initalized to the
 //argument's data.
 entity::entity(const entity & toAdd)
 {
-	memId.add(toAdd.memId);	
+	memId.add(toAdd.memId);
 }
 
 //default destructor, no data members to clear dynamic memory for, since
@@ -30,29 +32,15 @@ bool entity::addId(const entity & toAdd)
     return true;
 }
 
-
-//FILE IO PEOPLE//////////////////
 bool entity::writeOut()
 {
-    //Insert here!;
-    //
-    //
-    //I think this function will help you. It returns a char * 
-    //to the data stored within memId. I was thinking that this would
-    //be a good way to pull out the necessary data.
-    //
-    //char * toUse = memId.getString();
-    //
-
-    //placeholder so it compiles.
+    char * toUse = memId.getString();
+    cout << "ID NUMBER: " << toUse << endl;
     return true;
 }
-/////////////END FILE IO?//////////
-
-
 
 //prompts user to add an id number. Returns true if successfully added
-//a valid length member id. returns false if can't add. 
+//a valid length member id. returns false if can't add.
 
 bool entity::addIdFromTerm()
 {
@@ -80,12 +68,12 @@ bool entity::addIdFromTerm()
 		cin.ignore(100, '\n');
 
 		length = strlen(temp);
-		
+
 	}
-
-	return memId.add(temp);
-
-			
+	bool success = memId.add(temp);
+	if(success)
+		writeOut();
+	return success;
 }
 
 bool entity::checkIdFromScan(char * scanID)
@@ -126,7 +114,7 @@ char * entity::isIDValid(char * compare)
 {
   int length = strlen(compare);
   using namespace std;
-  
+
   if(length != 9)
   {
     cout<<"User Identification number must be 9 digits long."<<endl;
@@ -171,7 +159,7 @@ void entity::getMemId(entity & toUse)const
 	memId.copyToArg(toUse.memId);
 	return;
 }
-		
+
 int entity::compare(const entity & toCompare)const
 {
 	return memId.compare(toCompare.memId);
