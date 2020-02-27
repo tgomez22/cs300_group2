@@ -3,6 +3,7 @@
 #include <cstring>
 #include <iostream>
 #include <fstream>
+#include <nlohmann/json.hpp>
 using namespace std;
 //const int SIZE = 101;
 //const int MULTBY = 97;
