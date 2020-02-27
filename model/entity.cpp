@@ -39,11 +39,11 @@ bool entity::addId(const entity & toAdd)
 bool entity::writeOut()
 {
 	system("openssl enc -in data/encrypted.dat -out data/entity.txt -d -aes256 -k symmetrickey"); //decryption
-  char * toUse = memId.getString();
 	ofstream myfile;
 	myfile.open("data/entity.txt", ios::app);
 	if(myfile)
 	{
+		char * toUse = memId.getString();
 		json toWrite;
 		toWrite["memId"] = toUse;
 		myfile << toWrite;
