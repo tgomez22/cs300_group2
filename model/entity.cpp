@@ -34,17 +34,27 @@ bool entity::addId(const entity & toAdd)
     return true;
 }
 
+//Decrpyts the file where the entity data is stored, writes entity object data to a text file,
+//and then encrypts the file. Returns true if the file is successfully opened.
 bool entity::writeOut()
 {
+	system("openssl enc -in data/encrypted.dat -out data/entity.txt -d -aes256 -k symmetrickey"); //decryption
   char * toUse = memId.getString();
 	ofstream myfile;
 	myfile.open("data/entity.txt", ios::app);
-	json toWrite;
-	toWrite["memId"] = toUse;
-	myfile << toWrite;
-	myfile.close();
-	delete []toUse;
-  return true;
+	if(myfile)
+	{
+		json toWrite;
+		toWrite["memId"] = toUse;
+		myfile << toWrite;
+		myfile.close();
+		system("openssl enc -in data/entity.txt -out data/encrypted.dat -e -aes256 -k symmetrickey"); //encryption
+		delete []toUse;
+	  return true;
+	}
+	else
+		cout << "Unable to open file." << endl;
+	return false;
 }
 
 //prompts user to add an id number. Returns true if successfully added
