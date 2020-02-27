@@ -4,6 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <nlohmann/json.hpp>
+using json = nlohmann::json;
 using namespace std;
 //const int SIZE = 101;
 //const int MULTBY = 97;
@@ -36,7 +37,13 @@ bool entity::addId(const entity & toAdd)
 bool entity::writeOut()
 {
     char * toUse = memId.getString();
-    cout << "ID NUMBER: " << toUse << endl;
+		ofstream myfile;
+		myfile.open("data/entity.txt", ios::app);
+		json toWrite;
+		toWrite["memId"] = toUse;
+		myfile << toWrite;
+		myfile.close();
+		delete []toUse;
     return true;
 }
 
