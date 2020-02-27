@@ -7,7 +7,6 @@
 #include <iostream>
 #include "tString.h"
 #include "../data_structures/defs.h"
-//const int ID = 10;
 
 class entity
 {
@@ -16,39 +15,35 @@ class entity
 		entity(const entity & toAdd); //Copy Constructor
 		~entity();
 		//int getId()const;
-        void getMemId(tString & toUse)const;
-        void getMemId(entity & toUse)const;
+                void getMemId(tString & toUse)const;
+                void getMemId(entity & toUse)const;
 
-       // char * isIDValid(char * compare);
-                
-        
-        //terminal people fctn. prompt user to directly enter their memId to store.
-		//bool addId();
+                char * isIDValid(char * compare);
+                bool addIdFromTerm();
+                bool checkIdFromScan(char *);
 
-        //copies arg into data member
-		bool addId(const class tString & toAdd);
-        bool addId(const entity & toAdd);
-		bool addId(char * toAdd);
-
-
+                //copies arg into data member
+	        bool addId(const class tString & toAdd);
+                bool addId(const entity & toAdd);
+	        bool addId(char * toAdd);
 		void display()const;
 
-        //returns true if matches arg.
+                //returns true if matches arg.
 		bool isMatch(const entity & toSee)const;
 
-        //returns 1,2,3 depending on user type. if not value user, returns 0;
-        int getFirstIndex()const;
+                //returns 1,2,3 depending on user type. if not value user, returns 0;
+                int getFirstIndex()const;
 
-        //returns sum of ascii values of stored data. Used in hashing fctn.
-        int getIdValue()const;
+                //returns sum of ascii values of stored data. Used in hashing fctn.
+                int getIdValue()const;
 
-        //strcmps arg against stored data. returns 0 if match
-        int compare(const entity & toCompare)const;
-        int compare(char * toCompare)const;
-        int compare(const tString & toCompare)const;
+                //strcmps arg against stored data. returns 0 if match
+                int compare(const entity & toCompare)const;
+                int compare(char * toCompare)const;
+                int compare(const tString & toCompare)const;
 
-        //FILE IO PEOPLE!!! prototype to write out to file.
-        bool writeOut();
+                //returns true if text file is successfully opened and written to, otherwise returns false.
+                bool writeOut();
 	protected:
 		 tString memId;
 };

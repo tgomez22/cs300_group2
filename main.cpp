@@ -70,18 +70,20 @@ int main(int argc, char* argv[])
    if(argc >= 2) {
      char* test = argv[1];
      switch(test[0]) {
-	case 'd':
-	  datacenterTest();
-	  break;
-	//If you want to make more testing files, just add more cases and call whatever you want.
-	//I've used single letters to keep things simple, just run ./ChocAn [letter] and then add [letter]
-	//To this switch statement, and set it to call whatever you need. That way we can run tests
-	//Without going through the entire terminal setup
-	default:
-	  cout << "unrecognized test, exiting" << endl;
-	  break;
+  	   case 'd':
+         datacenterTest();
+         break;
+			 case 't':
+			   return Catch::Session().run(); //Calls tests in testing/tests.cpp
+       //If you want to make more testing files, just add more cases and call whatever you want.
+       //I've used single letters to keep things simple, just run ./ChocAn [letter] and then add [letter]
+       //To this switch statement, and set it to call whatever you need. That way we can run tests
+       //Without going through the entire terminal setup
+       default:
+         cout << "unrecognized test, exiting" << endl;
+         break;
      }
-      exit(0);
+     exit(0);
    }
 
    int menuChoice = 0;      //To catch which menu item the user wants
@@ -98,8 +100,6 @@ int main(int argc, char* argv[])
    //person has virtual functions and is an abstract base class
    //C++ doesn't allow objects to be made of it.
    //person one_person;
-   
-   
    provider one_provider;
    service one_service;
 
@@ -153,9 +153,7 @@ int main(int argc, char* argv[])
   } while (keepGoing != EXITVALUE);
 
    thankYouGoodbye();
-
-   int result = Catch::Session().run( argc, argv ); //Catch testing
-   return result;
+	 return 0;
 }
 
 //Function to welcome the user/give credits
@@ -297,7 +295,10 @@ int scanId(entity & one_user)
       {
          errorValue = 1;
          keepGoing = 1;
-
+	 cout << "Success Adding ID!" << endl;
+         cout << "The ID Number is: ";
+         one_user.display();
+         cout  << endl;
       }
    } while (keepGoing == 0);
 
@@ -308,10 +309,8 @@ int typeId(entity & one_user)
 {
    bool checkValue = false;
    int errorValue = 0;
-    
-   //Entity doesn't have this function at all.
-   //So i commented it out for now -Tristan
-   //checkValue = one_user.getIdFromTerm();
+
+   checkValue = one_user.addIdFromTerm();
 
    if(checkValue == false)
    {
@@ -321,6 +320,9 @@ int typeId(entity & one_user)
    else
    {
       cout << "Success adding ID.\n";
+      cout << "The ID Number is: ";
+      one_user.display();
+      cout  << endl;
       errorValue = 1;
    }
 
@@ -374,13 +376,22 @@ static char *getData(const char *input)
       }
    }
 
-   assert(pos != NULL);
+  // assert(pos != NULL);
 
-   size_t size = input - pos - 1;
+   if(pos != NULL)
+   {
+      size_t size = input - pos - 1;
 
-   data = (char *)calloc(size+1, sizeof(char));
+      data = (char *)calloc(size+1, sizeof(char));
 
-   strncpy(data, pos, size);
+      strncpy(data, pos, size);
+   }
+   else
+   {
+      size_t size2 = 1;
+      data = (char *)calloc(size2, sizeof(char));
+      data[0] = 'x';
+   }
 
    return data;
 }
@@ -390,9 +401,9 @@ static char *decode(char *in)
 {
    int i, j;
    size_t length = strlen(in) % 4;
-        char * decoded;
+   char * decoded;
 
-        decoded = (char *)calloc(100, sizeof(char));
+   decoded = (char *)calloc(100, sizeof(char));
 
    if (length != 0)
       length = 4 - length;
@@ -427,11 +438,9 @@ bool getCueCat(entity & one_user)
    data = getData(input);
    decoded = decode(data);
    printf("%s\n", decoded);
-    
-   //Entity doesn't have this function, so im commenting
-   //out this line for now
-   //checkValue = one_user.checkIdFromScan(decoded);
-   
+
+   checkValue = one_user.checkIdFromScan(decoded);
+
    if(checkValue == false)
    {
       errorValue = false;
