@@ -36,15 +36,15 @@ bool entity::addId(const entity & toAdd)
 
 bool entity::writeOut()
 {
-    char * toUse = memId.getString();
-		ofstream myfile;
-		myfile.open("data/entity.txt", ios::app);
-		json toWrite;
-		toWrite["memId"] = toUse;
-		myfile << toWrite;
-		myfile.close();
-		delete []toUse;
-    return true;
+  char * toUse = memId.getString();
+	ofstream myfile;
+	myfile.open("data/entity.txt", ios::app);
+	json toWrite;
+	toWrite["memId"] = toUse;
+	myfile << toWrite;
+	myfile.close();
+	delete []toUse;
+  return true;
 }
 
 //prompts user to add an id number. Returns true if successfully added
