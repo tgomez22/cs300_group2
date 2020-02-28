@@ -18,20 +18,25 @@ class service: public entity
 		~service();
 		void display()const;
 		service *& toNext();
-		bool addService();
-    void convertDate(time_t & toConvert); //use this function to turn the date into a string. 
+
+        //a read in function for terminal group. Implemented by Tristan for testing, feel free to alter as you like.
+		void addService();
+
+
+        void convertDate(time_t & toConvert); //use this function to turn the date into a string. 
                                         //very easy implementation. tells you the current date
-    void displayTime(void); //this will display the time in a readable form.
-    int getWeek();
+        void displayTime(void); //this will display the time in a readable form.
+        int getWeek();
 		
 	private:
 		tString dos; //date of service in form: www mmm dd hh:mm:ss yyyy
-    long numberTime; //number of seconds since jan 1st 1970 00:00:00 (good for week calculations
+        long numberTime; //number of seconds since jan 1st 1970 00:00:00 (good for week calculations
 		tString servName;
-		tString memName;
+		tString memName;//MEMBER NAME!!!
+        tString provName;//PROVIDER NAME!
 		//has memNum from base class entity
-		tString serviceCode;
-		float serviceFee;
+		tString servCode;
+		float servFee;
 		service * next;
 };
 

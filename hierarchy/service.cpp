@@ -2,14 +2,13 @@
 #include <iostream>
 #include "service.h" 
 #include "../model/tString.h"
-
 service::service()
 {
   time_t numberTime;
   time(&numberTime); //This puts a number in numberTime of current time. (you don't have to enter the time of day. It automatically 
                       //tells you at allocation
   next = NULL;
-  serviceFee = 0;
+  servFee = 0.0;
 
 }
 
@@ -19,9 +18,68 @@ service::service(const service & toAdd)
   numberTime = toAdd.numberTime;
   servName.add(toAdd.servName);
   memName.add(toAdd.memName);
-  serviceCode.add(toAdd.serviceCode);
-  serviceFee = toAdd.serviceFee;
+  provName.add(toAdd.provName);
+  servCode.add(toAdd.servCode);
+  servFee = toAdd.servFee;
   next = NULL;
+
+}
+
+//read in function for terminal folks. I (TRISTAN) filled this in for testing
+//feel free to change it. It assumes correct input at this time. needs "guards".
+void service::addService()
+{
+    using namespace std;
+    
+    char userChoice;
+    
+    char dateOfService[INPUT];
+    char memberName[INPUT];
+    char providerName[INPUT];
+    char serviceCode[INPUT];
+    char serviceName[INPUT];
+    int feeDue = 0;
+    
+    cout<<"Please enter the date of service in mm/dd/yyyy: ";
+    cin.get(dateOfService, INPUT, '\n');
+    cin.ignore(100, '\n');
+    dos.add(dateOfService);
+
+    cout<<"What is the name of the member who received the service?: ";
+    cin.get(memberName, INPUT, '\n');
+    cin.ignore(100, '\n');
+    memName.add(memberName);
+
+    cout<<"Who provided the service?: ";
+    cin.get(providerName, INPUT, '\n');
+    cin.ignore(100, '\n');
+    provName.add(providerName);
+
+    cout<<"Would you like to see a directory of services? Y or N: ";
+    cin>>userChoice;
+    cin.ignore(100, '\n');
+
+    if(userChoice == 'y' || userChoice == 'Y')
+    {
+        //placeholder.
+    }
+    
+    cout<<"What is the numerical code of the service?: ";
+    cin.get(serviceCode, INPUT, '\n');
+    cin.ignore(100, '\n');
+    servCode.add(serviceCode);
+
+    cout<<"What is the name of the service being provided?: ";
+    cin.get(serviceName, INPUT, '\n');
+    cin.ignore(100, '\n');
+    
+    cout<<"What was the cost of the service?: ";
+    cin>>feeDue;
+    cin.ignore(100, '\n');
+
+    servFee = feeDue;
+
+    return;
 
 }
 
@@ -44,11 +102,15 @@ void service::display(void) const
       cout << "Member name: ";
       memName.display();
       cout<< endl;
+
+      cout<< "Provider name: ";
+      provName.display();
+      cout<<endl;
       cout << "service code: ";
-      serviceCode.display();
+      servCode.display();
       cout<< endl;
       cout << "service fee: ";
-      cout<< serviceFee << endl;
+      cout<< servFee << endl;
 }
 
 void service::displayTime(void)

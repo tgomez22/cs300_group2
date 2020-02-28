@@ -165,9 +165,9 @@ int serviceList::getKey(const int toUse)
 	return key;
 }
 
-bool serviceList::addService(const class service & toAdd)
+bool serviceList::addService(const entity & toFind, const class service & toAdd)
 {
-	int index = getKey(toAdd.getIdValue());
+	int index = getKey(toFind.getIdValue());
 
     //no person to associate service with
 	if(!table[index])
@@ -179,7 +179,7 @@ bool serviceList::addService(const class service & toAdd)
 	{
 		serviceNode * temp = table[index];
 
-		while(temp && temp->aPerson->compare(toAdd)!= 0)
+		while(temp && temp->aPerson->compare(toFind)!= 0)
 		{
 			temp = temp->next;
 		}
