@@ -23,6 +23,7 @@ struct serviceNode
 #include "../model/person.h"
 #include "../model/member.h"
 #include "../model/provider.h"
+#include "../hierarchy/service.h"
 class serviceList
 {
 	public:
@@ -32,6 +33,11 @@ class serviceList
     int memberFunctions();//use this function as a wrapper for member only functions. Put those functions into the private section.
     int addPerson(const person & toAdd);
 		bool addService(const service & toAdd);
+
+        //For Chris to use to pull individual member/provider profile and all services associated with that individual.
+        bool getInfo(const entity & toFind, serviceNode & copy);
+
+        bool copyServices(service *& dest, service * source)const;
 
 private:
     void removeNodes(serviceNode *& toRemove);
