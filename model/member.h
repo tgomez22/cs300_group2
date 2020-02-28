@@ -17,6 +17,8 @@ class member: public person
 		~member();
 		void display()const;
 
+        bool isSuspended()const;
+
        //FILE IO group!
         void writeOut();
 

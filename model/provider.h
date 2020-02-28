@@ -18,6 +18,12 @@ class provider: public person
 
         //Terminal
         bool readIn();
+        
+
+        //This function always returns false in this object because providers 
+        //cant be suspended. I did this so I wouldn't have to cast down to a 
+        //member object.
+        bool isSuspended()const;
 	private:
 		int consultNum;
 		float weeklyFee;

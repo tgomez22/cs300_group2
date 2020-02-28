@@ -39,6 +39,8 @@ class serviceList
 
         bool copyServices(service *& dest, service * source)const;
 
+        int isSuspended(const entity & toFind);
+
 private:
         void removeNodes(serviceNode *& toRemove);
         void removeServices(service *& toRemove);

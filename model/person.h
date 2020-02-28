@@ -15,6 +15,8 @@ class person: public entity
 		person(const person & toAdd);
 		virtual ~person();
 
+        virtual bool isSuspended()const = 0;
+
 	protected:
 		tString name;
 		//memNum exists in entity

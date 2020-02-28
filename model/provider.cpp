@@ -40,3 +40,8 @@ void provider::display()const
 
 	return;
 }
+
+bool provider::isSuspended()const
+{
+    return false;
+}
