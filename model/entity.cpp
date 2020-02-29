@@ -38,7 +38,7 @@ bool entity::addId(const entity & toAdd)
 //and then encrypts the file. Returns true if the file is successfully opened.
 bool entity::writeOut()
 {
-	system("openssl enc -in data/encrypted.dat -out data/entity.txt -d -aes256 -k symmetrickey"); //decryption
+	system("openssl aes-256-cbc -d -salt -pbkdf2 -in data/encrypted.dat -out data/entity.txt -pass pass:password"); //decryption
 	ofstream myfile;
 	myfile.open("data/entity.txt", ios::app);
 	if(myfile)
@@ -48,7 +48,7 @@ bool entity::writeOut()
 		toWrite["memId"] = toUse;
 		myfile << toWrite;
 		myfile.close();
-		system("openssl enc -in data/entity.txt -out data/encrypted.dat -e -aes256 -k symmetrickey"); //encryption
+		system("openssl aes-256-cbc -salt -pbkdf2 -in data/entity.txt -out data/encrypted.dat -pass pass:password"); //encryption
 		delete []toUse;
 	  return true;
 	}
