@@ -12,8 +12,8 @@
 struct serviceNode
 {
     class person * aPerson;//to hold key to ensure proper data is fetched.
-  class service * head;
-  serviceNode * next;
+    class service * head;
+    serviceNode * next;
 
 };
 #endif
@@ -30,20 +30,23 @@ class serviceList
 		serviceList();
 		~serviceList();
 		int getKey(const int toUse); //hashing function to get arr index
-    int memberFunctions();//use this function as a wrapper for member only functions. Put those functions into the private section.
-    int addPerson(const person & toAdd);
-		bool addService(const service & toAdd);
+        int memberFunctions();//use this function as a wrapper for member only functions. Put those functions into the private section.
+        int addPerson(const person & toAdd);
+		bool addService(const entity & toFind, const service & toAdd);
 
         //For Chris to use to pull individual member/provider profile and all services associated with that individual.
         bool getInfo(const entity & toFind, serviceNode & copy);
 
         bool copyServices(service *& dest, service * source)const;
 
-private:
-    void removeNodes(serviceNode *& toRemove);
-    void removeServices(service *& toRemove);
+        int isSuspended(const entity & toFind);
 
-    //int addPerson(const person & toAdd);
+private:
+        void removeNodes(serviceNode *& toRemove);
+        void removeServices(service *& toRemove);
+        
+
+        //int addPerson(const person & toAdd);
 
 		//bool addService(const class service & toAdd);
 		int getIndex(const int toUse);

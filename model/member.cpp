@@ -35,7 +35,7 @@ bool member::readIn()
 void member::display()const
 {
     using namespace std;
-    if(suspended)
+    if(suspended == true)
     {
         cout<<"Your account is suspended. "<<endl;
         cout<<"You owe: $"<<amtDue<<endl;
@@ -47,4 +47,18 @@ void member::display()const
     }
 
     return;
+}
+
+bool member::isSuspended()const
+{
+    using namespace std;
+
+    if(suspended == true)
+    {
+        display();
+        return true;
+    }
+
+    else
+        return false;
 }

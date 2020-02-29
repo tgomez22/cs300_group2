@@ -165,9 +165,9 @@ int serviceList::getKey(const int toUse)
 	return key;
 }
 
-bool serviceList::addService(const class service & toAdd)
+bool serviceList::addService(const entity & toFind, const class service & toAdd)
 {
-	int index = getKey(toAdd.getIdValue());
+	int index = getKey(toFind.getIdValue());
 
     //no person to associate service with
 	if(!table[index])
@@ -179,7 +179,7 @@ bool serviceList::addService(const class service & toAdd)
 	{
 		serviceNode * temp = table[index];
 
-		while(temp && temp->aPerson->compare(toAdd)!= 0)
+		while(temp && temp->aPerson->compare(toFind)!= 0)
 		{
 			temp = temp->next;
 		}
@@ -261,6 +261,7 @@ bool serviceList::getInfo(const entity & toFind, serviceNode & copy)
     }
 }
 
+//copies LLL of services.
 bool serviceList::copyServices(service *& dest, service * source)const
 {
     if(!source)
@@ -272,4 +273,41 @@ bool serviceList::copyServices(service *& dest, service * source)const
     copyServices(dest->toNext(), source->toNext());
 
     return true;
+}
+
+//returns 1 if member is suspended and couts their balance due. 
+//returns 0 if member is active.
+//returns 2 if member doesn't exist.
+int serviceList::isSuspended(const entity & toFind)
+{
+    int index = getKey(toFind.getIdValue()); 
+
+    if(!table[index])
+        return 2;
+
+    else
+    {
+        serviceNode * temp = table[index];
+
+        while(temp && temp->aPerson->compare(toFind))
+        {
+            temp = temp->next;
+        }
+
+        //pointer fell off the list, no match exists.
+        if(!temp)
+            return 2;
+        
+        //person found
+        else
+        {
+           bool suspend = temp->aPerson->isSuspended();
+           if(suspend == false)
+               return 0;
+           else
+               return 1;
+        }
+    }
+
+
 }
