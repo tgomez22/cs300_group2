@@ -62,7 +62,7 @@ int chooseIDEnter();        //for the user to choose how to enter the ID informa
 int exitFunction();         //a function to make sure the user wants to exit
 void thankYouGoodbye();     //Function to thank the user for using ChocAn
 int scanId(entity & one_user);
-int typeId(entity & one_user);            //Function to get one member ID by typing
+int typeId(entity & one_user, serviceList & my_service_list);            //Function to get one member ID by typing
 
 int main(int argc, char* argv[])
 {
@@ -92,16 +92,14 @@ int main(int argc, char* argv[])
 
    welcomeFunction();       //To welcome the user/give credit
 
-   //entityTable no longer exists as an object.
-   //entityTable the_entity_table;
    entity one_user;         //Creates an instance of one user/entity
    member one_member;
 
    //person has virtual functions and is an abstract base class
    //C++ doesn't allow objects to be made of it.
-   //person one_person;
    provider one_provider;
    service one_service;
+   serviceList my_service_list;
 
    //Do these things while the user does NOT want to exit; ie keepGoing is NOT EXITVALUE
    do
@@ -130,7 +128,7 @@ int main(int argc, char* argv[])
      {
 	      //if the typeId doesn't work go back to menu
 	      //otherwise do a different task
-        checkValue = typeId(one_user);
+        checkValue = typeId(one_user, my_service_list);
 	      if(checkValue == 0)
 	      {
            keepGoing = 0;
@@ -304,11 +302,14 @@ int scanId(entity & one_user)
 
    return errorValue;
 }
+   
 
-int typeId(entity & one_user)
+int typeId(entity & one_user, serviceList & my_service_list)
 {
    bool checkValue = false;
    int errorValue = 0;
+   int isOnList = 3;
+   bool didWriteWork = false;
 
    checkValue = one_user.addIdFromTerm();
 
@@ -319,11 +320,45 @@ int typeId(entity & one_user)
    }
    else
    {
-      cout << "Success adding ID.\n";
-      cout << "The ID Number is: ";
-      one_user.display();
-      cout  << endl;
-      errorValue = 1;
+      isOnList = my_service_list.isSuspended(one_user);
+      //if member is suspended
+      if(isOnList == 1)
+      {
+         cout << "Please see manager for suspended account.\n";
+	 errorValue = 0;
+      }
+      //if member is active
+      else if(isOnList == 0)
+      {
+         cout << "Validated!\n"; 
+         cout << "The ID Number is: ";
+         one_user.display();
+         cout  << endl;
+	 errorValue = 1;
+      }
+      //if member is not on list
+      else if(isOnList == 2)
+      {
+         didWriteWork = one_user.writeOut();
+         if(didWriteWork == true)
+	 {
+            cout << "Success adding ID.\n";
+            cout << "The ID Number is: ";
+            one_user.display();
+            cout  << endl;
+            errorValue = 1;
+         }
+         else
+	 {
+            cout << "Error adding ID.\n";
+	    cout << "Please see manager.\n";
+	    errorValue = 0;
+	 }	 
+      }
+      else
+      {
+         errorValue = 0;
+      }
    }
 
    return errorValue;
