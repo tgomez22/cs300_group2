@@ -63,6 +63,7 @@ bool entity::writeOut()
 bool entity::addIdFromTerm()
 {
 	char temp[SIZE];
+	bool success = false;
 	using namespace std;
 
 	for(int i=0; i < SIZE; ++i)
@@ -88,9 +89,7 @@ bool entity::addIdFromTerm()
 		length = strlen(temp);
 
 	}
-	bool success = memId.add(temp);
-	if(success)
-		writeOut();
+	success = memId.add(temp);
 	return success;
 }
 
