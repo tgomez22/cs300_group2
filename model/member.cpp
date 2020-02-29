@@ -97,12 +97,6 @@ bool member::readIn()
 
    } while (correctYN == 'n');
 
-   tString name;
-   tString address;
-   tString city;
-   tString state;
-   tString zip;
-
    name.add(temp_name);
    address.add(temp_address);
    city.add(temp_city);
