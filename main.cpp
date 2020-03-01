@@ -42,7 +42,7 @@ using namespace std;        //for standard I/O
 
 
 #include "data_structures/serviceList.h"
-
+#include "data_structures/personList.h"
 #include "model/entity.h"
 #include "hierarchy/service.h"
 #include "model/person.h"
@@ -62,7 +62,7 @@ int chooseIDEnter();        //for the user to choose how to enter the ID informa
 int exitFunction();         //a function to make sure the user wants to exit
 void thankYouGoodbye();     //Function to thank the user for using ChocAn
 int scanId(entity & one_user);
-int typeId(entity & one_user, serviceList & my_service_list);            //Function to get one member ID by typing
+int typeId(entity &, member &, serviceList &, personList &);            //Function to get one member ID by typing
 
 int main(int argc, char* argv[])
 {
@@ -97,8 +97,10 @@ int main(int argc, char* argv[])
 
    //person has virtual functions and is an abstract base class
    //C++ doesn't allow objects to be made of it.
-   provider one_provider;
+//  provider one_provider;
    service one_service;
+
+   personList my_person_list;
    serviceList my_service_list;
 
    //Do these things while the user does NOT want to exit; ie keepGoing is NOT EXITVALUE
@@ -112,31 +114,31 @@ int main(int argc, char* argv[])
      }
      else if(menuChoice == 1)
      {
-	      //if the scanId doesn't work go back to menu
-     	  //otherwise do a different task
+        //if the scanId doesn't work go back to menu
+        //otherwise do a different task
         checkValue = scanId(one_user);
-	      if(checkValue == 0)
+        if(checkValue == 0)
         {
             keepGoing = 0;
-	      }
-	      else
+        }
+        else
         {
             //do something else
         }
      }
      else if(menuChoice == 2)
      {
-	      //if the typeId doesn't work go back to menu
-	      //otherwise do a different task
-        checkValue = typeId(one_user, my_service_list);
-	      if(checkValue == 0)
-	      {
+        //if the typeId doesn't work go back to menu
+	//otherwise do a different task
+        checkValue = typeId(one_user, one_member, my_service_list, my_person_list);
+        if(checkValue == 0)
+        {
            keepGoing = 0;
-     	 }
-	      else
+        }
+	else
         {
            //do something else
-	      }
+	}
      }
      else if(menuChoice == EXITVALUE)
      {
@@ -304,15 +306,24 @@ int scanId(entity & one_user)
 }
    
 
-int typeId(entity & one_user, serviceList & my_service_list)
+int typeId(entity & one_user, member & one_member, serviceList & my_service_list, personList & my_person_list)
 {
    bool checkValue = false;
    int errorValue = 0;
    int isOnList = 3;
    bool didWriteWork = false;
+   bool addToPersonListCheck = false;
+   int memOrProvider = 0;
+   char name[NAMESZ];
+   char street[NAMESZ];
+   char city[CITYSZ];
+   char state[STATESZ];
+   char zip[ZIPSZ]; 
+   bool readInSuccess = false;
+
 
    checkValue = one_user.addIdFromTerm();
-
+   
    if(checkValue == false)
    {
       cout << "Sorry. That does not work. Try again.\n";
@@ -320,49 +331,213 @@ int typeId(entity & one_user, serviceList & my_service_list)
    }
    else
    {
-      isOnList = my_service_list.isSuspended(one_user);
-      //if member is suspended
-      if(isOnList == 1)
+      addToPersonListCheck = my_person_list.add(one_user);
+      if(addToPersonListCheck)
       {
-         cout << "Please see manager for suspended account.\n";
-	 errorValue = 0;
-      }
-      //if member is active
-      else if(isOnList == 0)
-      {
-         cout << "Validated!\n"; 
-         cout << "The ID Number is: ";
-         one_user.display();
-         cout  << endl;
-	 errorValue = 1;
-      }
-      //if member is not on list
-      else if(isOnList == 2)
-      {
-         didWriteWork = one_user.writeOut();
-         if(didWriteWork == true)
-	 {
-            cout << "Success adding ID.\n";
+         isOnList = my_service_list.isSuspended(one_user);
+         //if member is suspended
+         if(isOnList == 1)
+         {
+            cout << "Please see manager for suspended account.\n";
+	    errorValue = 0;
+         }
+         //if member is active
+         else if(isOnList == 0)
+         {
+            cout << "Validated!\n"; 
             cout << "The ID Number is: ";
             one_user.display();
+	    cout << "\nThe member information is:" << endl;
+	    one_member.display();
             cout  << endl;
-            errorValue = 1;
+	    errorValue = 1;
          }
+         //if member is not on list
+         else if(isOnList == 2)
+         {
+            //is it a member or a provider or manager?
+            memOrProvider = one_user.getFirstIndex();
+	    //if it is a member, then add the member
+	    //if it is NOT a member then do something else
+	    if(memOrProvider == 1)
+	    {
+	       one_member.getMemId(one_user);
+               readInSuccess = one_member.readIn();
+	       if(readInSuccess == true)
+               {
+                  didWriteWork = one_user.writeOut();
+                  if(didWriteWork == true)
+	          {
+                     cout << "Success adding ID.\n";
+                    // cout << "The ID Number is: ";
+                    // one_user.display();
+		     cout << "\nThe member information is:" << endl;
+		     one_member.display();
+                     cout  << endl;
+                     errorValue = 1;
+                  }
+                  else
+	          {
+                     cout << "Error adding ID.\n";
+	             cout << "Please see manager.\n";
+	             errorValue = 0;
+	          }
+	      }
+              else
+	      {
+                 cout << "Error reading in Member information!\n";
+		 errorValue = 0;
+	      }	       
+            }
+	    else if(memOrProvider == 2)
+	    {
+               //call the provider functions 
+	    }
+	    else if(memOrProvider == 3)
+	    {
+               //call the manager functions
+	    }
+	    else
+	    {
+	       errorValue = 0;
+	    }
+	 }
          else
-	 {
-            cout << "Error adding ID.\n";
-	    cout << "Please see manager.\n";
-	    errorValue = 0;
-	 }	 
+         {
+            errorValue = 0;
+         }
       }
       else
       {
-         errorValue = 0;
+      //   cout << "Some kind of duplicate error.\n";
+//	 cout << "Fix before deployment!!!!\n";
+//	 errorValue = 0;
+
+	 
+         isOnList = my_service_list.isSuspended(one_user);
+         //if member is suspended
+         if(isOnList == 1)
+         {
+            cout << "Please see manager for suspended account.\n";
+	    errorValue = 0;
+         }
+         //if member is active
+         else if(isOnList == 0)
+         {
+            cout << "Validated!\n"; 
+            cout << "The ID Number is: ";
+            one_user.display();
+            cout  << endl;
+	    errorValue = 1;
+         }
+         //if member is not on list
+         else if(isOnList == 2)
+         {
+            didWriteWork = one_user.writeOut();
+            if(didWriteWork == true)
+	    {
+               cout << "Success adding ID.\n";
+               cout << "The ID Number is: ";
+               one_user.display();
+               cout  << endl;
+               errorValue = 1;
+            }
+            else
+	    {
+               cout << "Error adding ID.\n";
+	       cout << "Please see manager.\n";
+	       errorValue = 0;
+	    }	 
+         }
+         else
+         {
+            errorValue = 0;
+         }
       }
    }
-
    return errorValue;
 }
+/*
+bool getMemberInfo(entity & one_user)
+{
+   char correctYN = 'n';
+   char name[NAMESZ];
+   char street[NAMESZ];
+   char city[CITYSZ];
+   char state[STATESZ];
+   char zip[ZIPSZ]; 
+
+   
+   
+   do{ 
+   
+      for(int i=0; i < NAMESZ; ++i)
+      {
+         name[i] = '\0';
+         street[i] = '\0';
+      }
+
+      for(int i=0; i < CITYSZ; ++i)
+      {
+         city[i] = '\0';
+      }
+
+      for(int i=0; i < STATESZ; ++i)
+      {
+         state[i] = '\0';
+      }
+
+      for(int i=0; i < ZIPSZ; ++i)
+      {
+         zip[i] = '\0';
+      }
+
+
+      cout << "This member is not in our records.\n";
+      cout << "Please add the member information.\n\n";
+      cout << "Name (Ex. Jane Smith): \n";
+      cin.get(name, NAMESZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "Address Street (Ex. 4432 NE 44th Way): \n";
+      cin.get(street, NAMESZ, '\n');
+      cin.ignore(SIZE, '\n');
+   
+      cout << "Address City (Ex. Portland): \n";
+      cin.get(city, CITYSZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "Address State Abbreviation (Ex. OR): \n";
+      cin.get(state, STATESZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "Address Zip Code (Ex. 97201): \n";
+      cin.get(zip, ZIPSZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "You provided the following. Is it correct Y/N?\n";
+      cout << "Name: " << name << endl;
+      cout << "Street: " << street << endl;
+      cout << "City: " << city << endl;
+      cout << "State: " << state << endl;
+      cout << "Zip Code: " << zip << endl;
+
+      cin >> correctYN;
+      cin.ignore(SIZE, '\n');
+
+      correctYN = tolower(correctYN);
+
+   }while (correctYN = 'n');
+
+
+}
+*/
+/*int isOrNotSuspended(entity & one_user, serviceList & my_service_list)
+{
+
+
+}
+*/
 
 //Edited by Kristin Bell for use with ChocAn System
 /*
