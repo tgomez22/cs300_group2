@@ -149,6 +149,7 @@ char * entity::isIDValid(char * compare)
 //displays stored private data(member number)
 void entity::display()const
 {
+	cout << "ID Number: ";
 	memId.display();
 	return;
 }
@@ -194,3 +195,4 @@ int entity::getFirstIndex()const
 {
     return memId.getFirstIndex();
 }
+
