@@ -314,13 +314,7 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
    bool didWriteWork = false;
    bool addToPersonListCheck = false;
    int memOrProvider = 0;
-   char name[NAMESZ];
-   char street[NAMESZ];
-   char city[CITYSZ];
-   char state[STATESZ];
-   char zip[ZIPSZ]; 
    bool readInSuccess = false;
-
 
    checkValue = one_user.addIdFromTerm();
    
@@ -361,8 +355,8 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
 	    //if it is NOT a member then do something else
 	    if(memOrProvider == 1)
 	    {
-	       one_member.getMemId(one_user);
-               readInSuccess = one_member.readIn();
+               one_member.addId(one_user); 
+	       readInSuccess = one_member.readIn();
 	       if(readInSuccess == true)
                {
                   didWriteWork = one_user.writeOut();
@@ -457,81 +451,6 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
    }
    return errorValue;
 }
-/*
-bool getMemberInfo(entity & one_user)
-{
-   char correctYN = 'n';
-   char name[NAMESZ];
-   char street[NAMESZ];
-   char city[CITYSZ];
-   char state[STATESZ];
-   char zip[ZIPSZ]; 
-
-   
-   
-   do{ 
-   
-      for(int i=0; i < NAMESZ; ++i)
-      {
-         name[i] = '\0';
-         street[i] = '\0';
-      }
-
-      for(int i=0; i < CITYSZ; ++i)
-      {
-         city[i] = '\0';
-      }
-
-      for(int i=0; i < STATESZ; ++i)
-      {
-         state[i] = '\0';
-      }
-
-      for(int i=0; i < ZIPSZ; ++i)
-      {
-         zip[i] = '\0';
-      }
-
-
-      cout << "This member is not in our records.\n";
-      cout << "Please add the member information.\n\n";
-      cout << "Name (Ex. Jane Smith): \n";
-      cin.get(name, NAMESZ, '\n');
-      cin.ignore(SIZE, '\n');
-
-      cout << "Address Street (Ex. 4432 NE 44th Way): \n";
-      cin.get(street, NAMESZ, '\n');
-      cin.ignore(SIZE, '\n');
-   
-      cout << "Address City (Ex. Portland): \n";
-      cin.get(city, CITYSZ, '\n');
-      cin.ignore(SIZE, '\n');
-
-      cout << "Address State Abbreviation (Ex. OR): \n";
-      cin.get(state, STATESZ, '\n');
-      cin.ignore(SIZE, '\n');
-
-      cout << "Address Zip Code (Ex. 97201): \n";
-      cin.get(zip, ZIPSZ, '\n');
-      cin.ignore(SIZE, '\n');
-
-      cout << "You provided the following. Is it correct Y/N?\n";
-      cout << "Name: " << name << endl;
-      cout << "Street: " << street << endl;
-      cout << "City: " << city << endl;
-      cout << "State: " << state << endl;
-      cout << "Zip Code: " << zip << endl;
-
-      cin >> correctYN;
-      cin.ignore(SIZE, '\n');
-
-      correctYN = tolower(correctYN);
-
-   }while (correctYN = 'n');
-
-
-}
-*/
 /*int isOrNotSuspended(entity & one_user, serviceList & my_service_list)
 {
 
