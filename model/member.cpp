@@ -97,6 +97,7 @@ bool member::readIn()
 
    } while (correctYN == 'n');
 
+   //memId.add(tempMemId);
    name.add(temp_name);
    address.add(temp_address);
    city.add(temp_city);
