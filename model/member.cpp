@@ -26,6 +26,33 @@ member::~member()
 //Here's your prototype Shawn for writing out.
 void member::writeOut()
 {
+	ofstream myfile;
+	myfile.open("data/member.txt", ios::app);
+	bool fileOpened = myfile;
+	if(myfile)
+	{
+		char * fileMemId = memId.getString();
+		char * fileName = name.getString();
+		char * fileAddress = address.getString();
+		char * fileCity = city.getString();
+		char * fileState = state.getString();
+		char * fileZip = zip.getString();
+		json toWrite;
+		toWrite["memId"] = fileMemId;
+		toWrite["name"] = fileMemId;
+		toWrite["address"] = fileMemId;
+		toWrite["city"] = fileMemId;
+		toWrite["zip"] = fileMemId;
+		toWrite["suspended"] = suspended;
+		toWrite["amtDue"] = amtDue;
+		myfile << toWrite;
+		myfile.close();
+		system("openssl aes-256-cbc -salt -pbkdf2 -in data/member.txt -out data/m_encrypted.dat -pass pass:password"); //encryption
+		delete []fileMemId, delete []fileName, delete []fileAddress, delete []fileCity, delete []fileState, delete []fileZip;
+	}
+	else
+		cout << "Unable to open file." << endl;
+	return fileOpened;
 }
 
 //prototype for terminal group.
