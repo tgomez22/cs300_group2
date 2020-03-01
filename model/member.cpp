@@ -2,6 +2,9 @@
 #include "entity.h"
 #include "person.h"
 #include <iostream>
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
 
 member::member():person()
 {
@@ -29,16 +32,16 @@ void member::writeOut()
 bool member::readIn()
 {
    using namespace std;
-  
+
    char correctYN = 'n';
    char temp_name[NAMESZ];
    char temp_address[NAMESZ];
    char temp_city[CITYSZ];
    char temp_state[STATESZ];
-   char temp_zip[ZIPSZ]; 
+   char temp_zip[ZIPSZ];
 
-   do{ 
-   
+   do{
+
       for(int i=0; i < NAMESZ; ++i)
       {
          temp_name[i] = '\0';
@@ -70,7 +73,7 @@ bool member::readIn()
       cout << "Address Street (Ex. 4432 NE 44th Way): \n";
       cin.get(temp_address, NAMESZ, '\n');
       cin.ignore(SIZE, '\n');
-   
+
       cout << "Address City (Ex. Portland): \n";
       cin.get(temp_city, CITYSZ, '\n');
       cin.ignore(SIZE, '\n');
@@ -106,7 +109,7 @@ bool member::readIn()
 
    return true;
 }
-     
+
 //fior terminal group. feel free to change.
 void member::display()const
 {
