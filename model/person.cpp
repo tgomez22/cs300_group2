@@ -20,12 +20,25 @@ person::person(const person & toAdd):entity(toAdd)
 
 void person::showInfo()const
 {
+    using namespace std;
+	
     entity::display();
+    cout << endl;
+    cout << "Name: ";
     name.display();
+    cout << endl;
+    cout << "Street: ";
     address.display();
+    cout << endl;
+    cout << "City: ";
     city.display();
+    cout << endl;
+    cout << "State: ";
     state.display();
+    cout << endl;
+    cout << "Zip: ";
     zip.display();
+    cout << endl;
 
     return;
 }
