@@ -175,3 +175,30 @@ service *& service::toNext()
 {
     return next;
 }
+
+//This function will display all the "stored providers". I am hard coding this in 
+//for now. I can't think of a good place to put this. I may consider making this char**
+//a private data member. 
+void service::displayProviderDirectory()const
+{
+    using namespace std;
+    //Change this to affect rest of function.
+    int directorySize = 2;
+
+
+    //magic number place holder.
+  char providerDirectory [directorySize][SIZE] = {"Dietitian (598470) ", "Aerobics Exercise Session (883948)"};
+    
+
+  for(int i = 2; i < directorySize; ++i)
+  {
+        cout<<"Service: "<<providerDirectory[i]<<endl;
+  }
+
+  return;
+
+
+
+}
+
+
