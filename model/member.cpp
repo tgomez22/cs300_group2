@@ -29,7 +29,7 @@ void member::writeOut()
 {
 	ofstream myfile;
 	myfile.open("data/member.txt", ios::app);
-	bool fileOpened = myfile;
+	//bool fileOpened = myfile.is_open();
 	if(myfile)
 	{
 		char * fileMemId = memId.getString();
@@ -40,10 +40,10 @@ void member::writeOut()
 		char * fileZip = zip.getString();
 		json toWrite;
 		toWrite["memId"] = fileMemId;
-		toWrite["name"] = fileMemId;
-		toWrite["address"] = fileMemId;
-		toWrite["city"] = fileMemId;
-		toWrite["zip"] = fileMemId;
+		toWrite["name"] = fileName;
+		toWrite["address"] = fileAddress;
+		toWrite["city"] = fileCity;
+		toWrite["zip"] = fileZip;
 		toWrite["suspended"] = suspended;
 		toWrite["amtDue"] = amtDue;
 		myfile << toWrite;
@@ -53,7 +53,7 @@ void member::writeOut()
 	}
 	else
 		cout << "Unable to open file." << endl;
-	return fileOpened;
+	return;
 }
 
 //prototype for terminal group.
