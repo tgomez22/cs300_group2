@@ -304,7 +304,7 @@ int scanId(entity & one_user)
 
    return errorValue;
 }
-   
+
 
 int typeId(entity & one_user, member & one_member, serviceList & my_service_list, personList & my_person_list)
 {
@@ -317,7 +317,7 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
    bool readInSuccess = false;
 
    checkValue = one_user.addIdFromTerm();
-   
+
    if(checkValue == false)
    {
       cout << "Sorry. That does not work. Try again.\n";
@@ -338,7 +338,7 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
          //if member is active
          else if(isOnList == 0)
          {
-            cout << "Validated!\n"; 
+            cout << "Validated!\n";
             cout << "The ID Number is: ";
             one_user.display();
 	    cout << "\nThe member information is:" << endl;
@@ -355,7 +355,7 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
 	    //if it is NOT a member then do something else
 	    if(memOrProvider == 1)
 	    {
-               one_member.addId(one_user); 
+               one_member.addId(one_user);
 	       readInSuccess = one_member.readIn();
 	       if(readInSuccess == true)
                {
@@ -367,6 +367,7 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
                     // one_user.display();
 		     cout << "\nThe member information is:" << endl;
 		     one_member.display();
+				 one_member.writeOut(); //testing purposes only, will be moved
                      cout  << endl;
                      errorValue = 1;
                   }
@@ -381,11 +382,11 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
 	      {
                  cout << "Error reading in Member information!\n";
 		 errorValue = 0;
-	      }	       
+	      }
             }
 	    else if(memOrProvider == 2)
 	    {
-               //call the provider functions 
+               //call the provider functions
 	    }
 	    else if(memOrProvider == 3)
 	    {
@@ -407,7 +408,7 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
 //	 cout << "Fix before deployment!!!!\n";
 //	 errorValue = 0;
 
-	 
+
          isOnList = my_service_list.isSuspended(one_user);
          //if member is suspended
          if(isOnList == 1)
@@ -418,7 +419,7 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
          //if member is active
          else if(isOnList == 0)
          {
-            cout << "Validated!\n"; 
+            cout << "Validated!\n";
             cout << "The ID Number is: ";
             one_user.display();
             cout  << endl;
@@ -441,7 +442,7 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
                cout << "Error adding ID.\n";
 	       cout << "Please see manager.\n";
 	       errorValue = 0;
-	    }	 
+	    }
          }
          else
          {

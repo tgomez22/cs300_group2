@@ -2,6 +2,10 @@
 #include "entity.h"
 #include "person.h"
 #include <iostream>
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+using namespace std;
 
 member::member():person()
 {
@@ -23,22 +27,49 @@ member::~member()
 //Here's your prototype Shawn for writing out.
 void member::writeOut()
 {
+	ofstream myfile;
+	myfile.open("data/member.txt", ios::app);
+	//bool fileOpened = myfile.is_open();
+	if(myfile)
+	{
+		char * fileMemId = memId.getString();
+		char * fileName = name.getString();
+		char * fileAddress = address.getString();
+		char * fileCity = city.getString();
+		char * fileState = state.getString();
+		char * fileZip = zip.getString();
+		json toWrite;
+		toWrite["memId"] = fileMemId;
+		toWrite["name"] = fileName;
+		toWrite["address"] = fileAddress;
+		toWrite["city"] = fileCity;
+		toWrite["zip"] = fileZip;
+		toWrite["suspended"] = suspended;
+		toWrite["amtDue"] = amtDue;
+		myfile << toWrite;
+		myfile.close();
+		system("openssl aes-256-cbc -salt -pbkdf2 -in data/member.txt -out data/m_encrypted.dat -pass pass:password"); //encryption
+		delete []fileMemId, delete []fileName, delete []fileAddress, delete []fileCity, delete []fileState, delete []fileZip;
+	}
+	else
+		cout << "Unable to open file." << endl;
+	return;
 }
 
 //prototype for terminal group.
 bool member::readIn()
 {
    using namespace std;
-  
+
    char correctYN = 'n';
    char temp_name[NAMESZ];
    char temp_address[NAMESZ];
    char temp_city[CITYSZ];
    char temp_state[STATESZ];
-   char temp_zip[ZIPSZ]; 
+   char temp_zip[ZIPSZ];
 
-   do{ 
-   
+   do{
+
       for(int i=0; i < NAMESZ; ++i)
       {
          temp_name[i] = '\0';
@@ -70,7 +101,7 @@ bool member::readIn()
       cout << "Address Street (Ex. 4432 NE 44th Way): \n";
       cin.get(temp_address, NAMESZ, '\n');
       cin.ignore(SIZE, '\n');
-   
+
       cout << "Address City (Ex. Portland): \n";
       cin.get(temp_city, CITYSZ, '\n');
       cin.ignore(SIZE, '\n');
@@ -106,7 +137,7 @@ bool member::readIn()
 
    return true;
 }
-     
+
 //fior terminal group. feel free to change.
 void member::display()const
 {
