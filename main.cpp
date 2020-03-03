@@ -57,15 +57,15 @@ const int EXITVALUE = 99;   //exit value to exit the program
 static char *getData(const char *input);  //For CueCat code to get data
 static char *decode(char *in);            //For CueCat decodes the data
 
-void menu(char* menuText, char** choices, void (* dispatchTable[])(), int numOfChoices);
+int menu(char* menuText, char** choices, int (* dispatchTable[])(), int numOfChoices);
 
 bool getCueCat(entity & one_user);        //For CueCat runs the other functions
 void welcomeFunction();     //Function to welcome the user
 int chooseIDEnter();        //for the user to choose how to enter the ID information
 int exitFunction();         //a function to make sure the user wants to exit
 void thankYouGoodbye();     //Function to thank the user for using ChocAn
-void scanId();
-void typeId();            //Function to get one member ID by typing
+int scanId();
+int typeId();            //Function to get one member ID by typing
 
 int main(int argc, char* argv[])
 {
@@ -95,31 +95,45 @@ int main(int argc, char* argv[])
    strcpy(choices[0], "Scan ID number");
    strcpy(choices[1], "Type ID number");
    strcpy(choices[2], "Quit");
-   void (* dt[3])() = {scanId, typeId, thankYouGoodbye};
- 
-   menu("Choose from the following:", choices, dt, 3);
+   int (* dt[3])() = {scanId, typeId, exitFunction};
+   int checkValue = 0;
 
-   return 0;
+   checkValue = menu("Choose from the following:", choices, dt, 3);
+   if(checkValue == EXITVALUE)
+   {
+      thankYouGoodbye();
+      return 0;
+   }
+   else
+      return 0;
 }
 
-void menu(char* menuText, char** choices, void (* dispatchTable[])(), int numOfChoices) {
+int menu(char* menuText, char** choices, int (* dispatchTable[])(), int numOfChoices) {
   int choice = 0;
+  int tableResponse = 0;
 
-  cout << menuText << std::endl;
+  cout << menuText << endl;
   for(int i = 0; i < numOfChoices; ++i) {
     cout << i + 1 << ". " << choices[i] << endl;
   }
   cin >> choice;
   cin.ignore(100, '\n');
-
+  
   //Users acceptable inputs are [1..numOfChoices]
   while(choice < 1 || choice > numOfChoices) {
-    cout << "Choice is invalid, please enter a number between 1 and " << numOfChoices << " (inclusive)." << std::endl;
+    cout << "Choice is invalid, please enter a number between 1 and " << numOfChoices << " (inclusive)." << endl;
     cin >> choice;
     cin.ignore(100, '\n');
   }
 
-  dispatchTable[choice - 1]();
+  tableResponse = dispatchTable[choice - 1]();
+
+  if(tableResponse == EXITVALUE)
+  {
+     return EXITVALUE;
+  }
+  else
+     return 0;
 }
 
 //Function to welcome the user/give credits
@@ -178,10 +192,10 @@ void thankYouGoodbye()
 {
    cout << "Thank you for using ChocAn.\n";
    cout << "Goodbye and have a nice day!\n\n";
-   exit(0);
+   return;
 }
 
-void scanId()
+int scanId()
 {
    entity one_user;
    bool checkValue = false;
@@ -219,11 +233,12 @@ void scanId()
          cout  << endl;
       }
    } while (keepGoing == 0);
-
+   //change the return value before deployment!!!
+   return 0;
 }
 
 
-void typeId()
+int typeId()
 {
    entity one_user;
    member one_member;
@@ -371,6 +386,8 @@ void typeId()
          }
       }
    }
+   //change return value before deployment!!!
+   return 0;
 }
 /*int isOrNotSuspended(entity & one_user, serviceList & my_service_list)
 {
