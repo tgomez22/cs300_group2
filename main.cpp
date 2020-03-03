@@ -260,7 +260,8 @@ int typeId()
       errorValue = 0;
    }
    else
-   {
+   {  //if person is not in the list then add them
+      //otherwise it is a duplicate or problem
       addToPersonListCheck = my_person_list.add(one_user);
       if(addToPersonListCheck)
       {
@@ -340,6 +341,7 @@ int typeId()
       }
       else
       {
+      //there is a duplicate number in the list or there was a problem
       //   cout << "Some kind of duplicate error.\n";
 //	 cout << "Fix before deployment!!!!\n";
 //	 errorValue = 0;
