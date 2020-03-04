@@ -224,7 +224,7 @@ int scanId()
 }
 
 int typeId() {
-	char temp[SIZE];
+	char temp[SIZE] = {};
 	bool success = false;
 
 	for(int i=0; i < SIZE; ++i)
@@ -238,17 +238,19 @@ int typeId() {
 
 	int length = strlen(temp);
 
+
 	while(length != 9)
 	{
 		cout<<"User Identification number must be 9 digits long."<<endl;
 		cout<<"Please enter a new User Identification number: ";
-		cin.get(temp, ID, '\n');
+		cin.get(temp, SIZE, '\n');
 		cin.ignore(100, '\n');
 
 		length = strlen(temp);
 	}
-
-	userTypeRouter(string(temp));
+	string *test = new string(temp);
+	userTypeRouter(*test);
+        free(test);
         return 0;
 }
 
@@ -265,8 +267,7 @@ void userTypeRouter(string memberId) {
    int memOrProvider = 0;
    bool readInSuccess = false;
 
-
-//if person is not in the list then add them
+  //if person is not in the list then add them
       //otherwise it is a duplicate or problem
       addToPersonListCheck = my_person_list.add(one_user);
       if(addToPersonListCheck)
