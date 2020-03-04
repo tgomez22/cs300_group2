@@ -1,0 +1,100 @@
+{"address":"922 Killdeer Circle","amtDue":672.82,"city":"Portland","memId":159377179,"name":"Katerina Babber","state":"OR","suspended":true,"zip":"97221"}
+{"address":"9962 Center Street","amtDue":864.58,"city":"Portland","memId":199957195,"name":"Abey Suarez","state":"OR","suspended":false,"zip":"97216"}
+{"address":"53 Dakota Alley","amtDue":36.37,"city":"Portland","memId":142014161,"name":"Rosalind Melbourne","state":"OR","suspended":true,"zip":"97240"}
+{"address":"7943 Ridgeway Park","amtDue":431.43,"city":"Portland","memId":155189290,"name":"Myer Barrat","state":"OR","suspended":false,"zip":"97232"}
+{"address":"8764 Ramsey Lane","amtDue":905.0,"city":"Beaverton","memId":144802310,"name":"Philis Deetlof","state":"OR","suspended":false,"zip":"97075"}
+{"address":"482 Elka Street","amtDue":518.19,"city":"Portland","memId":166611469,"name":"Dana Dictus","state":"OR","suspended":false,"zip":"97286"}
+{"address":"2 Farmco Lane","amtDue":567.29,"city":"Beaverton","memId":101511114,"name":"Randie Budget","state":"OR","suspended":true,"zip":"97075"}
+{"address":"8 Arrowood Court","amtDue":767.84,"city":"Portland","memId":192328248,"name":"Honoria Forrester","state":"OR","suspended":true,"zip":"97255"}
+{"address":"59132 Mayfield Drive","amtDue":507.52,"city":"Portland","memId":139920695,"name":"Elaina Bumpass","state":"OR","suspended":false,"zip":"97211"}
+{"address":"671 Independence Lane","amtDue":24.76,"city":"Portland","memId":171177954,"name":"Bidget Newnham","state":"OR","suspended":false,"zip":"97211"}
+{"address":"2 Namekagon Way","amtDue":422.59,"city":"Beaverton","memId":104742718,"name":"Jamill Bunner","state":"OR","suspended":true,"zip":"97075"}
+{"address":"02 Clarendon Crossing","amtDue":985.17,"city":"Salem","memId":190207916,"name":"Nannie Gregersen","state":"OR","suspended":false,"zip":"97312"}
+{"address":"4900 Colorado Road","amtDue":487.22,"city":"Portland","memId":185285219,"name":"Kalli Mate","state":"OR","suspended":true,"zip":"97271"}
+{"address":"20 Charing Cross Alley","amtDue":900.94,"city":"Salem","memId":164248316,"name":"Kacie Popping","state":"OR","suspended":false,"zip":"97312"}
+{"address":"689 Knutson Parkway","amtDue":934.28,"city":"Portland","memId":116049724,"name":"Farrel Peterkin","state":"OR","suspended":true,"zip":"97221"}
+{"address":"4 Dryden Road","amtDue":902.3,"city":"Portland","memId":169129100,"name":"Yvette Bernardet","state":"OR","suspended":true,"zip":"97255"}
+{"address":"51 Duke Lane","amtDue":125.21,"city":"Portland","memId":110383107,"name":"Gilli Godly","state":"OR","suspended":true,"zip":"97286"}
+{"address":"18 Tomscot Plaza","amtDue":579.56,"city":"Portland","memId":100310626,"name":"Janaye Stallion","state":"OR","suspended":true,"zip":"97255"}
+{"address":"42958 Kim Street","amtDue":162.18,"city":"Portland","memId":155684566,"name":"Rebeka Huguenet","state":"OR","suspended":true,"zip":"97216"}
+{"address":"5068 Ridgeway Street","amtDue":187.5,"city":"Portland","memId":119409813,"name":"Katha Whichelow","state":"OR","suspended":true,"zip":"97211"}
+{"address":"8430 Sage Point","amtDue":53.15,"city":"Portland","memId":182060218,"name":"Nichole Erbe","state":"OR","suspended":false,"zip":"97240"}
+{"address":"14 Logan Park","amtDue":207.09,"city":"Portland","memId":150151420,"name":"Gretna Dionisio","state":"OR","suspended":false,"zip":"97211"}
+{"address":"47 Kinsman Point","amtDue":22.58,"city":"Portland","memId":130651803,"name":"Sasha Ackerley","state":"OR","suspended":true,"zip":"97229"}
+{"address":"235 Upham Center","amtDue":246.85,"city":"Portland","memId":144508916,"name":"Jory Ida","state":"OR","suspended":true,"zip":"97232"}
+{"address":"69 Dwight Alley","amtDue":996.35,"city":"Portland","memId":167196836,"name":"Ariel Norvill","state":"OR","suspended":false,"zip":"97211"}
+{"address":"92 Gina Center","amtDue":960.94,"city":"Portland","memId":139819719,"name":"Bobinette Tomasini","state":"OR","suspended":false,"zip":"97201"}
+{"address":"95900 Warbler Crossing","amtDue":682.39,"city":"Salem","memId":112598789,"name":"Shandeigh McKelvey","state":"OR","suspended":false,"zip":"97306"}
+{"address":"123 5th Parkway","amtDue":574.89,"city":"Portland","memId":192250421,"name":"Cindra Edington","state":"OR","suspended":false,"zip":"97286"}
+{"address":"9 Arizona Point","amtDue":79.45,"city":"Portland","memId":172356571,"name":"Farah McEvoy","state":"OR","suspended":true,"zip":"97286"}
+{"address":"60035 Old Shore Center","amtDue":329.61,"city":"Salem","memId":186732119,"name":"Othelia Phillis","state":"OR","suspended":true,"zip":"97306"}
+{"address":"03 Tennessee Way","amtDue":578.35,"city":"Portland","memId":173374440,"name":"Maybelle Falck","state":"OR","suspended":true,"zip":"97201"}
+{"address":"6635 Bultman Park","amtDue":851.9,"city":"Portland","memId":148870382,"name":"Ortensia Stookes","state":"OR","suspended":false,"zip":"97240"}
+{"address":"60734 Morrow Crossing","amtDue":199.76,"city":"Portland","memId":196739313,"name":"Emeline Feldheim","state":"OR","suspended":false,"zip":"97221"}
+{"address":"1554 Huxley Drive","amtDue":512.65,"city":"Eugene","memId":163559607,"name":"Keen Fuzzens","state":"OR","suspended":true,"zip":"97405"}
+{"address":"837 Toban Center","amtDue":828.39,"city":"Portland","memId":187782606,"name":"Leigha Tinwell","state":"OR","suspended":true,"zip":"97232"}
+{"address":"31783 Jenifer Pass","amtDue":953.64,"city":"Eugene","memId":119548783,"name":"Libbey Eronie","state":"OR","suspended":false,"zip":"97405"}
+{"address":"83918 Blaine Parkway","amtDue":386.73,"city":"Portland","memId":127232321,"name":"Henry Fasham","state":"OR","suspended":false,"zip":"97211"}
+{"address":"1049 Arapahoe Avenue","amtDue":971.26,"city":"Portland","memId":131276117,"name":"Margit Heritege","state":"OR","suspended":true,"zip":"97271"}
+{"address":"7 Oriole Court","amtDue":309.65,"city":"Portland","memId":170848411,"name":"Alexia Lockery","state":"OR","suspended":true,"zip":"97296"}
+{"address":"01119 Messerschmidt Place","amtDue":456.13,"city":"Portland","memId":113511969,"name":"Mildred Kefford","state":"OR","suspended":true,"zip":"97296"}
+{"address":"61 Quincy Trail","amtDue":298.5,"city":"Portland","memId":157926372,"name":"Hayden Van Son","state":"OR","suspended":false,"zip":"97211"}
+{"address":"2 Karstens Avenue","amtDue":763.6,"city":"Eugene","memId":173217917,"name":"Sebastian Peabody","state":"OR","suspended":true,"zip":"97405"}
+{"address":"8165 Sycamore Avenue","amtDue":521.27,"city":"Portland","memId":199198400,"name":"Trixi Mellmoth","state":"OR","suspended":false,"zip":"97201"}
+{"address":"5643 Maywood Terrace","amtDue":833.55,"city":"Portland","memId":166698372,"name":"Rees Toplin","state":"OR","suspended":false,"zip":"97255"}
+{"address":"9 Eagan Place","amtDue":263.01,"city":"Salem","memId":183692558,"name":"Dede Fassmann","state":"OR","suspended":true,"zip":"97312"}
+{"address":"439 Vahlen Hill","amtDue":957.34,"city":"Portland","memId":100967308,"name":"Heddi Treacher","state":"OR","suspended":false,"zip":"97201"}
+{"address":"1 Corry Park","amtDue":647.93,"city":"Beaverton","memId":175798904,"name":"Isidor Molson","state":"OR","suspended":true,"zip":"97075"}
+{"address":"3 Longview Lane","amtDue":586.93,"city":"Eugene","memId":130318916,"name":"Carlene Janczak","state":"OR","suspended":false,"zip":"97405"}
+{"address":"5 Truax Street","amtDue":254.02,"city":"Portland","memId":105640250,"name":"Averil Hateley","state":"OR","suspended":true,"zip":"97296"}
+{"address":"42 Fisk Street","amtDue":888.78,"city":"Salem","memId":163162176,"name":"Lev Luckings","state":"OR","suspended":false,"zip":"97312"}
+{"address":"1 Bowman Way","amtDue":729.25,"city":"Portland","memId":184913930,"name":"Kerr Stebbings","state":"OR","suspended":true,"zip":"97271"}
+{"address":"8846 Butternut Circle","amtDue":63.24,"city":"Portland","memId":188356755,"name":"Koralle Safell","state":"OR","suspended":true,"zip":"97221"}
+{"address":"7969 Dovetail Alley","amtDue":813.94,"city":"Portland","memId":155402224,"name":"Mimi Volker","state":"OR","suspended":false,"zip":"97211"}
+{"address":"669 Nevada Crossing","amtDue":374.39,"city":"Portland","memId":198533971,"name":"Kerby Durrand","state":"OR","suspended":true,"zip":"97296"}
+{"address":"6254 Golf Road","amtDue":677.41,"city":"Portland","memId":164681346,"name":"Donetta Waddingham","state":"OR","suspended":true,"zip":"97271"}
+{"address":"9 Dwight Parkway","amtDue":166.32,"city":"Portland","memId":108202253,"name":"Piper Levinge","state":"OR","suspended":false,"zip":"97255"}
+{"address":"66321 4th Lane","amtDue":203.14,"city":"Portland","memId":170874347,"name":"Malinde Hinstock","state":"OR","suspended":false,"zip":"97201"}
+{"address":"638 Eagle Crest Crossing","amtDue":169.88,"city":"Beaverton","memId":128083872,"name":"Humfried Penhallurick","state":"OR","suspended":false,"zip":"97075"}
+{"address":"34665 Golden Leaf Terrace","amtDue":570.38,"city":"Salem","memId":150536791,"name":"Robinet Mockett","state":"OR","suspended":false,"zip":"97312"}
+{"address":"11 Mosinee Court","amtDue":463.36,"city":"Portland","memId":143832697,"name":"Willie Hutchens","state":"OR","suspended":false,"zip":"97221"}
+{"address":"92 Grayhawk Junction","amtDue":985.23,"city":"Salem","memId":187689955,"name":"Tabbi Bert","state":"OR","suspended":false,"zip":"97312"}
+{"address":"920 Pankratz Plaza","amtDue":48.85,"city":"Portland","memId":109516317,"name":"Miof mela Coughtrey","state":"OR","suspended":false,"zip":"97240"}
+{"address":"9 Pearson Circle","amtDue":805.53,"city":"Portland","memId":197195335,"name":"Frederic Caisley","state":"OR","suspended":true,"zip":"97255"}
+{"address":"574 Norway Maple Circle","amtDue":617.18,"city":"Portland","memId":127179552,"name":"Jessamine Harfoot","state":"OR","suspended":false,"zip":"97232"}
+{"address":"92119 Westerfield Trail","amtDue":498.76,"city":"Portland","memId":156096167,"name":"Iosep Vile","state":"OR","suspended":false,"zip":"97221"}
+{"address":"144 Weeping Birch Road","amtDue":885.46,"city":"Portland","memId":174021468,"name":"Sondra Clarke-Williams","state":"OR","suspended":false,"zip":"97232"}
+{"address":"5675 Dahle Parkway","amtDue":620.15,"city":"Portland","memId":137891793,"name":"Georgianna Reitenbach","state":"OR","suspended":false,"zip":"97206"}
+{"address":"268 American Point","amtDue":176.59,"city":"Portland","memId":105874863,"name":"Giorgio Maulin","state":"OR","suspended":false,"zip":"97232"}
+{"address":"8603 Vera Lane","amtDue":926.34,"city":"Portland","memId":179640299,"name":"Piotr Offin","state":"OR","suspended":false,"zip":"97240"}
+{"address":"36 Hoepker Crossing","amtDue":38.5,"city":"Salem","memId":169933992,"name":"Francine Stembridge","state":"OR","suspended":true,"zip":"97312"}
+{"address":"54393 Gateway Center","amtDue":363.45,"city":"Portland","memId":185607187,"name":"Wilmar Sawday","state":"OR","suspended":true,"zip":"97221"}
+{"address":"2809 Grayhawk Park","amtDue":716.98,"city":"Portland","memId":184686602,"name":"Scottie McCarly","state":"OR","suspended":true,"zip":"97211"}
+{"address":"64417 Basil Road","amtDue":766.49,"city":"Portland","memId":104894533,"name":"Martainn Akess","state":"OR","suspended":true,"zip":"97271"}
+{"address":"90687 Northport Place","amtDue":41.37,"city":"Portland","memId":154143616,"name":"Brooks Colquhoun","state":"OR","suspended":false,"zip":"97206"}
+{"address":"98418 Colorado Street","amtDue":99.79,"city":"Portland","memId":199995229,"name":"Brittan Beastall","state":"OR","suspended":false,"zip":"97229"}
+{"address":"11 Linden Lane","amtDue":809.49,"city":"Beaverton","memId":158702053,"name":"Brian Wellstead","state":"OR","suspended":true,"zip":"97075"}
+{"address":"0 Claremont Terrace","amtDue":640.01,"city":"Portland","memId":195934163,"name":"Alasdair Tremolieres","state":"OR","suspended":true,"zip":"97286"}
+{"address":"61 South Circle","amtDue":384.96,"city":"Portland","memId":139978537,"name":"Corbet Loxly","state":"OR","suspended":true,"zip":"97229"}
+{"address":"053 Arapahoe Street","amtDue":776.71,"city":"Portland","memId":129395677,"name":"Maurine London","state":"OR","suspended":true,"zip":"97286"}
+{"address":"386 Hauk Drive","amtDue":221.77,"city":"Portland","memId":135383737,"name":"Mathilde Ginsie","state":"OR","suspended":true,"zip":"97229"}
+{"address":"17759 Buena Vista Road","amtDue":744.96,"city":"Portland","memId":101260142,"name":"Wendall Pittford","state":"OR","suspended":false,"zip":"97240"}
+{"address":"96 Leroy Crossing","amtDue":237.22,"city":"Portland","memId":171311961,"name":"Trista Coldbreath","state":"OR","suspended":false,"zip":"97232"}
+{"address":"0 Bluejay Pass","amtDue":730.24,"city":"Portland","memId":187233359,"name":"Ramonda Leguay","state":"OR","suspended":false,"zip":"97296"}
+{"address":"49 6th Place","amtDue":237.09,"city":"Beaverton","memId":167038830,"name":"Stephan Sarre","state":"OR","suspended":false,"zip":"97075"}
+{"address":"0 Canary Terrace","amtDue":408.78,"city":"Portland","memId":165559032,"name":"Calley Dobbinson","state":"OR","suspended":false,"zip":"97229"}
+{"address":"11480 Killdeer Lane","amtDue":545.94,"city":"Portland","memId":190642713,"name":"Angelle Doggett","state":"OR","suspended":true,"zip":"97296"}
+{"address":"1624 Vermont Crossing","amtDue":703.33,"city":"Portland","memId":163326672,"name":"Harry Jennaway","state":"OR","suspended":false,"zip":"97232"}
+{"address":"74380 Farwell Pass","amtDue":282.61,"city":"Portland","memId":104069392,"name":"Glenda Squirrell","state":"OR","suspended":false,"zip":"97201"}
+{"address":"633 Anthes Street","amtDue":461.82,"city":"Salem","memId":136474034,"name":"Arvy Kennerknecht","state":"OR","suspended":true,"zip":"97312"}
+{"address":"86271 Stone Corner Terrace","amtDue":554.43,"city":"Beaverton","memId":183079600,"name":"Ewart Beccles","state":"OR","suspended":true,"zip":"97075"}
+{"address":"53907 Ilene Circle","amtDue":39.15,"city":"Portland","memId":132456148,"name":"Beverly MacDermot","state":"OR","suspended":false,"zip":"97271"}
+{"address":"530 Farwell Hill","amtDue":93.57,"city":"Portland","memId":161885064,"name":"Stoddard Edgerly","state":"OR","suspended":true,"zip":"97206"}
+{"address":"1583 Linden Court","amtDue":96.33,"city":"Portland","memId":109633475,"name":"Gearalt Measen","state":"OR","suspended":true,"zip":"97240"}
+{"address":"63342 Mariners Cove Point","amtDue":737.8,"city":"Portland","memId":117864985,"name":"Karlan Sutheran","state":"OR","suspended":true,"zip":"97240"}
+{"address":"158 Mitchell Junction","amtDue":21.78,"city":"Portland","memId":111777107,"name":"Lexis Edson","state":"OR","suspended":true,"zip":"97211"}
+{"address":"1 Dorton Pass","amtDue":869.21,"city":"Beaverton","memId":149009235,"name":"Reba Pitfield","state":"OR","suspended":false,"zip":"97075"}
+{"address":"1 Arizona Center","amtDue":597.11,"city":"Portland","memId":133441387,"name":"Gareth Mattiassi","state":"OR","suspended":true,"zip":"97211"}
+{"address":"56179 Buhler Hill","amtDue":389.52,"city":"Portland","memId":198763421,"name":"Anita Hanmore","state":"OR","suspended":false,"zip":"97240"}
+{"address":"7965 Forster Street","amtDue":47.32,"city":"Salem","memId":164424798,"name":"Dusty Yarmouth","state":"OR","suspended":true,"zip":"97312"}
+{"address":"7 Colorado Place","amtDue":135.59,"city":"Portland","memId":103792319,"name":"Rem Goldie","state":"OR","suspended":false,"zip":"97240"}
