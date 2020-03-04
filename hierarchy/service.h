@@ -1,6 +1,11 @@
 //CS300 group #2
-//This .h file needs a description!!!
 //
+//This is the header file for the service object. This object represents everything needed for a service report to ChocAn. It has
+//date of service, name of service, name of member, name of provider, cost of service, code of service, and a pointer to another
+//service. This object is associated with the member who received the service, as well as, the provider who game the service.
+
+
+
 #ifndef SERVICE_H
 #define SERVICE_H
 

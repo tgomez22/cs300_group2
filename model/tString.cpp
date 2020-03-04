@@ -1,3 +1,5 @@
+//This is the tString implementation file for the tString object, found in tString.h
+
 #include "tString.h"
 #include <cstring>
 #include <iostream>

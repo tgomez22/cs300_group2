@@ -1,3 +1,7 @@
+//This is the most base object within the class hierarchy. The sole data member is a
+//tString object which holds a member ID number. This class is mostly used to authenticate users
+//on startup and is the main stored information in the personList object.
+
 #ifndef __ENTITY_H
 #define __ENTITY_H
 //CS300 group #2

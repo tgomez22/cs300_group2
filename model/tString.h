@@ -1,6 +1,10 @@
 //Tristan Gomez
 //
 //2/7/2020
+//This is a string class of Tristan's own creation. Its sole data member is a char *. This 
+//class holds character arrays and has multiple functions to manipulate char arrays.
+
+
 #ifndef TSTRING_H
 #define TSTRING_H
 class tString

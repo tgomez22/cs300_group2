@@ -1,7 +1,10 @@
 //CS300 - Group 2 Project
-//This file needs a description!!!
 //
-//
+//This is the implementation of the function declatations in the service.h file. 
+
+
+
+
 #include <time.h>
 #include <iostream>
 #include "service.h" 
@@ -187,11 +190,12 @@ void service::displayProviderDirectory()const
 {
     using namespace std;
     //Change this to affect rest of function.
-    int directorySize = 2;
+    int directorySize = 8;
 
 
     //magic number place holder.
-  char providerDirectory [directorySize][SIZE] = {"Dietitian (598470) ", "Aerobics Exercise Session (883948)"};
+  char providerDirectory [directorySize][SIZE] = {"Dietitian (598470) ", "Aerobics Exercise Session (883948)", "Massage Therapy (623587)", "Acupuncture (117824)", 
+      "Hypnosis (534336)", "Yoga (001245)", "Zumba (566324)", "Cooking w/o Chocolate (667990)"};
     
 
   for(int i = 2; i < directorySize; ++i)

@@ -1,3 +1,7 @@
+//This object is derived from the person abstract base class. This class implements
+//virtual functions of its parent class. This object is used to store all necessary 
+//information for a member of ChocAn.
+
 #ifndef __MEMBER_H
 #define __MEMBER_H
 
