@@ -58,7 +58,7 @@ bool entity::writeOut()
 
 //prompts user to add an id number. Returns true if successfully added
 //a valid length member id. returns false if can't add.
-
+//DEPRECATED, DO NOT USE
 bool entity::addIdFromTerm()
 {
 	char temp[SIZE];

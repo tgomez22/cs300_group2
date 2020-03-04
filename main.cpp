@@ -50,6 +50,7 @@ using namespace std;        //for standard I/O
 #include "model/provider.h"
 
 #include "data_structures/test/datacenter_test.h"
+#include "datacenter.h"
 
 
 const int EXITVALUE = 99;   //exit value to exit the program
@@ -57,58 +58,16 @@ const int EXITVALUE = 99;   //exit value to exit the program
 static char *getData(const char *input);  //For CueCat code to get data
 static char *decode(char *in);            //For CueCat decodes the data
 
-int menu(char* menuText, char** choices, int (* dispatchTable[])(), int numOfChoices);
+int menu(string menuText, string* choices, int (* dispatchTable[])(), int numOfChoices);
 
 bool getCueCat(entity & one_user);        //For CueCat runs the other functions
-void welcomeFunction();     //Function to welcome the user
 int chooseIDEnter();        //for the user to choose how to enter the ID information
 int exitFunction();         //a function to make sure the user wants to exit
-void thankYouGoodbye();     //Function to thank the user for using ChocAn
 int scanId();
 int typeId();            //Function to get one member ID by typing
+void userTypeRouter(string memberId);
 
-int main(int argc, char* argv[])
-{
-   //Bypass all our terminal stuff for testing
-   if(argc >= 2) {
-     char* test = argv[1];
-     switch(test[0]) {
-       case 'd':
-         datacenterTest();
-         break;	
-       case 't':
-         return Catch::Session().run(); //Calls tests in testing/tests.cpp
-         //If you want to make more testing files, just add more cases and call whatever you want.
-         //I've used single letters to keep things simple, just run ./ChocAn [letter] and then add [letter]
-         //To this switch statement, and set it to call whatever you need. That way we can run tests
-         //Without going through the entire terminal setup
-       default:
-         cout << "unrecognized test, exiting" << endl;
-         break;
-     }
-     exit(0);
-   }
-
-   welcomeFunction();       //To welcome the user/give credit
-
-   char* choices[3] = {new char, new char, new char};
-   strcpy(choices[0], "Scan ID number");
-   strcpy(choices[1], "Type ID number");
-   strcpy(choices[2], "Quit");
-   int (* dt[3])() = {scanId, typeId, exitFunction};
-   int checkValue = 0;
-
-   checkValue = menu("Choose from the following:", choices, dt, 3);
-   if(checkValue == EXITVALUE)
-   {
-      thankYouGoodbye();
-      return 0;
-   }
-   else
-      return 0;
-}
-
-int menu(char* menuText, char** choices, int (* dispatchTable[])(), int numOfChoices) {
+int menu(string menuText, string* choices, int (* dispatchTable[])(), int numOfChoices) {
   int choice = 0;
   int tableResponse = 0;
 
@@ -136,9 +95,28 @@ int menu(char* menuText, char** choices, int (* dispatchTable[])(), int numOfCho
      return 0;
 }
 
-//Function to welcome the user/give credits
-void welcomeFunction()
+int main(int argc, char* argv[])
 {
+   //Bypass all our terminal stuff for testing
+   if(argc >= 2) {
+     char* test = argv[1];
+     switch(test[0]) {
+       case 'd':
+         datacenterTest();
+         break;	
+       case 't':
+         return Catch::Session().run(); //Calls tests in testing/tests.cpp
+         //If you want to make more testing files, just add more cases and call whatever you want.
+         //I've used single letters to keep things simple, just run ./ChocAn [letter] and then add [letter]
+         //To this switch statement, and set it to call whatever you need. That way we can run tests
+         //Without going through the entire terminal setup
+       default:
+         cout << "unrecognized test, exiting" << endl;
+         break;
+     }
+     exit(0);
+   }
+
    cout << "*******************************************\n";
    cout << "* Welcome to the ChocAn Simulator (v.1.0) *\n";
    cout << "*******************************************\n\n";
@@ -151,12 +129,21 @@ void welcomeFunction()
    cout << "Shawn Spears\n";
    cout << "and Abbie Utley\n\n\n";
 
-   return;
+   string choices[3] = {"Scan ID number", "Type ID number", "Quit"};
+   int (* dt[3])() = {scanId, typeId, exitFunction};
 
+   while(true) {  //This while loops allows us to automatically hop back up to this level when a lower level interface returns 
+     int checkValue = menu("Choose from the following:", choices, dt, 3);
+     if(checkValue == EXITVALUE)
+     {
+       cout << "Thank you for using ChocAn.\n";
+       cout << "Goodbye and have a nice day!\n\n";
+       return 0;
+     }
+   }
 }
 
 
-//TODO re-add this functionality
 //a function to make sure the user wants to exit
 int exitFunction()
 {
@@ -184,15 +171,6 @@ int exitFunction()
    }
 
    return exitChoice;
-
-}
-
-//Function to thank user for usning ChocAn
-void thankYouGoodbye()
-{
-   cout << "Thank you for using ChocAn.\n";
-   cout << "Goodbye and have a nice day!\n\n";
-   return;
 }
 
 int scanId()
@@ -234,12 +212,44 @@ int scanId()
       }
    } while (keepGoing == 0);
    //change the return value before deployment!!!
+  
+    tString ts;
+    one_user.getMemId(ts);
+  
+    userTypeRouter(string(ts.getString()));
    return 0;
 }
 
+int typeId() {
+	char temp[SIZE];
+	bool success = false;
 
-int typeId()
-{
+	for(int i=0; i < SIZE; ++i)
+	{
+           temp[i] = '\0';
+	}
+
+	cout << "Please enter a User Identification number: ";
+	cin.get(temp, SIZE, '\n');
+	cin.ignore(SIZE, '\n');
+
+	int length = strlen(temp);
+
+	while(length != 9)
+	{
+		cout<<"User Identification number must be 9 digits long."<<endl;
+		cout<<"Please enter a new User Identification number: ";
+		cin.get(temp, ID, '\n');
+		cin.ignore(100, '\n');
+
+		length = strlen(temp);
+	}
+
+	userTypeRouter(string(temp));
+        return 0;
+}
+
+void userTypeRouter(string memberId) {
    entity one_user;
    member one_member;
    serviceList my_service_list;
@@ -252,15 +262,8 @@ int typeId()
    int memOrProvider = 0;
    bool readInSuccess = false;
 
-   checkValue = one_user.addIdFromTerm();
 
-   if(checkValue == false)
-   {
-      cout << "Sorry. That does not work. Try again.\n";
-      errorValue = 0;
-   }
-   else
-   {  //if person is not in the list then add them
+//if person is not in the list then add them
       //otherwise it is a duplicate or problem
       addToPersonListCheck = my_person_list.add(one_user);
       if(addToPersonListCheck)
@@ -387,16 +390,8 @@ int typeId()
             errorValue = 0;
          }
       }
-   }
-   //change return value before deployment!!!
-   return 0;
-}
-/*int isOrNotSuspended(entity & one_user, serviceList & my_service_list)
-{
-
 
 }
-*/
 
 //Edited by Kristin Bell for use with ChocAn System
 /*
