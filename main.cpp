@@ -213,10 +213,13 @@ int scanId()
    } while (keepGoing == 0);
    //change the return value before deployment!!!
   
-    tString ts;
-    one_user.getMemId(ts);
+    if(checkValue) {
+      tString ts;
+      one_user.getMemId(ts);
   
-    userTypeRouter(string(ts.getString()));
+      userTypeRouter(string(ts.getString()));
+   }
+
    return 0;
 }
 
