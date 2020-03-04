@@ -1,3 +1,6 @@
+//This is the implementation file for the person object in person.h
+//
+
 #include "person.h"
 #include "entity.h"
 

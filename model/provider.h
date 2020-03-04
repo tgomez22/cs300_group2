@@ -1,3 +1,6 @@
+//This is a derived class from class person. The class represents a provider of ChocAn and all of their associated information. 
+//It implements the virtual functions from its immediate parent class. 
+
 #ifndef __PROVIDER_H
 #define __PROVIDER_H
 

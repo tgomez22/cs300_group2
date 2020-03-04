@@ -1,3 +1,6 @@
+//This is the implementation file for the provider object, found in provider.h
+//
+
 #include "provider.h"
 #include "person.h"
 #include "entity.h"

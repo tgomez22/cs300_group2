@@ -1,8 +1,14 @@
 
 //CS300 Group #2
-//This .h file needs to have a description of what the class is about
 //
-//
+//This is the header file for the serviceList object. The serviceList object contains a serviceNode ** as its sole data member. The serviceNode
+//object is defined above the serviceList one. The serviceNode contains a person *, in order to hold member or provider objects. A member or 
+//provider object contains all relevant information for that person such as name, id number, address etc. It also contains a service * to hold
+//a LLL implemented as a stack of services associated with that individual. It also contains a pointer to another serviceNode object.
+
+
+
+
 #ifndef SERVICENODE_H
 #define SERVICENODE_H
 #include "../hierarchy/service.h"

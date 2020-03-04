@@ -1,3 +1,5 @@
+//This is the implementation file for the functions given in member.h
+
 #include "member.h"
 #include "entity.h"
 #include "person.h"
@@ -48,7 +50,7 @@ void member::writeOut()
 		toWrite["amtDue"] = amtDue;
 		myfile << toWrite;
 		myfile.close();
-		system("openssl aes-256-cbc -salt -pbkdf2 -in data/member.txt -out data/m_encrypted.dat -pass pass:password"); //encryption
+		system("openssl aes-256-cbc -salt -pbkdf2 -in data/member.txt -out data/memberEncrypted.dat -pass pass:password"); //encryption
 		delete []fileMemId, delete []fileName, delete []fileAddress, delete []fileCity, delete []fileState, delete []fileZip;
 	}
 	else

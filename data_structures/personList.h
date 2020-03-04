@@ -1,7 +1,12 @@
 //CS300 Group #2
-//INCLUDE CONST INT SIZE AND MULTBY
-//This .h file needs to have a description of what the class is about
 //
+//This is the header file for the personList object. The personList contains a personNode ** as its private data member. The personNode is defined
+//above the personList object. The personNode contains an entity object, containing a user's member number. The personNode also contains a pointer
+//to another object of the same type.
+//
+
+
+
 #ifndef PERSONNODE_H
 #define PERSONNODE_H
 #include "../model/entity.h"
