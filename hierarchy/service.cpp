@@ -1,3 +1,7 @@
+//CS300 - Group 2 Project
+//This file needs a description!!!
+//
+//
 #include <time.h>
 #include <iostream>
 #include "service.h" 

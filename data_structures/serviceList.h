@@ -1,7 +1,8 @@
 
 //CS300 Group #2
+//This .h file needs to have a description of what the class is about
 //
-//Worked on by Tristan Gomez(started: 2/5/2020)
+//
 #ifndef SERVICENODE_H
 #define SERVICENODE_H
 #include "../hierarchy/service.h"

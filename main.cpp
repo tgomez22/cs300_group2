@@ -56,13 +56,16 @@ const int EXITVALUE = 99;   //exit value to exit the program
 
 static char *getData(const char *input);  //For CueCat code to get data
 static char *decode(char *in);            //For CueCat decodes the data
+
+int menu(char* menuText, char** choices, int (* dispatchTable[])(), int numOfChoices);
+
 bool getCueCat(entity & one_user);        //For CueCat runs the other functions
 void welcomeFunction();     //Function to welcome the user
 int chooseIDEnter();        //for the user to choose how to enter the ID information
 int exitFunction();         //a function to make sure the user wants to exit
 void thankYouGoodbye();     //Function to thank the user for using ChocAn
-int scanId(entity & one_user);
-int typeId(entity &, member &, serviceList &, personList &);            //Function to get one member ID by typing
+int scanId();
+int typeId();            //Function to get one member ID by typing
 
 int main(int argc, char* argv[])
 {
@@ -70,15 +73,15 @@ int main(int argc, char* argv[])
    if(argc >= 2) {
      char* test = argv[1];
      switch(test[0]) {
-  	   case 'd':
+       case 'd':
          datacenterTest();
-         break;
-			 case 't':
-			   return Catch::Session().run(); //Calls tests in testing/tests.cpp
-       //If you want to make more testing files, just add more cases and call whatever you want.
-       //I've used single letters to keep things simple, just run ./ChocAn [letter] and then add [letter]
-       //To this switch statement, and set it to call whatever you need. That way we can run tests
-       //Without going through the entire terminal setup
+         break;	
+       case 't':
+         return Catch::Session().run(); //Calls tests in testing/tests.cpp
+         //If you want to make more testing files, just add more cases and call whatever you want.
+         //I've used single letters to keep things simple, just run ./ChocAn [letter] and then add [letter]
+         //To this switch statement, and set it to call whatever you need. That way we can run tests
+         //Without going through the entire terminal setup
        default:
          cout << "unrecognized test, exiting" << endl;
          break;
@@ -86,74 +89,51 @@ int main(int argc, char* argv[])
      exit(0);
    }
 
-   int menuChoice = 0;      //To catch which menu item the user wants
-   int keepGoing = 0;       //To determine if the user wants to continue
-   int checkValue = 0;      //To check if ID was entered correctly
-
    welcomeFunction();       //To welcome the user/give credit
 
-   entity one_user;         //Creates an instance of one user/entity
-   member one_member;
+   char* choices[3] = {new char, new char, new char};
+   strcpy(choices[0], "Scan ID number");
+   strcpy(choices[1], "Type ID number");
+   strcpy(choices[2], "Quit");
+   int (* dt[3])() = {scanId, typeId, exitFunction};
+   int checkValue = 0;
 
-   //person has virtual functions and is an abstract base class
-   //C++ doesn't allow objects to be made of it.
-//  provider one_provider;
-   service one_service;
-
-   personList my_person_list;
-   serviceList my_service_list;
-
-   //Do these things while the user does NOT want to exit; ie keepGoing is NOT EXITVALUE
-   do
+   checkValue = menu("Choose from the following:", choices, dt, 3);
+   if(checkValue == EXITVALUE)
    {
-     menuChoice = chooseIDEnter();
-     if(menuChoice == 0)
-     {
-	      //run menu choice again, invalid input
-	      keepGoing = 0;
-     }
-     else if(menuChoice == 1)
-     {
-        //if the scanId doesn't work go back to menu
-        //otherwise do a different task
-        checkValue = scanId(one_user);
-        if(checkValue == 0)
-        {
-            keepGoing = 0;
-        }
-        else
-        {
-            //do something else
-        }
-     }
-     else if(menuChoice == 2)
-     {
-        //if the typeId doesn't work go back to menu
-	//otherwise do a different task
-        checkValue = typeId(one_user, one_member, my_service_list, my_person_list);
-        if(checkValue == 0)
-        {
-           keepGoing = 0;
-        }
-	else
-        {
-           //do something else
-	}
-     }
-     else if(menuChoice == EXITVALUE)
-     {
-	     //exit program;
-	     keepGoing = EXITVALUE;
-     }
-     else
-     {
-	     cout << "Error. Try again.\n";
-	     keepGoing = 0;
-     }
-  } while (keepGoing != EXITVALUE);
+      thankYouGoodbye();
+      return 0;
+   }
+   else
+      return 0;
+}
 
-   thankYouGoodbye();
-	 return 0;
+int menu(char* menuText, char** choices, int (* dispatchTable[])(), int numOfChoices) {
+  int choice = 0;
+  int tableResponse = 0;
+
+  cout << menuText << endl;
+  for(int i = 0; i < numOfChoices; ++i) {
+    cout << i + 1 << ". " << choices[i] << endl;
+  }
+  cin >> choice;
+  cin.ignore(100, '\n');
+  
+  //Users acceptable inputs are [1..numOfChoices]
+  while(choice < 1 || choice > numOfChoices) {
+    cout << "Choice is invalid, please enter a number between 1 and " << numOfChoices << " (inclusive)." << endl;
+    cin >> choice;
+    cin.ignore(100, '\n');
+  }
+
+  tableResponse = dispatchTable[choice - 1]();
+
+  if(tableResponse == EXITVALUE)
+  {
+     return EXITVALUE;
+  }
+  else
+     return 0;
 }
 
 //Function to welcome the user/give credits
@@ -176,55 +156,7 @@ void welcomeFunction()
 }
 
 
-
-//for the user to choose how to enter the ID information
-int chooseIDEnter()
-{
-   int choiceToEnter = 0;     //this holds the choice from the menu
-   int choice = 0;            //this is the choice value that gets returned
-   int exitChoice = 1;        //this holds the value of whether or not the user wants to exit
-
-   cout << "Choose from the following:\n";
-   cout << "1) Scan ID number\n";
-   cout << "2) Type ID number\n";
-   cout << "3) Quit\n";
-
-   cin >> choiceToEnter;
-   cin.ignore(100, '\n');
-
-   if(choiceToEnter == 1)
-   {
-      //run scan function
-      choice = 1;
-   }
-   else if(choiceToEnter == 2)
-   {
-      //run type function
-      choice = 2;
-   }
-   else if(choiceToEnter == 3)
-   {
-      //run exit function. if they want to exit set choice to 99, otherwise set choice to 0 to retry
-      exitChoice = exitFunction();
-      if(exitChoice == EXITVALUE)
-      {
-         choice = EXITVALUE;
-      }
-      else if(exitChoice == 0)
-      {
-         cout << "Please try again.\n";
-         choice = 0;
-      }
-   }
-   else
-   {
-      cout << "Invalid choice. Please try again.\n";
-      choice = 0;
-   }
-
-   return choice;
-}
-
+//TODO re-add this functionality
 //a function to make sure the user wants to exit
 int exitFunction()
 {
@@ -260,12 +192,12 @@ void thankYouGoodbye()
 {
    cout << "Thank you for using ChocAn.\n";
    cout << "Goodbye and have a nice day!\n\n";
-
    return;
 }
 
-int scanId(entity & one_user)
+int scanId()
 {
+   entity one_user;
    bool checkValue = false;
    int errorValue = 0;
    int keepGoing = 0;
@@ -301,13 +233,17 @@ int scanId(entity & one_user)
          cout  << endl;
       }
    } while (keepGoing == 0);
-
-   return errorValue;
+   //change the return value before deployment!!!
+   return 0;
 }
 
 
-int typeId(entity & one_user, member & one_member, serviceList & my_service_list, personList & my_person_list)
+int typeId()
 {
+   entity one_user;
+   member one_member;
+   serviceList my_service_list;
+   personList my_person_list;
    bool checkValue = false;
    int errorValue = 0;
    int isOnList = 3;
@@ -324,7 +260,8 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
       errorValue = 0;
    }
    else
-   {
+   {  //if person is not in the list then add them
+      //otherwise it is a duplicate or problem
       addToPersonListCheck = my_person_list.add(one_user);
       if(addToPersonListCheck)
       {
@@ -404,6 +341,7 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
       }
       else
       {
+      //there is a duplicate number in the list or there was a problem
       //   cout << "Some kind of duplicate error.\n";
 //	 cout << "Fix before deployment!!!!\n";
 //	 errorValue = 0;
@@ -450,7 +388,8 @@ int typeId(entity & one_user, member & one_member, serviceList & my_service_list
          }
       }
    }
-   return errorValue;
+   //change return value before deployment!!!
+   return 0;
 }
 /*int isOrNotSuspended(entity & one_user, serviceList & my_service_list)
 {
