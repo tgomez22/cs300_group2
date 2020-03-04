@@ -1,7 +1,6 @@
 //CS300 Group #2
 //
-//Worked on by: Tristan Gomez(Started 2/10/2020)
-
+//This file needs a description!!!
 
 #include "personList.h"
 #include <iostream>

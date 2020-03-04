@@ -1,7 +1,7 @@
 //CS300 Group #2
-//Worked on by Tristan Gomez(Started: 2/5/2020)
 //INCLUDE CONST INT SIZE AND MULTBY
-
+//This .h file needs to have a description of what the class is about
+//
 #ifndef PERSONNODE_H
 #define PERSONNODE_H
 #include "../model/entity.h"

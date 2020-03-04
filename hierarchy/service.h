@@ -1,6 +1,6 @@
 //CS300 group #2
+//This .h file needs a description!!!
 //
-//Worked on by Tristan Gomez(started:2/5/2020)
 #ifndef SERVICE_H
 #define SERVICE_H
 

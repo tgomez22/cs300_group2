@@ -1,3 +1,6 @@
+//CS300 - Group 2 Project
+//This file needs a description!!!
+
 #include "serviceList.h"
 #include "../hierarchy/service.h"
 #include "../model/entity.h"
