@@ -1,6 +1,6 @@
 //CS300 Group #2
 //
-//This file needs a description!!!
+//This is the implementation of the personList object prototypes. The personList object has an entity ** as its private data member. 
 
 #include "personList.h"
 #include <iostream>
@@ -24,6 +24,8 @@ personList::personList()
 	table -= SIZE;
 }
 
+
+//This function iterates through the entire hash table deallocating all dynamic memory.
 personList::~personList()
 {
     for(int i = 0; i < SIZE; ++i)
@@ -37,6 +39,7 @@ personList::~personList()
 
 }
 
+//This functions assists the destructor in removing all dynamic memory.
 void personList::removeAll(personNode *& toRemove)
 {
     if(!toRemove)
@@ -79,11 +82,13 @@ bool personList::writeOut()
 }
 ////////////FILE IO END////////////////////////////FILE IO END///////////////////
 
+
+//This function takes a constant entity object as an argument. It will copy the arguments data into 
+//the hash table at an appropriate index.
 bool personList::add(const entity & toAdd)
 {
-    /////////
     using namespace std;
-    ////////////
+
     int index = getIndex(toAdd.getIdValue());
 
 
@@ -92,10 +97,10 @@ bool personList::add(const entity & toAdd)
         table[index] = new personNode;
         table[index]->anEntity.addId(toAdd);
         table[index]->next = NULL;
-        ////
-        cout<<"Successful Insert at Index: "<<index<<endl;
 
-        /////
+        //Used in testing.
+        //cout<<"Successful Insert at Index: "<<index<<endl;
+
         return true;
     }
 
@@ -128,7 +133,9 @@ bool personList::add(const entity & toAdd)
     }
 }
 
-
+//This function returns an integer corresponding to a user's membership status.
+//0 is returned if not found or doesn't exist.
+//1 is returned if member. 2 is returned if provider. 3 is returned if manager.
 int personList::authenticate(const entity & toCheck)
 {
     //check this fctn call
@@ -194,7 +201,7 @@ int personList::terminalAuthenticate(const entity & toCheck)
     }
 }
 
-
+//This is the hashing function for the hash table.
 int personList::getIndex(int keyValue)
 {
     int index = keyValue;
@@ -219,6 +226,8 @@ int personList::managerFunctions()
     return 0;
 }
 
+
+//This function helps with testing to display all currently stored information.
 void personList::displayStored()const
 {
     using namespace std;

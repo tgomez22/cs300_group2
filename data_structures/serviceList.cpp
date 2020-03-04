@@ -1,5 +1,5 @@
 //CS300 - Group 2 Project
-//This file needs a description!!!
+//This file is the implementation of the serviceList object prototypes. 
 
 #include "serviceList.h"
 #include "../hierarchy/service.h"
@@ -13,6 +13,8 @@
 //const int SIZE = 101;
 //const int MULTBY = 97;
 
+
+//Constructor for the serviceList.
 serviceList::serviceList()
 {
 	table = new serviceNode*[SIZE];
@@ -25,6 +27,8 @@ serviceList::serviceList()
 	table -= SIZE;
 }
 
+
+//destructor iterates through and deallocates all dynamic memory.
 serviceList::~serviceList()
 {
     for(int i = 0; i < SIZE; ++i)
@@ -39,6 +43,9 @@ serviceList::~serviceList()
     table = NULL;
 }
 
+
+
+//This function assists the destructor in deallocating all dynamic memory.
 void serviceList::removeNodes(serviceNode *& toRemove)
 {
     if(!toRemove)
@@ -57,6 +64,7 @@ void serviceList::removeNodes(serviceNode *& toRemove)
 
 }
 
+//This function assists the destructor in deallocating all dynamic memory.
 void serviceList::removeServices(service *& toRemove)
 {
     if(!toRemove)
@@ -75,6 +83,10 @@ int serviceList::memberFunctions()
     return 0;
 }
 
+
+//This function takes a constant reference to a person object, which is an
+//abstract base class. Member or provider objects will be passed in as arguments
+//to fill the hash table.
 int serviceList::addPerson(const person & toAdd)
 {
 

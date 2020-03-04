@@ -1,3 +1,5 @@
+//This is the implementation file for the functions given in member.h
+
 #include "member.h"
 #include "entity.h"
 #include "person.h"

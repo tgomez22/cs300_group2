@@ -1,3 +1,8 @@
+//This is an abstract base class for the hierarchy. The derived objects will upcast to a 
+//person * in order to fit in the same data structure. This flass contains virtual functions
+//to be implemented in the derived classes. It also contains a showInfo function, which is 
+//not virtual. This object contains tString objects representing a name, address, city, state, and zip code.
+
 #ifndef __PERSON_H
 #define __PERSON_H
 //CS300 Group #2

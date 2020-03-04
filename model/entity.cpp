@@ -1,3 +1,5 @@
+//This is the implementation file for the entity object, in entity.h
+
 #include "entity.h"
 #include "tString.h"
 #include <cstring>
