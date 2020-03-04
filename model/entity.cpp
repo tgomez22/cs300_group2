@@ -47,7 +47,7 @@ bool entity::writeOut()
 		toWrite["memId"] = toUse;
 		myfile << toWrite;
 		myfile.close();
-		system("openssl aes-256-cbc -salt -pbkdf2 -in data/entity.txt -out data/encrypted.dat -pass pass:password"); //encryption
+		system("openssl aes-256-cbc -salt -pbkdf2 -in data/entity.txt -out data/entityEncrypted.dat -pass pass:password"); //encryption
 		delete []toUse;
 	  return true;
 	}
