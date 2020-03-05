@@ -25,7 +25,7 @@ bool datacenter::checkIdFormat(string scannedId) {
    int length = scannedId.length();
    bool checkValue = false;
   //from https://stackoverflow.com/a/4654718, in the comments
-   bool isNumber = !s.empty() && s.find_first_not_of("0123456789") == std::string::npos;
+   bool isNumber = !scannedId.empty() && scannedId.find_first_not_of("0123456789") == std::string::npos;
 
    if(length != 9)
    {

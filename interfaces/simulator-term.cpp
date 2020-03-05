@@ -7,6 +7,6 @@
 using namespace std;
 
 int simulatorTerm() {
-  cout  << "Entering simulator terminal";
+  cout  << "Entering simulator terminal" << endl;
   return EXITVALUE;
 }
