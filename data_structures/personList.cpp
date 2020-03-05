@@ -5,6 +5,8 @@
 #include "personList.h"
 #include <iostream>
 #include <cstring>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
 
 //const int ID = 10;
 //const int SIZE = 101;
