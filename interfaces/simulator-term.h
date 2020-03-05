@@ -4,5 +4,7 @@
 //Return EXITVALUE to end the program, otherwise any return
 //will hop the progam back up to the terminal chooser
 int simulatorTerm();
+int runFridayNightReports();
+int getAcmeUpdates();
 
 #endif
