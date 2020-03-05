@@ -1,10 +1,10 @@
-{"address":"41576 Sugar Street","city":"Portland","consultNum":6,"memId":200000001,"name":"Kelcy Pallaske","state":"OR","weeklyFee":190.4,"zip":106547453}
-{"address":"8099 Shoshone Center","city":"Portland","consultNum":10,"memId":278955472,"name":"Les Dun","state":"OR","weeklyFee":395.94,"zip":104220930}
-{"address":"80 Westridge Pass","city":"Portland","consultNum":0,"memId":220355599,"name":"Leanna Gritten","state":"OR","weeklyFee":431.24,"zip":112167151}
-{"address":"83 Ryan Plaza","city":"Portland","consultNum":6,"memId":275637421,"name":"Bear Snowman","state":"OR","weeklyFee":969.59,"zip":151622492}
-{"address":"52195 Weeping Birch Hill","city":"Salem","consultNum":0,"memId":235733129,"name":"Cathee Staunton","state":"OR","weeklyFee":745.47,"zip":172389914}
-{"address":"3762 Dahle Court","city":"Portland","consultNum":6,"memId":245327039,"name":"Sol Treslove","state":"OR","weeklyFee":455.68,"zip":179396416}
-{"address":"20842 Everett Point","city":"Salem","consultNum":9,"memId":262081417,"name":"Tye Feuell","state":"OR","weeklyFee":423.64,"zip":131955803}
-{"address":"597 Cody Crossing","city":"Portland","consultNum":7,"memId":296802277,"name":"Camille Reedick","state":"OR","weeklyFee":333.82,"zip":101355025}
-{"address":"881 Vidon Parkway","city":"Salem","consultNum":6,"memId":235320179,"name":"Anabella De Vuyst","state":"OR","weeklyFee":550.62,"zip":117449879}
-{"address":"894 Superior Terrace","city":"Portland","consultNum":8,"memId":286264052,"name":"Sarge Quoit","state":"OR","weeklyFee":420.47,"zip":186551562}
+{"address":"32943 Lerdahl Road","city":"Eugene","consultNum":8,"memId":278796048,"name":"Swen Hugueville","state":"OR","weeklyFee":472.14,"zip":"97405"}
+{"address":"2 Mosinee Park","city":"Portland","consultNum":6,"memId":260920165,"name":"Hartwell Scay","state":"OR","weeklyFee":506.43,"zip":"97221"}
+{"address":"8215 Jenifer Alley","city":"Portland","consultNum":5,"memId":270007624,"name":"Letta Kersley","state":"OR","weeklyFee":906.54,"zip":"97255"}
+{"address":"6023 Florence Plaza","city":"Portland","consultNum":8,"memId":246027192,"name":"Kizzee Stothard","state":"OR","weeklyFee":302.09,"zip":"97206"}
+{"address":"6824 Westport Lane","city":"Portland","consultNum":2,"memId":257563546,"name":"Eyde Scutching","state":"OR","weeklyFee":799.09,"zip":"97232"}
+{"address":"57 Kedzie Pass","city":"Portland","consultNum":0,"memId":213906615,"name":"Marylinda Duddy","state":"OR","weeklyFee":999.63,"zip":"97240"}
+{"address":"043 Clove Road","city":"Portland","consultNum":7,"memId":214055297,"name":"Birch Kenn","state":"OR","weeklyFee":121.39,"zip":"97286"}
+{"address":"28 Rusk Point","city":"Eugene","consultNum":9,"memId":291593742,"name":"Packston Bramstom","state":"OR","weeklyFee":533.14,"zip":"97405"}
+{"address":"6 Coolidge Road","city":"Portland","consultNum":5,"memId":287713207,"name":"Alli Larby","state":"OR","weeklyFee":858.05,"zip":"97229"}
+{"address":"114 Nobel Circle","city":"Portland","consultNum":9,"memId":243360460,"name":"Corissa Crighten","state":"OR","weeklyFee":381.84,"zip":"97216"}
