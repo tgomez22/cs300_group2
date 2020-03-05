@@ -21,45 +21,51 @@ int menu(string menuText, string* choices, int (* dispatchTable[])(), int numOfC
   while(choice < 1 || choice > numOfChoices) {
     cout << "Choice is invalid, please enter a number between 1 and " << numOfChoices << " (inclusive)." << endl;
     cin >> choice;
-    cin.ignore(100, '\n');
+    cleanupCin();
   }
 
-  tableResponse = dispatchTable[choice - 1]();
-
-  if(tableResponse == EXITVALUE)
-  {
-     return EXITVALUE;
-  }
-  else
-     return 0;
+  return dispatchTable[choice - 1]();
 }
 
 
-//a function to make sure the user wants to exit
+//a function to make sure the user wants to exit, then quit. 
+//Returns 0 if the user does not, and exit() if the user does
+//Can be used with a while loop to create automatically backing-out menus.
 int exitFunction()
 {
    char toQuit = 'n';      //This will determine if the user wants to quit
-   int exitChoice = 0;     //The choice to quit will be sent back as an EXITVALUE if they want to quit, otherwise 0
 
    cout << "Are you sure you want to quit? Y/N?\n";
 
    cin >> toQuit;
-   cin.ignore(100,'\n');
+   cleanupCin();
 
    toQuit = tolower(toQuit);
 
    if(toQuit == 'y')
    {
-      exitChoice = EXITVALUE;
-   }
-   else if(toQuit == 'n')
-   {
-      exitChoice = 0;
+     cout << "Thank you for using ChocAn.\n";
+     cout << "Goodbye and have a nice day!\n\n";
+     exit(0);
    }
    else
    {
-      exitChoice = 0;
+     return 0;
    }
+}
 
-   return exitChoice;
+//Based on this answer from stack overflow:
+//https://stackoverflow.com/a/19469949
+void cleanupCin() {
+  cin.ignore(100, '\n');
+  if(!cin) {
+    cin.clear();
+    if(cin) {
+      cin.ignore(100, '\n');
+    }
+  }
+}
+
+int returnExitValue() {
+  return EXITVALUE; 
 }

@@ -5,7 +5,11 @@
 #include <cstring>
 
 #include "util-term.h"
+#include "simulator-term.h"
+#include "provider-term.h"
+#include "manager-term.h"
 #include "cuecat.h"
+#include "../datacenter.h"
 #include "../model/entity.h"
 #include "../data_structures/personList.h"
 #include "../data_structures/serviceList.h"
@@ -15,20 +19,93 @@
 
 using namespace std;
 
+const int FAILED_ID_READ = 1;
+const int ID_SIZE = 9;
 
-int chooseTerm() {
-   string choices[3] = {"Scan ID number", "Type ID number", "Quit"};
-   int (* dt[3])() = {scanId, typeId, exitFunction};
+void chooseTerm() {
+   int numChoices = 4;
+   string choices[numChoices] = {"Enter Provider Terminal", "Enter Manager Terminal", "Enter Simulator Terminal", "Quit"};
+   int (* dt[numChoices])() = {idThenProvider, idThenManager, simulatorTerm, exitFunction};
 
    while(true) {  
      //This while loops allows us to automatically hop back up to this level when a lower level interface returns 
-     int returnCode = menu("Choose from the following:", choices, dt, 3);
-     if(returnCode == EXITVALUE)
-     {
-       return 0;
-     }
-   }
+    //use a quit() option with the exitFunction() in
+    //util-term.h to exit the program.
+    //No 'exit value' here, because this is the top of the interface hierarchy
+    menu("Choose from the following:", choices, dt, numChoices);
+  }
+}
 
+int idThenProvider() {
+    char tryAgain = '\0';
+
+    while(true) {
+      string id_num = getId();
+      if(id_num == "") {
+         break; 
+      }
+      if(datacenter::instance()->validateProvider(id_num)) {
+        providerTerm(id_num);
+        break; //Go back to terminal choice
+      } else {
+        cout << "Validation failed, would you like to try another ID number? (y/n)" << endl;
+        cin >> tryAgain;
+        cleanupCin();
+        if(tryAgain  == 'y') {
+          continue; //Try again!
+        } else {
+          break; //Go back to terminal choice
+        }
+      }  
+    }
+   return 0;
+}
+
+int idThenManager() {
+    char tryAgain = '\0';
+
+    while(true) {
+      string id_num = getId();
+      if(id_num == "") {
+         break; 
+      }
+      if(datacenter::instance()->validateManager(id_num)) {
+        managerTerm(id_num);
+        break; //Go back to terminal choice
+      } else {
+        cout << "Validation failed, would you like to try another ID number? (y/n)" << endl;
+        cin >> tryAgain;
+        cleanupCin();
+        if(tryAgain  == 'y') {
+          continue; //Try again!
+        } else {
+          break; //Go back to terminal choice
+        }
+      }  
+    }
+   return 0;
+}
+
+//Returns a valid ID number or an empty string if user fails to enter ID
+string getId() {
+  int numChoices = 4;
+  string choices[numChoices] = {"Scan ID number", "Type ID number", "Quit", "Quit Program"};
+  int (* dt[numChoices])() = {scanId, typeId, returnExitValue, exitFunction};
+
+  while(true) {  
+     //This while loops allows us to automatically hop back up to this level when a lower level interface returns 
+     int returnCode = menu("Choose from the following:", choices, dt, numChoices);
+
+     //three options: 
+     //User wants to go up a level (quit)
+     if(returnCode == EXITVALUE) {
+       return "";
+     //User sucessfully entered an ID code
+     } else if(returnCode != FAILED_ID_READ) { 
+       return to_string(returnCode);
+     }
+     //User failed to enter an ID code and wants to try a different option (restart loop)
+  }
 }
 
 int scanId()
@@ -38,16 +115,18 @@ int scanId()
    int errorValue = 0;
    int keepGoing = 0;
    char answerYN = 'n';
+   string id;
 
    do{
       cout << "Please scan the ID with your CueCat now.\n";
-      checkValue = getCueCat(one_user);
-      if(checkValue == false)
+      id = getCueCat();
+  
+      if(!datacenter::instance()->checkIdFormat(id))
       {
 	 errorValue = 0;
-         cout << "Would you like to try again?\n";
+         cout << "Would you like to try again (y/n)?\n";
 	 cin >> answerYN;
-	 cin.ignore(100, '\n');
+         cleanupCin();
 
 	 answerYN = tolower(answerYN);
 	 if(answerYN == 'y')
@@ -55,7 +134,8 @@ int scanId()
             keepGoing = 0;
 	 }
 	 else
-         {
+         { 
+            id = ""; //They don't want to set an id
             keepGoing = 1;
          }
       }
@@ -63,53 +143,41 @@ int scanId()
       {
          errorValue = 1;
          keepGoing = 1;
-	 cout << "Success Adding ID!" << endl;
+	 cout << "Successfully got ID!" << endl;
          cout << "The ID Number is: ";
-         one_user.display();
-         cout  << endl;
+         cout << id << endl;
       }
    } while (keepGoing == 0);
-   //change the return value before deployment!!!
-  
-    if(checkValue) {
-      tString ts;
-      one_user.getMemId(ts);
-  
-      userTypeRouter(string(ts.getString()));
-   }
 
-   return 0;
+   if(id.compare("") == 0) {
+     return FAILED_ID_READ;
+   } else {
+     return stoi(id, NULL); //Hack :(
+   }
 }
 
 int typeId() {
-	char temp[SIZE] = {};
+        string id;
 	bool success = false;
+        char response;
 
-	for(int i=0; i < SIZE; ++i)
-	{
-           temp[i] = '\0';
-	}
+        do {
+	  cout << "Please enter a User Identification number: ";
+	  getline(cin, id);
 
-	cout << "Please enter a User Identification number: ";
-	cin.get(temp, SIZE, '\n');
-	cin.ignore(SIZE, '\n');
-
-	int length = strlen(temp);
-
-
-	while(length != 9)
-	{
-		cout<<"User Identification number must be 9 digits long."<<endl;
-		cout<<"Please enter a new User Identification number: ";
-		cin.get(temp, SIZE, '\n');
-		cin.ignore(100, '\n');
-
-		length = strlen(temp);
-	}
-	string *test = new string(temp);
-	userTypeRouter(*test);
-        free(test);
-        return 0;
+          if(!datacenter::instance()->checkIdFormat(id)) {
+            cout << "ID number format is invalid, try again? (y/n)" << endl;
+            cin >> response;
+            cleanupCin();
+            if(response == 'y') {
+              continue;
+            } else {
+              return FAILED_ID_READ;
+            }
+          } else {
+            return stoi(id, NULL); //Hack :(
+          }
+        } while(true);
 }
 
 void userTypeRouter(string memberId) {

@@ -8,6 +8,10 @@ using namespace std;
 int scanId();
 int typeId();            //Function to get one member ID by typing
 void userTypeRouter(string memberId);
-int chooseTerm();
+
+void chooseTerm();
+int idThenProvider();
+int idThenManager();
+string getId();
 
 #endif
