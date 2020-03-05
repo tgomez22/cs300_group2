@@ -75,9 +75,12 @@ bool personList::writeOut()
             }
         }
     }
-
     return true;
+}
 
+bool personList::readIn()
+{
+	return true;
 }
 ////////////FILE IO END////////////////////////////FILE IO END///////////////////
 

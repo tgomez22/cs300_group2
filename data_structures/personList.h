@@ -39,6 +39,7 @@ class personList
 
 	private:
         bool writeOut();
+		bool readIn();
         int getIndex(int keyValue);
         void removeAll(personNode *& toRemove);
 		personNode ** table;
