@@ -56,9 +56,8 @@ void personList::removeAll(personNode *& toRemove)
 
 
 ///////////FILE IO PEOPLE/////////////////////////////////FILE IO PEOPLE////////
-//The traversal should be taken care of. Feel free to modify it as you please.
-//As of now (2/22 @ 12:30pm), writeOut is an empty function. It can be edited in
-//entity.cpp
+//This function traverses the table and writes out each entity object to its
+//appropriate text file
 bool personList::writeOut()
 {
     //place holder return value. Feel free to change.
