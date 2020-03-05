@@ -1,11 +1,13 @@
 #ifndef __CUECAT_H
 #define __CUECAT_H
 
-#include "../model/entity.h"
+#include <string>
+
+using namespace std;
 
 static char *getData(const char *input);  //For CueCat code to get data
 static char *decode(char *in);            //For CueCat decodes the data
 
-bool getCueCat(entity & one_user);        //For CueCat runs the other functions
+string getCueCat();        //For CueCat runs the other functions
 
 #endif

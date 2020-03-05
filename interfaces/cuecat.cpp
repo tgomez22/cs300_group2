@@ -2,7 +2,8 @@
 
 #include <stdlib.h>         //for CueCat code
 #include <stdio.h>          //for CueCat code
-#include <string.h>         //for CueCat code
+#include <string>         //for CueCat code
+#include <cstring>
 #include <assert.h>         //for CueCat code
 
 #include "../model/entity.h"
@@ -110,36 +111,25 @@ static char *decode(char *in)
    return decoded;
 }
 
-bool getCueCat(entity & one_user)
+string getCueCat()
 {
    char *input, *data, *decoded;
-        input = (char *)calloc(255, sizeof(char));
+   input = (char *)calloc(255, sizeof(char));
 
-   bool checkValue = false;
-   bool errorValue = false;
 
    scanf("%254s", input);
 
    data = getData(input);
    decoded = decode(data);
    printf("%s\n", decoded);
-
-   checkValue = one_user.checkIdFromScan(decoded);
-
-   if(checkValue == false)
-   {
-      errorValue = false;
-   }
-   else
-   {
-      errorValue = true;
-   }
+  
+   string id_num(decoded);   
 
    free(input);
    free(data);
    free(decoded);
-
-   return errorValue;
+  
+   return id_num;
 }
 
 // vim: et ts=4 sw=4 sts=4

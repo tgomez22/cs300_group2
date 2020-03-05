@@ -9,5 +9,7 @@ const int EXITVALUE = 99;   //exit value to exit the program
 
 int menu(string menuText, string* choices, int (* dispatchTable[])(), int numOfChoices);
 int exitFunction();
+void cleanupCin();
+int returnExitValue();
 
 #endif

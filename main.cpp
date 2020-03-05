@@ -60,11 +60,9 @@ int main(int argc, char* argv[])
    cout << "Mikayla Maki\n";
    cout << "Shawn Spears\n";
    cout << "and Abbie Utley\n\n\n";
- 
-   int exitCode = chooseTerm();
 
-   cout << "Thank you for using ChocAn.\n";
-   cout << "Goodbye and have a nice day!\n\n";
-
-   return exitCode;
+   chooseTerm();
+   
+   //Should never be reached
+   return 0;
 }
