@@ -72,6 +72,13 @@ bool datacenter::validateManager(string id) {
 }
 
 //TODO with tristan
+//Is this member ID valid?
+bool datacenter::validateMember(string id)
+{
+   return true;
+}
+
+//TODO with tristan
 //Gets a random ID from the datacenter for acme update generation
 string datacenter::getRandomId() {
   return "123456789";
@@ -98,4 +105,5 @@ bool datacenter::processAcmeRecords(acmeRecord*, int num) {
     //do something with each record
   }
   return true;
-} 
+}
+

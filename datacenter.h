@@ -23,6 +23,8 @@ class datacenter {
     bool validateProvider(string id);
     //Is this ID associated with a manager?
     bool validateManager(string id);
+    //Is this member ID valid?
+    bool validateMember(string id);
     //Does basic text validation (isNumber and length == 9)
     bool checkIdFormat(string scannedId);
     //Run the friday night, mass report function. Returns true
