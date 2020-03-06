@@ -143,3 +143,20 @@ bool tString::copyToArg(tString & toUse)const
 {
     return copyToArg(toUse.array);
 }
+
+bool tString::add(const char * toAdd)
+{
+    if(!toAdd)
+        return false;
+
+    else
+    {
+        if(array)
+            delete [] array;
+
+        array = new char[strlen(toAdd) + 1];
+        strcpy(array, toAdd);
+    }
+
+    return true;
+}

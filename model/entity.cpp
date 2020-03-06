@@ -36,6 +36,10 @@ bool entity::addId(const entity & toAdd)
     return true;
 }
 
+bool entity::addId(const char * toAdd)
+{
+    return memId.add(toAdd);
+}
 //Decrpyts the file where the entity data is stored, writes entity object data to a text file,
 //and then encrypts the file. Returns true if the file is successfully opened.
 bool entity::writeOut()
