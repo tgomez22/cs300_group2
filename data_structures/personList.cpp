@@ -5,8 +5,11 @@
 #include "personList.h"
 #include <iostream>
 #include <cstring>
+#include <string>
+#include <fstream>
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
+using namespace std;
 
 //const int ID = 10;
 //const int SIZE = 101;
@@ -82,6 +85,17 @@ bool personList::writeOut()
 
 bool personList::readIn()
 {
+	ifstream myFile;
+	myFile.open("../data/entity.txt");
+	entity anEntity;
+	json toRead;
+	while(!myFile.eof() && myFile >> toRead >> ws)
+	{
+		string temp = toRead["memId"];	
+		const char * toUse = temp.c_str();
+		anEntity.addId(toUse);
+		add(anEntity);
+	}
 	return true;
 }
 ////////////FILE IO END////////////////////////////FILE IO END///////////////////
