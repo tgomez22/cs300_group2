@@ -13,7 +13,7 @@ int providerTerm(string id_num);
 int createServiceRecord(string id_num);
 
 //after validation, create the service record
-bool fillServiceRecord(string id_num, string providerId);
+bool fillServiceRecord(string mem_id_num, string id_num);
 
 //run the provider report
 int runProviderReport(string id_num);

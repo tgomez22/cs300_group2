@@ -122,9 +122,9 @@ void service::display(void) const
 
 void service::displayTime(void)
 {
-    using namespace std;
+  using namespace std;
   time(&numberTime);
-  cout << "Current time is: " << ctime(&numberTime);
+  cout << ctime(&numberTime);
 
 }
 

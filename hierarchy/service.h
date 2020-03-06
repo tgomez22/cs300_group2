@@ -28,11 +28,11 @@ class service: public entity
 		void addService();
 
 
-        void convertDate(time_t & toConvert); //use this function to turn the date into a string. 
+                void convertDate(time_t & toConvert); //use this function to turn the date into a string. 
                                         //very easy implementation. tells you the current date
-        void displayTime(void); //this will display the time in a readable form.
-        int getWeek();
-	    void displayProviderDirectory()const;	
+                void displayTime(void); //this will display the time in a readable form.
+                int getWeek();
+                void displayProviderDirectory()const;	
       
       //getter functions
       char* getMemName();
@@ -44,10 +44,10 @@ class service: public entity
 
 	private:
 		tString dos; //date of service in form: www mmm dd hh:mm:ss yyyy
-        long numberTime; //number of seconds since jan 1st 1970 00:00:00 (good for week calculations
+                long numberTime; //number of seconds since jan 1st 1970 00:00:00 (good for week calculations
 		tString servName;
 		tString memName;//MEMBER NAME!!!
-        tString provName;//PROVIDER NAME!
+                tString provName;//PROVIDER NAME!
 		//has memNum from base class entity
 		tString servCode;
 		float servFee;
