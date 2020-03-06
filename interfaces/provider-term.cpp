@@ -224,7 +224,9 @@ bool fillServiceRecord(string mem_id_num, string id_num)
    cout << "Current Date & Time: "; my_service.displayTime();
    cout << "Service Date: " << service_date << endl;
    cout << "Provider Number: " << id_num << endl;
+   cout << "Provider Name: " << "TO COME..." << endl;
    cout << "Member Number: " << mem_id_num << endl;
+   cout << "Member Name: " << "TO COME..." << endl;
    cout << "Service Code: " << serviceCode << endl;
    cout << "Service Description: " << "TO COME...my_service.serviceDescription(CODE)" << endl;
    cout << "Comments: " << comments << endl;

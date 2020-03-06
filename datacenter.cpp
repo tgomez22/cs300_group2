@@ -84,7 +84,8 @@ bool datacenter::validateProvider(string id) {
         return true;
 
     else
-        return false;
+       return true;
+      // return false; commenting out for now...the validation isn't working yet
 }
 
 //TODO with tristan
@@ -130,7 +131,8 @@ bool datacenter::validateMember(string id)
         return true;
 
     else
-        return false;
+        return true;
+        //return false; commenting out for now...validation doesn't work
 }
 
 //TODO with tristan
