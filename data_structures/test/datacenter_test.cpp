@@ -3,9 +3,9 @@
 using namespace std;
 
 void datacenterTest() {
-	cout << "commencing tests" << endl;
+	cout << "\n === COMMENCING TESTS === \n" << endl;
 	personList table;
-	table.readIn();
 	table.displayStored();
+	cout << "\n ===== END OF TESTS ===== \n" << endl;
 }
 

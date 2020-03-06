@@ -27,6 +27,7 @@ personList::personList()
 	}
 
 	table -= SIZE;
+	readIn(); //Populate the table with entity.txt data
 }
 
 
@@ -65,7 +66,6 @@ void personList::removeAll(personNode *& toRemove)
 //appropriate text file
 bool personList::writeOut()
 {
-    //place holder return value. Feel free to change.
     if(!table) return false;
 
     for(int i = 0; i < SIZE; ++i)
@@ -83,6 +83,9 @@ bool personList::writeOut()
     return true;
 }
 
+//The function reads in from the entity text files and stores the memIds into
+//the hash table. This function will be called in the contructor to populate
+//data into the table upon program execution.
 bool personList::readIn()
 {
 	ifstream myFile;
@@ -258,7 +261,6 @@ void personList::displayStored()const
             personNode * temp = table[i];
             while(temp)
             {
-                cout<<"User Id: ";
                 temp->anEntity.display();
                 cout<<endl;
                 temp = temp->next;
