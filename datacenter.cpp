@@ -88,6 +88,8 @@ string datacenter::getRandomId() {
 //TODO with chris
 //Run the mass report function
 bool datacenter::generateFridayNightReports() {
+  //will iterate through person list, running generateUserReport()
+  //for every member, and generateManagerReport() once.
   return true;
 }
 
@@ -104,6 +106,19 @@ bool datacenter::processAcmeRecords(acmeRecord*, int num) {
   for(int i = 0; i < num; ++i) {
     //do something with each record
   }
+  return true;
+}
+
+//----------------------------------------------------------
+//report functions
+
+bool datacenter::generateUserReport(string id, ofstream& email)
+{
+  return true;
+}
+
+bool datacenter::generateManagerReport(ofstream& email)
+{
   return true;
 }
 

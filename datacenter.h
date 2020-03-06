@@ -2,6 +2,7 @@
 #define __DATACENTER_H
 
 #include <string>
+#include <fstream>
 
 #include "model/member.h"
 #include "model/entity.h"
@@ -36,6 +37,11 @@ class datacenter {
     bool processAcmeRecords(acmeRecord*, int);
     //Get a random ID from the datacenter
     string getRandomId();
+
+    //individual report functions
+    bool generateUserReport(string id, ofstream& email);
+    bool generateManagerReport(ofstream& email);
+
   private:
     static datacenter *s_instance; 
     datacenter(); 
