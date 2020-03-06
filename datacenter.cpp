@@ -8,6 +8,7 @@
 
 
 #include "data_structures/personList.h"
+#include "model/entity.h"
 
 using namespace std;
 
@@ -55,6 +56,10 @@ bool datacenter::checkIdFormat(string scannedId) {
 }
 
 //TODO with tristan
+//
+//I think this will be an empty constructor. Since the internal data are objects
+//their constructors are implicitly called. Shawn's read in function should be
+//called in the constructors of the data members. 
 datacenter::datacenter() {
 
 }
@@ -62,20 +67,70 @@ datacenter::datacenter() {
 //TODO with tristan
 //Is this ID allowed to access the provider terminal?
 bool datacenter::validateProvider(string id) {
-  return true;
+    
+    //pull ID out of string object.
+    const char * temp = id.data();
+    
+
+    //Package the char array into an entity object which is
+    //compatible with the personList class.
+    entity providerID;
+    providerID.addId(temp);
+
+    int result = authentication.authenticate(providerID);
+    
+    //2 indicates valid provider.
+    if(result == 2)
+        return true;
+
+    else
+        return false;
 }
 
 //TODO with tristan
 //Is this ID allowed to access the manager terminal?
 bool datacenter::validateManager(string id) {
-  return true;
+    
+    //pull ID out of string object
+    const char * temp = id.data();
+    
+
+    //package the char array into an entity object which is
+    //compatible with the personList class.
+    entity managerID;
+    managerID.addId(temp);
+
+    int result = authentication.authenticate(managerID);
+    
+    //3 indicates valid manager.
+    if(result == 3)
+        return true;
+
+    else
+        return false;
 }
 
 //TODO with tristan
 //Is this member ID valid?
 bool datacenter::validateMember(string id)
 {
-   return true;
+
+    //pull ID out of string object.
+    const char * temp = id.data();
+
+    //package the char array into an entity object which is
+    //compatible with the personList class.  
+    entity memberID;
+    memberID.addId(temp);
+
+    int result = authentication.authenticate(memberID);
+
+    //1 indicates valid member.
+    if(result == 1)
+        return true;
+
+    else
+        return false;
 }
 
 //TODO with tristan

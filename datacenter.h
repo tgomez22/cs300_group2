@@ -6,6 +6,8 @@
 
 #include "model/member.h"
 #include "model/entity.h"
+#include "data_structures/personList.h"
+#include "data_structures/serviceList.h"
 
 using namespace std;
 
@@ -45,6 +47,10 @@ class datacenter {
   private:
     static datacenter *s_instance; 
     datacenter(); 
+
+    personList authentication;
+    serviceList dataStorage;
+
 };
 
 #endif

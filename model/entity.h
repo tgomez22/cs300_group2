@@ -30,6 +30,8 @@ class entity
 	        bool addId(const class tString & toAdd);
                 bool addId(const entity & toAdd);
 	        bool addId(char * toAdd);
+            bool addId(const char * toAdd);
+
 		void display()const;
 
                 //returns true if matches arg.
