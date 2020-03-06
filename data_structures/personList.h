@@ -35,11 +35,11 @@ class personList
         void displayStored()const;
 
         bool add(const entity & toAdd);
-
+		bool readIn();
 
 	private:
         bool writeOut();
-		bool readIn();
+		//bool readIn();
         int getIndex(int keyValue);
         void removeAll(personNode *& toRemove);
 		personNode ** table;
