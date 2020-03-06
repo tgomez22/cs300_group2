@@ -30,11 +30,10 @@ using namespace std;
 
 
 //menu if you need to pass in strings and return ints for function pointer dt
-  int menu2(string menuText, string* choices, int (* dispatchTable[])(string id_num), int numOfChoices)
+  int menu2(string menuText, string* choices, int (* dispatchTable[])(string), int numOfChoices, string id_num)
   {
      int choice = 0;
      int tableResponse = 0;
-     string id_num;
 
      cout << menuText << endl;
      for(int i = 0; i < numOfChoices; ++i) {

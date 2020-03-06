@@ -89,7 +89,7 @@ int idThenManager() {
 //Returns a valid ID number or an empty string if user fails to enter ID
 string getId() {
   int numChoices = 4;
-  string choices[numChoices] = {"Scan ID number", "Type ID number", "Quit", "Quit Program"};
+  string choices[numChoices] = {"Scan ID number", "Type ID number", "Quit", "Exit Program"};
   int (* dt[numChoices])() = {scanId, typeId, returnExitValue, exitFunction};
 
   while(true) {  
