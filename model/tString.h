@@ -35,6 +35,7 @@ class tString
         //initializes data to arg values. will overwrite stored data.
 		bool add(char * toAdd);
 		bool add(const tString & toAdd);
+        bool add(const char * toAdd);
 
 
 		void display()const;
