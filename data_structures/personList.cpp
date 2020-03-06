@@ -258,7 +258,6 @@ void personList::displayStored()const
             personNode * temp = table[i];
             while(temp)
             {
-                cout<<"User Id: ";
                 temp->anEntity.display();
                 cout<<endl;
                 temp = temp->next;
