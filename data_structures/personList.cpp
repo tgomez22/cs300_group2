@@ -27,6 +27,7 @@ personList::personList()
 	}
 
 	table -= SIZE;
+	readIn(); //Populate the table with entity.txt data
 }
 
 
