@@ -34,6 +34,7 @@ class provider: public person
     char* getCity();
     char* getState();
     char* getZip();
+    float getFee();
 
 	private:
 		int consultNum;

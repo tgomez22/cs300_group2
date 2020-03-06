@@ -193,7 +193,7 @@ char* member::getZip()
 {
   return zip.getString();
 }
-float member::getAmtDue()
+float member::getFee()
 {
   return amtDue;
 }

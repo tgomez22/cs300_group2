@@ -70,3 +70,7 @@ char* provider::getZip()
 {
   return zip.getString();
 }
+float provider::getFee()
+{
+  return weeklyFee;
+}

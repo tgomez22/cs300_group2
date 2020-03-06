@@ -28,6 +28,7 @@ class person: public entity
     virtual char* getCity() = 0;
     virtual char* getState() = 0;
     virtual char* getZip() = 0;
+    virtual float getFee() = 0;
 
 	protected:
 		tString name;

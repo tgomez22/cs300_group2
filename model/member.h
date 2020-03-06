@@ -40,7 +40,7 @@ class member: public person
     char* getCity();
     char* getState();
     char* getZip();
-    float getAmtDue();
+    float getFee();
 
 	private:
 		bool suspended;
