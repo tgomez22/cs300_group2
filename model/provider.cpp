@@ -48,3 +48,29 @@ bool provider::isSuspended()const
 {
     return false;
 }
+
+//getter functions
+char* provider::getName()
+{
+  return name.getString();
+}
+char* provider::getAddress()
+{
+  return address.getString();
+}
+char* provider::getCity()
+{
+  return city.getString();
+}
+char* provider::getState()
+{
+  return state.getString();
+}
+char* provider::getZip()
+{
+  return zip.getString();
+}
+float provider::getFee()
+{
+  return weeklyFee;
+}

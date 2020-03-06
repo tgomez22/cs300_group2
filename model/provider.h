@@ -27,6 +27,15 @@ class provider: public person
         //cant be suspended. I did this so I wouldn't have to cast down to a 
         //member object.
         bool isSuspended()const;
+    
+    //getter functions
+    char* getName();
+    char* getAddress();
+    char* getCity();
+    char* getState();
+    char* getZip();
+    float getFee();
+
 	private:
 		int consultNum;
 		float weeklyFee;
