@@ -86,7 +86,7 @@ bool personList::writeOut()
 bool personList::readIn()
 {
 	ifstream myFile;
-	myFile.open("../data/entity.txt");
+	myFile.open("data/entity.txt");
 	entity anEntity;
 	json toRead;
 	while(!myFile.eof() && myFile >> toRead >> ws)
@@ -96,6 +96,7 @@ bool personList::readIn()
 		anEntity.addId(toUse);
 		add(anEntity);
 	}
+	myFile.close();
 	return true;
 }
 ////////////FILE IO END////////////////////////////FILE IO END///////////////////
