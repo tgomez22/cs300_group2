@@ -65,7 +65,6 @@ void personList::removeAll(personNode *& toRemove)
 //appropriate text file
 bool personList::writeOut()
 {
-    //place holder return value. Feel free to change.
     if(!table) return false;
 
     for(int i = 0; i < SIZE; ++i)
@@ -83,6 +82,9 @@ bool personList::writeOut()
     return true;
 }
 
+//The function reads in from the entity text files and stores the memIds into
+//the hash table. This function will be called in the contructor to populate
+//data into the table upon program execution.
 bool personList::readIn()
 {
 	ifstream myFile;
