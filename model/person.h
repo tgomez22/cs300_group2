@@ -22,6 +22,13 @@ class person: public entity
 
         virtual bool isSuspended()const = 0;
 
+    //getter functions
+    virtual char* getName() = 0;
+    virtual char* getAddress() = 0;
+    virtual char* getCity() = 0;
+    virtual char* getState() = 0;
+    virtual char* getZip() = 0;
+
 	protected:
 		tString name;
 		//memNum exists in entity

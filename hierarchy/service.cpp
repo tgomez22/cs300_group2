@@ -209,4 +209,29 @@ void service::displayProviderDirectory()const
 
 }
 
+//getter functions
+char* service::getMemName()
+{
+  return memName.getString();
+}
+char* service::getProvName()
+{
+  return provName.getString();
+}
+char* service::getServCode()
+{
+  return servCode.getString();
+}
+char* service::getServName()
+{
+  return servName.getString();
+}
+float service::getServFee()
+{
+  return servFee;
+}
+char* service::getDate()
+{
+  return dos.getString();
+}
 

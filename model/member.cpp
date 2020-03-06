@@ -171,3 +171,30 @@ bool member::isSuspended()const
     else
         return false;
 }
+
+//getter functions
+char* member::getName()
+{
+  return name.getString();
+}
+char* member::getAddress()
+{
+  return address.getString();
+}
+char* member::getCity()
+{
+  return city.getString();
+}
+char* member::getState()
+{
+  return state.getString();
+}
+char* member::getZip()
+{
+  return zip.getString();
+}
+float member::getAmtDue()
+{
+  return amtDue;
+}
+

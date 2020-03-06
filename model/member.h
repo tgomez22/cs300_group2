@@ -34,6 +34,14 @@ class member: public person
         //Terminal group.
         bool readIn();
 
+    //getter functions
+    char* getName();
+    char* getAddress();
+    char* getCity();
+    char* getState();
+    char* getZip();
+    float getAmtDue();
+
 	private:
 		bool suspended;
         float amtDue;

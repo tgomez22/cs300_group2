@@ -33,6 +33,15 @@ class service: public entity
         void displayTime(void); //this will display the time in a readable form.
         int getWeek();
 	    void displayProviderDirectory()const;	
+      
+      //getter functions
+      char* getMemName();
+      char* getProvName();
+      char* getServCode();
+      char* getServName();
+      float getServFee();
+      char* getDate();
+
 	private:
 		tString dos; //date of service in form: www mmm dd hh:mm:ss yyyy
         long numberTime; //number of seconds since jan 1st 1970 00:00:00 (good for week calculations
