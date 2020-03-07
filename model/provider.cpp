@@ -5,6 +5,11 @@
 #include "person.h"
 #include "entity.h"
 #include <iostream>
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+using namespace std;
+
 provider::provider():person()
 {
     consultNum = 0;
@@ -41,11 +46,11 @@ void provider::writeOut()
 		char * writeState = state.getString();
 		char * writeZip = zip.getString();
 		json toWrite;
-		toWrite["memId"] = fileMemId;
-		toWrite["name"] = fileName;
-		toWrite["address"] = fileAddress;
-		toWrite["city"] = fileCity;
-		toWrite["zip"] = fileZip;
+		toWrite["memId"] = writeMemId;
+		toWrite["name"] = writeName;
+		toWrite["address"] = writeAddress;
+		toWrite["city"] = writeCity;
+		toWrite["zip"] = writeZip;
 		toWrite["consultNum"] = consultNum;
 		toWrite["weeklyFee"] = weeklyFee;
 		myFile << toWrite;
