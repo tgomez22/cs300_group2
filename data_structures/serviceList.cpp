@@ -326,3 +326,32 @@ int serviceList::isSuspended(const entity & toFind)
 
 
 }
+
+bool serviceList::suspendMember(const entity & toFind)
+{
+    int index = getKey(toFind.getIdValue());
+
+    if(!table[index])
+        return false;
+
+    else
+    {
+        serviceNode * temp = table[index];
+
+        while(temp && temp->aPerson->compare(toFind))
+        {
+            temp = temp->next;
+        }
+
+        //pointer fell off list, no match exists.
+        if(!temp)
+            return false;
+        
+        //person found.
+        else
+        {
+            return temp->aPerson->suspendMember();
+        }
+
+    }
+}

@@ -35,6 +35,9 @@ class provider: public person
     char* getState();
     char* getZip();
     float getFee();
+    
+    //always returns false.
+    bool suspendMember();
 
 	private:
 		int consultNum;

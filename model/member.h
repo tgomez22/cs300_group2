@@ -26,7 +26,11 @@ class member: public person
 		~member();
 		void display()const;
 
+        //asks if member is suspended.
         bool isSuspended()const;
+        
+        //actually suspends the member.
+        bool suspendMember();
 
        //FILE IO group!
         void writeOut();
