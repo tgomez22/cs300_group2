@@ -19,7 +19,8 @@ class person: public entity
 		person();
 		person(const person & toAdd);
 		virtual ~person();
-
+        
+        //asks if person is suspended account/
         virtual bool isSuspended()const = 0;
 
     //getter functions
@@ -29,6 +30,10 @@ class person: public entity
     virtual char* getState() = 0;
     virtual char* getZip() = 0;
     virtual float getFee() = 0;
+
+
+    //suspends a person's account.
+    virtual bool suspendMember() = 0;
 
 	protected:
 		tString name;

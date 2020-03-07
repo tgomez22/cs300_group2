@@ -104,3 +104,11 @@ float provider::getFee()
 {
   return weeklyFee;
 }
+
+//always returns false. Easier to do this
+//as the implementation of a virtual function
+//then to dynamic cast to check object type.
+bool provider::suspendMember()
+{
+    return false;
+}

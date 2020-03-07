@@ -198,3 +198,8 @@ float member::getFee()
   return amtDue;
 }
 
+bool member::suspendMember()
+{
+    suspended = true;
+    return true;
+}
