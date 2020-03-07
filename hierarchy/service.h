@@ -41,6 +41,7 @@ class service: public entity
       char* getServName();
       float getServFee();
       char* getDate();
+      char* getServDes();
 
 	private:
 		tString dos; //date of service in form: www mmm dd hh:mm:ss yyyy
@@ -48,6 +49,7 @@ class service: public entity
 		tString servName;
 		tString memName;//MEMBER NAME!!!
                 tString provName;//PROVIDER NAME!
+        tString servDes; //service description.
 		//has memNum from base class entity
 		tString servCode;
 		float servFee;
