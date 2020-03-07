@@ -5,8 +5,6 @@
 #include <functional>
 #include <random>
 
-
-
 #include "data_structures/personList.h"
 #include "model/entity.h"
 
@@ -85,7 +83,7 @@ bool datacenter::validateProvider(string id) {
 
     else
        return true;
-      // return false; commenting out for now...the validation isn't working yet
+       //return false; commenting out for now...the validation isn't working yet
 }
 
 //TODO with tristan
@@ -140,6 +138,21 @@ bool datacenter::validateMember(string id)
 string datacenter::getRandomId() {
   return "123456789";
 }
+
+//TODO with tristan
+//takes in service record data from terminal and copies to ???
+bool datacenter::fillServiceRec(servRecInfo & servRec)
+{
+   //get memID, fill in for member
+   
+   //get provID, fill in for provider
+   //
+
+   return true;
+
+}
+
+
 
 
 //TODO with chris

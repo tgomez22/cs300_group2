@@ -4,6 +4,8 @@
 #include <string>
 #include <fstream>
 
+#include "hierarchy/service.h"
+#include "interfaces/provider-term.h"
 #include "model/member.h"
 #include "model/entity.h"
 #include "data_structures/personList.h"
@@ -30,6 +32,8 @@ class datacenter {
     bool validateMember(string id);
     //Does basic text validation (isNumber and length == 9)
     bool checkIdFormat(string scannedId);
+    //Fills in the service record
+    bool fillServiceRec(servRecInfo & servRec);
     //Run the friday night, mass report function. Returns true
     //If it was generated successfully.
     bool generateFridayNightReports();

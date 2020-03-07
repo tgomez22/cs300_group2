@@ -18,7 +18,6 @@ const int YEARSZ = 5;
 const int SCODESZ = 7;
 const int COMMSZ = 101;
 
-
 //providerTerm assumes that the provider id number has already been validated
 //then it provides the menu options for the provider
 int providerTerm(string id_num)
@@ -81,6 +80,7 @@ int createServiceRecord(string id_num)
 //This function gets the info for the service record. Passes in member id and provider id
 bool fillServiceRecord(string mem_id_num, string id_num)
 {
+   servRecInfo my_serv_rec;
    service my_service;
    char service_date_m[MONTHSZ];
    char service_date_d[MONTHSZ];
@@ -94,6 +94,7 @@ bool fillServiceRecord(string mem_id_num, string id_num)
    int keepGoing2 = 0;
    int keepGoing3 = 0;
    int keepGoing4 = 0;
+   bool successOrFail = false;
 
    cout << "\nThe Provider ID for this record is: " << id_num << endl;
    cout << "The Member ID for this record is: " << mem_id_num << endl;
@@ -218,20 +219,85 @@ bool fillServiceRecord(string mem_id_num, string id_num)
       } 
    }while(keepGoing3 == 0);
 
+  //functions to: get dateTime, p_name, m_name, serviceDescription, serviceFee
+
+  // my_serv_rec.currentDateTime = new char(strlen(dateTime) +1);
+  // strcpy(my_serv_rec.currentDateTime, dateTime);
+
+  // my_serv_rec.providerID = new char(strlen(id_num) +1);
+  // strcpy(my_serv_rec.providerID, id_num);
+
+   // my_serv_rec.providerName = new char(strlen(p_name) + 1);
+   // strcpy(my_serv_rec.providerName, p_name);
+
+  // my_serv_rec.memID = new char(strlen(mem_id_num) + 1);
+  // strcpy(my_serv_rec.memID, mem_id_num);  
+   
+   // my_serv_rec.memberName = new char(strlen(m_name) + 1);
+   // strcpy(my_serv_rec.memberName, m_name);
+
+   my_serv_rec.servDate = new char(strlen(service_date) + 1);
+   strcpy(my_serv_rec.servDate, service_date);
+
+   my_serv_rec.servCode = new char(strlen(serviceCode) + 1);
+   strcpy(my_serv_rec.servCode, serviceCode);
+
+   // my_serv_rec.servDescr = new char(strlen(serviceDescription) + 1);
+   // strcpy(my_serv_rec.servDescr, serviceDescription);
+   
+   // my_serv_rec.servFee = serviceFee;
+
+   my_serv_rec.commentField = new char(strlen(comments) + 1);
+   strcpy(my_serv_rec.commentField, comments);
+
    cout << "***************************************************\n";
    cout << "This is the information for this record: \n";
    cout << "***************************************************\n";
    cout << "Current Date & Time: "; my_service.displayTime();
-   cout << "Service Date: " << service_date << endl;
-   cout << "Provider Number: " << id_num << endl;
+   cout << "Service Date: " << my_serv_rec.servDate << endl;
+   //cout << "Provider Number: " << my_serv_rec.providerID << endl;
    cout << "Provider Name: " << "TO COME..." << endl;
-   cout << "Member Number: " << mem_id_num << endl;
+   //cout << "Member Number: " << my_serv_rec.memID << endl;
    cout << "Member Name: " << "TO COME..." << endl;
-   cout << "Service Code: " << serviceCode << endl;
+   cout << "Service Code: " << my_serv_rec.servCode << endl;
    cout << "Service Description: " << "TO COME...my_service.serviceDescription(CODE)" << endl;
-   cout << "Comments: " << comments << endl;
+   cout << "Comments: " << my_serv_rec.commentField << endl;
    cout << "Service Fee: " << "TO COME...my_service.serviceFee(CODE)" << endl << endl;
    cout << "***************************************************\n";
+  
+   //Pass struct to datacenter
+   successOrFail = datacenter::instance()->fillServiceRec(my_serv_rec);
+  
+   //if(my_serv_rec.currentDateTime) 
+   //   delete my_serv_rec.currentDateTime;
+   //if(my_serv_rec.providerID)
+   //   delete my_serv_rec.providerID;
+   //if(my_serv_rec.providerName)
+   //   delete my_serv_rec.providerName;
+   //if(my_serv_rec.memID)
+   //   delete my_serv_rec.memID;
+   //if(my_serv_rec.memberName)
+   //   delete my_serv_rec.memberName;
+   if(my_serv_rec.servDate)
+      delete my_serv_rec.servDate;
+   if(my_serv_rec.servCode)
+      delete my_serv_rec.servCode;
+   //if(my_serv_rec.servDescr)
+   //   delete my_serv_rec.servDescr;
+   //my_serv_rec.servFee = 0.0;
+   if(my_serv_rec.commentField)
+      delete my_serv_rec.commentField;
+   
+   if(successOrFail == true)
+   {
+      return true;
+   }
+   else
+   {
+      cout << "Problem copying to datacenter\n";
+      return false;
+   }
+
    //Display name of the service corresponding to the code
    //Provider verifies this is the correct code
    //If non-existent code entered, error message is printed
