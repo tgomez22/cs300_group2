@@ -27,6 +27,7 @@ service::service(const service & toAdd)
   memName.add(toAdd.memName);
   provName.add(toAdd.provName);
   servCode.add(toAdd.servCode);
+  servDes.add(toAdd.servDes);
   servFee = toAdd.servFee;
   next = NULL;
 
@@ -45,6 +46,7 @@ void service::addService()
     char providerName[INPUT];
     char serviceCode[INPUT];
     char serviceName[INPUT];
+    char serviceDescription[SIZE];
     int feeDue = 0;
     
     cout<<"Please enter the date of service in mm/dd/yyyy: ";
@@ -68,7 +70,7 @@ void service::addService()
 
     if(userChoice == 'y' || userChoice == 'Y')
     {
-        //placeholder.
+        displayProviderDirectory();
     }
     
     cout<<"What is the numerical code of the service?: ";
@@ -79,12 +81,18 @@ void service::addService()
     cout<<"What is the name of the service being provided?: ";
     cin.get(serviceName, INPUT, '\n');
     cin.ignore(100, '\n');
+    servName.add(serviceName);
     
     cout<<"What was the cost of the service?: ";
     cin>>feeDue;
     cin.ignore(100, '\n');
 
     servFee = feeDue;
+
+    cout<<"Please enter a description of the service rendered: ";
+    cin.get(serviceDescription, SIZE, '\n');
+    cin.ignore(100, '\n');
+    servDes.add(serviceDescription);
 
     return;
 
@@ -118,6 +126,10 @@ void service::display(void) const
       cout<< endl;
       cout << "service fee: ";
       cout<< servFee << endl;
+
+      cout<<"Service Description: ";
+      servDes.display();
+      cout<< endl;
 }
 
 void service::displayTime(void)
@@ -235,3 +247,7 @@ char* service::getDate()
   return dos.getString();
 }
 
+char* service::getServDes()
+{
+    return servDes.getString();
+}
