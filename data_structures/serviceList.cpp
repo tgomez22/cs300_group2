@@ -355,3 +355,34 @@ bool serviceList::suspendMember(const entity & toFind)
 
     }
 }
+
+void serviceList::readIn()
+{
+	//read from member text file and populate
+	ifstream memberFile;
+    memberFile.open("data/member.txt");
+    member aMember;
+    json toRead;
+    while(!memberFile.eof() && memberFile >> toRead >> ws) 
+    {   
+        string temp = toRead["memId"];  
+        const char * toUse = temp.c_str();
+        aMember.addId(toUse);
+        addPerson(aMember);
+    }   
+    memberFile.close();
+	//read from provider text file and populate
+	ifstream providerFile;
+    providerFile.open("data/provider.txt");
+    provider aProvider;
+    json toRead;
+    while(!providerFile.eof() && providerFile >> toRead >> ws) 
+    {   
+        string temp = toRead["memId"];  
+        const char * toUse = temp.c_str();
+        aProvider.addId(toUse);
+        addPerson(anEntity);
+    }   
+    providerFile.close();
+    return true;
+}
