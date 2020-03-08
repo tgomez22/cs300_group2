@@ -204,9 +204,9 @@ bool member::suspendMember()
     return true;
 }
 
-void addInfo(char * addID, char * addName, char * addAddress, char * addCity, char * addState, char * addZip, bool addSuspended, float addAmtDue)
+void member::addInfo(char * addID, char * addName, char * addAddress, char * addCity, char * addState, char * addZip, bool addSuspended, float addAmtDue)
 {
-	person::addInfo(addId, addName, addAddress, addCity, addState, addZip);
+	person::addInfo(addID, addName, addAddress, addCity, addState, addZip);
 	suspended = addSuspended;
 	amtDue = addAmtDue;
 	return;
