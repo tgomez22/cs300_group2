@@ -45,6 +45,9 @@ class member: public person
     char* getState();
     char* getZip();
     float getFee();
+	
+	//adds info to member for use in serviceList
+	void addInfo(char * addID, char * addName, char * addAddress, char * addCity, char * addState, char * addZip, bool ad    dSuspended, float addAmtDue);
 
 	private:
 		bool suspended;

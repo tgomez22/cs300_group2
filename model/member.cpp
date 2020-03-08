@@ -203,3 +203,8 @@ bool member::suspendMember()
     suspended = true;
     return true;
 }
+
+void addInfo(char * addID, char * addName, char * addAddress, char * addCity, char * addState, char * addZip, bool ad    dSuspended, float addAmtDue)
+{
+	return;
+}
