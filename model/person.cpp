@@ -46,7 +46,13 @@ void person::showInfo()const
     return;
 }
 
-void person::addInfo(char * addName, char * addAddress, char * addCity, char * addState, char * addZip)
+void person::addInfo(char * addID, char * addName, char * addAddress, char * addCity, char * addState, char * addZip)
 {
+	entity::addId(addID);
+	name.add(addName);
+	address.add(addAddress);
+	city.add(addCity);
+	state.add(addState);
+	zip.add(addZip);
 	return;
 }
