@@ -35,7 +35,6 @@ class personList
         void displayStored()const;
 
         bool add(const entity & toAdd);
-		//bool readIn(); uncomment if running tests
 
 	private:
         bool writeOut();

@@ -9,6 +9,11 @@
 #include "../model/member.h"
 #include "defs.h"
 #include <cstdlib>
+#include <string>
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+using namespace std;
 //const int ID = 10;
 //const int SIZE = 101;
 //const int MULTBY = 97;
@@ -354,4 +359,35 @@ bool serviceList::suspendMember(const entity & toFind)
         }
 
     }
+}
+
+void serviceList::readIn()
+{
+	//read from member text file and populate
+	ifstream memberFile;
+    memberFile.open("data/member.txt");
+    member aMember;
+    json mRead;
+    while(!memberFile.eof() && memberFile >> mRead >> ws) 
+    {   
+        string temp = mRead["memId"];  
+        const char * toUse = temp.c_str();
+        aMember.addId(toUse);
+        addPerson(aMember);
+    }   
+    memberFile.close();
+	//read from provider text file and populate
+	ifstream providerFile;
+    providerFile.open("data/provider.txt");
+    provider aProvider;
+    json pRead;
+    while(!providerFile.eof() && providerFile >> pRead >> ws) 
+    {   
+        string temp = pRead["memId"];  
+        const char * toUse = temp.c_str();
+        aProvider.addId(toUse);
+        addPerson(aProvider);
+    }   
+    providerFile.close();
+    return;
 }
