@@ -47,6 +47,8 @@ class datacenter {
     //individual report functions
     bool generateUserReport(string id, ofstream& email);
     bool generateManagerReport(ofstream& email);
+    bool generateProviderServiceReports(serviceNode& list, ofstream& email);
+    bool generateMemberServiceReports(serviceNode& list, ofstream& email);
 
   private:
     static datacenter *s_instance; 
