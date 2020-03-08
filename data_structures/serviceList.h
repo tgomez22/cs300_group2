@@ -52,6 +52,7 @@ class serviceList
         bool suspendMember(const entity & toFind);
 
 private:
+		void readIn();
         void removeNodes(serviceNode *& toRemove);
         void removeServices(service *& toRemove);
         
