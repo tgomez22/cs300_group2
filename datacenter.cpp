@@ -248,7 +248,23 @@ bool datacenter::processAcmeRecords(acmeRecord*, int num) {
 
 bool datacenter::generateUserReport(string id, ofstream& email)
 {
-  return true;
+  //TODO: write user info printing
+
+  //initialize list of services
+  entity IdWrapper;
+  IdWrapper.addId(id.data());
+  serviceNode list;
+  if(dataStorage.getInfo(IdWrapper, list)) {
+
+    //iterate through list of services
+    if(typeid(*(list.aPerson)) == typeid(member))
+      generateMemberServiceReports(list, email);
+    if(typeid(*(list.aPerson)) == typeid(provider))
+      generateProviderServiceReports(list, email);
+
+    return true;
+  } else 
+    return false;
 }
 
 bool datacenter::generateManagerReport(ofstream& email)
@@ -256,3 +272,51 @@ bool datacenter::generateManagerReport(ofstream& email)
   return true;
 }
 
+bool datacenter::generateProviderServiceReports(serviceNode& list, ofstream& email)
+{
+  //TODO: find way to get member ID + date received by computer,
+  //      add up number of consultations and total fee,
+  //      find something to do with service name and description
+  while(list.head != NULL) { 
+    char* member = list.head->getMemName();
+    char* date = list.head->getDate();
+    char* code = list.head->getServCode();
+    char* description = list.head->getServDes();
+    float fee = list.head->getServFee();
+
+    email << "Service Date: " << date << endl;
+    email << "\tDate Received by computer: " << " " << endl;
+    email << "\tMember Provided to: " << member << endl;
+    email << "\tMember code: " << " " << endl;
+    email << "\tService Code: " << code << endl;
+    email << "\tFee: " << fee << endl;
+
+    delete member;
+    delete date;
+    delete code;
+    delete description;
+
+    list.head = list.head->toNext();
+  }
+  return true;
+}
+
+bool datacenter::generateMemberServiceReports(serviceNode& list, ofstream& email)
+{
+  while(list.head != NULL) {
+    char* provider = list.head->getProvName();
+    char* service = list.head->getServName();
+    char* date = list.head->getDate();
+
+    email << "Service Date: " << date << endl;
+    email << "\tProvider: " << provider << endl;
+    email << "\tService: " << service << endl;
+
+    delete provider;
+    delete service;
+    delete date;
+
+    list.head = list.head->toNext();
+  }
+  return true;
+}
