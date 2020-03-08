@@ -40,7 +40,8 @@ class provider: public person
     bool suspendMember();
 	
 	//adds data to provider for use in serviceList	
-	void addInfo(char * addID, char * addName, char * addAddress, char * addCity, char * addState, char * addZip, int addConsultNum, float addWeeklyFee);
+	void addInfo(const char * addID, const char * addName, const char * addAddress, const char * addCity, const char * addState, const char * addZip, int addConsultNum, float addWeeklyFee);
+
 	private:
 		int consultNum;
 		float weeklyFee;

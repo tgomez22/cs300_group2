@@ -32,7 +32,7 @@ class person: public entity
     virtual float getFee() = 0;
 		
 		//adds info to person for use in serviceList
-		void addInfo(char * addID, char * addName, char * addAddress, char * addCity, char * addState, char * addZip);
+		void addInfo(const char * addID, const char * addName, const char * addAddress, const char * addCity, const char * addState, const char * addZip);
     //suspends a person's account.
     virtual bool suspendMember() = 0;
 	
