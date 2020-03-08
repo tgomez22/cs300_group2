@@ -45,3 +45,8 @@ void person::showInfo()const
 
     return;
 }
+
+void person::addInfo(char * addName, char * addAddress, char * addCity, char * addState, char * addZip)
+{
+	return;
+}

@@ -30,11 +30,12 @@ class person: public entity
     virtual char* getState() = 0;
     virtual char* getZip() = 0;
     virtual float getFee() = 0;
-
-
+		
+		//adds info to person for use in serviceList
+		void addInfo(char * addName, char * addAddress, char * addCity, char * addState, char * addZip);
     //suspends a person's account.
     virtual bool suspendMember() = 0;
-
+	
 	protected:
 		tString name;
 		//memNum exists in entity
