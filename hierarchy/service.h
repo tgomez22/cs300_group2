@@ -9,6 +9,7 @@
 #ifndef SERVICE_H
 #define SERVICE_H
 
+#include "../interfaces/provider-term.h"
 #include "../model/entity.h"
 #include <time.h>
 
@@ -24,6 +25,7 @@ class service: public entity
 		void display()const;
 		service *& toNext();
 
+                bool inputService(servRecInfo & servRec);
         //a read in function for terminal group. Implemented by Tristan for testing, feel free to alter as you like.
 		void addService();
 
