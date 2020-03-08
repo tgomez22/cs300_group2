@@ -9,6 +9,11 @@
 #include "../model/member.h"
 #include "defs.h"
 #include <cstdlib>
+#include <string>
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+using namespace std;
 //const int ID = 10;
 //const int SIZE = 101;
 //const int MULTBY = 97;
@@ -362,10 +367,10 @@ void serviceList::readIn()
 	ifstream memberFile;
     memberFile.open("data/member.txt");
     member aMember;
-    json toRead;
-    while(!memberFile.eof() && memberFile >> toRead >> ws) 
+    json mRead;
+    while(!memberFile.eof() && memberFile >> mRead >> ws) 
     {   
-        string temp = toRead["memId"];  
+        string temp = mRead["memId"];  
         const char * toUse = temp.c_str();
         aMember.addId(toUse);
         addPerson(aMember);
@@ -375,14 +380,14 @@ void serviceList::readIn()
 	ifstream providerFile;
     providerFile.open("data/provider.txt");
     provider aProvider;
-    json toRead;
-    while(!providerFile.eof() && providerFile >> toRead >> ws) 
+    json pRead;
+    while(!providerFile.eof() && providerFile >> pRead >> ws) 
     {   
-        string temp = toRead["memId"];  
+        string temp = pRead["memId"];  
         const char * toUse = temp.c_str();
         aProvider.addId(toUse);
-        addPerson(anEntity);
+        addPerson(aProvider);
     }   
     providerFile.close();
-    return true;
+    return;
 }
