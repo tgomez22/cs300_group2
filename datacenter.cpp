@@ -62,28 +62,27 @@ datacenter::datacenter() {
 
 }
 
+
 //TODO with tristan
 //Is this ID allowed to access the provider terminal?
 bool datacenter::validateProvider(string id) {
-    
+   
+    bool checkValue = false;
+    entity providerID;
+
     //pull ID out of string object.
     const char * temp = id.data();
     
-
-    //Package the char array into an entity object which is
-    //compatible with the personList class.
-    entity providerID;
     providerID.addId(temp);
-
-    int result = authentication.authenticate(providerID);
     
+    int result = authentication.authenticate(providerID);
     //2 indicates valid provider.
     if(result == 2)
         return true;
 
     else
-       return true;
-       //return false; commenting out for now...the validation isn't working yet
+       //return true;
+       return false; //commenting out for now...the validation isn't working yet
 }
 
 //TODO with tristan
@@ -141,13 +140,78 @@ string datacenter::getRandomId() {
 
 //TODO with tristan
 //takes in service record data from terminal and copies to ???
-bool datacenter::fillServiceRec(servRecInfo & servRec)
+bool datacenter::fillServiceRec(servRecInfo & myRec)
 {
-   //get memID, fill in for member
+   char * p_name = new char(100);
+   char * m_name = new char(100);
+   service my_service_pro;
+   service my_service_mem;
    
-   //get provID, fill in for provider
-   //
+   provider numToFindPro;
+   member numToFindMem;
+   serviceNode copyPro;
+   serviceNode copyMem;
 
+   numToFindPro.addId(myRec.providerID);
+   numToFindMem.addId(myRec.memID);
+   
+   dataStorage.getInfo(numToFindPro, copyPro);
+   dataStorage.getInfo(numToFindMem, copyMem);
+
+   //my_service_pro.getMemId(myRec.providerID);
+   ///numToFindMem.getMemId(myRec.memID);
+
+   numToFindPro.display();
+   cout << endl;
+
+  // p_name = numToFindPro.getName(); 
+  // myRec.providerName.add(p_name);
+  // m_name = numToFindMem.getName();
+  // myRec.memberName.add(m_name);
+
+   my_service_pro.addId(myRec.providerID);
+   my_service_mem.addId(myRec.memID);
+
+   my_service_pro.inputService(myRec);
+   my_service_mem.inputService(myRec);
+
+   dataStorage.addService(numToFindPro, my_service_pro);
+   dataStorage.addService(numToFindMem, my_service_mem);
+  
+   my_service_pro.display();
+
+   cout << "***************************************************\n";
+   cout << "This is the information for this record: \n";
+   cout << "***************************************************\n";
+   cout << "Current Date & Time: ";
+           my_service_pro.displayTime();
+   cout << "Service Date: ";
+           myRec.servDate.display();
+   cout << endl;
+   cout << "Provider Number: ";
+           myRec.providerID.display();
+   cout << endl;
+   cout << "Provider Name: ";
+           myRec.providerName.display();
+   cout << endl;
+   cout << "Member Number: ";
+           myRec.memID.display();
+   cout << endl;
+   cout << "Member Name: ";
+           myRec.memberName.display();
+   cout << endl;
+   cout << "Service Code: ";
+           myRec.servCode.display();
+   cout << endl;
+   cout << "Service Description: ";
+           myRec.servDescr.display();
+   cout << endl;
+   cout << "Comments: ";
+           myRec.commentField.display();
+   cout << endl;
+   cout << "Service Fee: " << myRec.servFee << endl << endl;
+   cout << "***************************************************\n";
+   
    return true;
 
 }

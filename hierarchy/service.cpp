@@ -31,6 +31,17 @@ service::service(const service & toAdd)
   next = NULL;
 
 }
+bool service::inputService(servRecInfo & servRec)
+{
+   dos.add(servRec.servDate);
+   //numberTime.add(addddddddddtime);
+   //servName.add(servRec.servDescr);
+   //memName.add(servRec.memberName);
+   //provName.add(servRec.providerName);
+   servCode.add(servRec.servCode);
+
+   return true;
+}
 
 //read in function for terminal folks. I (TRISTAN) filled this in for testing
 //feel free to change it. It assumes correct input at this time. needs "guards".

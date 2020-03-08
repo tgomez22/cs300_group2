@@ -37,9 +37,9 @@ class serviceList
 		serviceList();
 		~serviceList();
 		int getKey(const int toUse); //hashing function to get arr index
-        int memberFunctions();//use this function as a wrapper for member only functions. Put those functions into the private section.
-        int addPerson(const person & toAdd);
-		bool addService(const entity & toFind, const service & toAdd);
+                int memberFunctions();//use this function as a wrapper for member only functions. Put those functions into the private section.
+                int addPerson(const person & toAdd);
+	        bool addService(const entity & toFind, const service & toAdd);
 
         //For Chris to use to pull individual member/provider profile and all services associated with that individual.
         bool getInfo(const entity & toFind, serviceNode & copy);
