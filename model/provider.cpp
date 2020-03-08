@@ -112,3 +112,11 @@ bool provider::suspendMember()
 {
     return false;
 }
+
+void provider::addInfo(char * addID, char * addName, char * addAddress, char * addCity, char * addState, char * addZip, int addConsultNum, float addWeeklyFee) 
+{
+    person::addInfo(addID, addName, addAddress, addCity, addState, addZip);
+    consultNum = addConsultNum;
+    weeklyFee = addWeeklyFee;
+    return;
+}
