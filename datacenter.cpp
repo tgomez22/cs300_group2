@@ -220,12 +220,12 @@ bool datacenter::generateProviderServiceReports(serviceNode& list, ofstream& ema
     char* description = list.head->getServDes();
     float fee = list.head->getServFee();
 
-    email << "Service Date: " + date + endl;
-    email << "\tDate Received by computer: " + " " + endl;
-    email << "\tMember Provided to: " + member + endl;
-    email << "\tMember code: " + " " + endl;
-    email << "\tService Code: " + code + endl;
-    email << "\tFee: " + fee + endl;
+    email << "Service Date: " << date << endl;
+    email << "\tDate Received by computer: " << " " << endl;
+    email << "\tMember Provided to: " << member << endl;
+    email << "\tMember code: " << " " << endl;
+    email << "\tService Code: " << code << endl;
+    email << "\tFee: " << fee << endl;
 
     delete member;
     delete date;
@@ -244,9 +244,9 @@ bool datacenter::generateMemberServiceReports(serviceNode& list, ofstream& email
     char* service = list.head->getServName();
     char* date = list.head->getDate();
 
-    email << "Service Date: " + date + endl;
-    email << "\tProvider: " + provider + endl;
-    email << "\tService: " + service + endl;
+    email << "Service Date: " << date << endl;
+    email << "\tProvider: " << provider << endl;
+    email << "\tService: " << service << endl;
 
     delete provider;
     delete service;
