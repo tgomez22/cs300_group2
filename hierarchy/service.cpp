@@ -256,9 +256,7 @@ void service::getDescription(tString & servCode, tString & servName)
 			string tempServName = service["servName"];
 			const char * addServName = tempServName.c_str();
 			servName.add(addServName);
-			delete [] addServName;
 		}
-		delete [] toCompare;
     }   
     myFile.close();
     return;
