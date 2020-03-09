@@ -51,6 +51,11 @@ bool service::inputService(servRecInfo & servRec)
    return true;
 }
 
+void service::writeOut()
+{
+
+}
+
 //read in function for terminal folks. I (TRISTAN) filled this in for testing
 //feel free to change it. It assumes correct input at this time. needs "guards".
 void service::addService()

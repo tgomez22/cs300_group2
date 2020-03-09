@@ -26,7 +26,9 @@ class service: public entity
 		service *& toNext();
 
                 bool inputService(servRecInfo & servRec);
-        //a read in function for terminal group. Implemented by Tristan for testing, feel free to alter as you like.
+		//Write out to text file
+       	void writeOut(); 
+		//a read in function for terminal group. Implemented by Tristan for testing, feel free to alter as you like.
 		void addService();
 
 
