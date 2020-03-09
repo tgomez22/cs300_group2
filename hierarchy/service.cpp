@@ -34,13 +34,14 @@ service::service(const service & toAdd)
 }
 bool service::inputService(servRecInfo & servRec)
 {
-   dos.add(servRec.servDate);
-   //numberTime.add(addddddddddtime);
-   //servName.add(servRec.servDescr);
-   //memName.add(servRec.memberName);
-   //provName.add(servRec.providerName);
-   servCode.add(servRec.servCode);
-
+      dos.add(servRec.servDate);
+      servName.add(servRec.servDescr);
+      memName.add(servRec.memberName);
+      provName.add(servRec.providerName);
+      servFee = servRec.servFee;
+      servCode.add(servRec.servCode);
+      servDes.add(servRec.commentField);
+   
    return true;
 }
 
@@ -116,31 +117,34 @@ service::~service()
 
 void service::display(void) const
 {
-    using namespace std;
-  cout << "date of service: ";
+  using namespace std;
+
+  cout << "Date of Service: ";
   dos.display();
   cout << endl;
 
-  cout << "Service name: ";
+  cout << "Service Name: ";
   servName.display() ;
-      cout<< endl ;
+  cout<< endl ;
 
-      cout << "Member name: ";
-      memName.display();
-      cout<< endl;
+  cout << "Member Name: ";
+  memName.display();
+  cout<< endl;
 
-      cout<< "Provider name: ";
-      provName.display();
-      cout<<endl;
-      cout << "service code: ";
-      servCode.display();
-      cout<< endl;
-      cout << "service fee: ";
-      cout<< servFee << endl;
+  cout<< "Provider Name: ";
+  provName.display();
+  cout<<endl;
+  
+  cout << "Service Code: ";
+  servCode.display();
+  cout<< endl;
+  
+  cout << "Service Fee: ";
+  cout<< servFee << endl;
 
-      cout<<"Service Description: ";
-      servDes.display();
-      cout<< endl;
+  cout<<"Service Comments: ";
+  servDes.display();
+  cout<< endl;
 }
 
 void service::displayTime(void)
