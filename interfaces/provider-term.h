@@ -3,6 +3,7 @@
 
 #include <string>
 #include "../model/tString.h"
+#include <fstream>
 using namespace std;
 
 struct servRecInfo{
