@@ -207,7 +207,6 @@ bool fillServiceRecord(tString mem_id_num, tString id_num)
       cout << "\nThe service corresponding to the code you entered is: \n";
       my_service.getDescription(my_serv_rec.servCode, my_serv_rec.servDescr);
          
-      //run display service function serviceDescription(serviceCode)
       my_serv_rec.servDescr.display();
       cout << endl;
 
