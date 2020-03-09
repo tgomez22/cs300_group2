@@ -29,7 +29,7 @@ class tString
         //END FILE IO PEOPLE!!!
 
         //returns 0 if matching, else same as strcmp
-		int compare(char * toCompare)const;
+		int compare(const char * toCompare)const;
 		int compare(const tString & toCompare)const;
 
         //initializes data to arg values. will overwrite stored data.

@@ -230,6 +230,34 @@ void service::displayProviderDirectory()const
 	return;
 }
 
+//Pass in a service code and get back the description and fee
+void service::getDescriptionFee(tString & servCode, tString & servName, float & servFee)
+{
+    ifstream myFile;
+    myFile.open("data/providerDirectory.txt");
+    json service;
+    while(!myFile.eof() && myFile >> service >> ws) 
+    {
+		string tempServCode = service["servCode"];
+		const char * toCompare = tempServCode.c_str(); 
+		//if the service code passed in matches service in directory
+		if(servCode.compare(toCompare) == 0)
+		{
+			//return service description (name)
+			string tempServName = service["servName"];
+			const char * addServName = tempServName.c_str();
+			servName.add(addServName);
+			//return service fee
+			float addServFee = service["servFee"];
+			servFee = addServFee;
+			delete [] addServName;
+		}
+		delete [] toCompare;
+    }   
+    myFile.close();
+    return;
+} 
+
 //getter functions
 char* service::getMemName()
 {
