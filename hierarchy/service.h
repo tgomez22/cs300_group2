@@ -26,7 +26,9 @@ class service: public entity
 		service *& toNext();
 
                 bool inputService(servRecInfo & servRec);
-        //a read in function for terminal group. Implemented by Tristan for testing, feel free to alter as you like.
+		//Write out to text file
+       	void writeOut(); 
+		//a read in function for terminal group. Implemented by Tristan for testing, feel free to alter as you like.
 		void addService();
 
 
@@ -35,7 +37,7 @@ class service: public entity
                 void displayTime(void); //this will display the time in a readable form.
                 int getWeek();
 		void displayProviderDirectory()const;	
-		void getDescriptionFee(tString & servCode, tString & servName, float & servFee);
+		void getDescription(tString & servCode, tString & servName);
 		      
       //getter functions
       char* getMemName();
@@ -48,11 +50,11 @@ class service: public entity
 
 	private:
 		tString dos; //date of service in form: www mmm dd hh:mm:ss yyyy
-                long numberTime; //number of seconds since jan 1st 1970 00:00:00 (good for week calculations
+		long numberTime; //number of seconds since jan 1st 1970 00:00:00 (good for week calculations
 		tString servName;
 		tString memName;//MEMBER NAME!!!
-                tString provName;//PROVIDER NAME!
-                tString servDes; //service description.
+		tString provName;//PROVIDER NAME!
+		tString servDes; //service description.
 		//has memNum from base class entity
 		tString servCode;
 		float servFee;
