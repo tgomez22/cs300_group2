@@ -142,6 +142,7 @@ string datacenter::getRandomId() {
   return "123456789";
 }
 
+
 //takes in service record data from terminal and copies to user list
 bool datacenter::fillServiceRec(servRecInfo & myRec)
 {
@@ -164,7 +165,7 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    dataStorage.getInfo(numToFindMem, copyMem);
 
    myRec.providerName.add(copyPro.aPerson->getName());
-   myRec.servFee = copyPro.aPerson->getFee();
+//   myRec.servFee = copyPro.aPerson->getFee();
 
    myRec.memberName.add(copyMem.aPerson->getName());
 
