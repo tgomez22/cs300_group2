@@ -62,28 +62,26 @@ datacenter::datacenter() {
 
 }
 
+
 //TODO with tristan
 //Is this ID allowed to access the provider terminal?
 bool datacenter::validateProvider(string id) {
-    
+   
+    bool checkValue = false;
+    entity providerID;
+
     //pull ID out of string object.
     const char * temp = id.data();
     
-
-    //Package the char array into an entity object which is
-    //compatible with the personList class.
-    entity providerID;
     providerID.addId(temp);
-
-    int result = authentication.authenticate(providerID);
     
+    int result = authentication.authenticate(providerID);
     //2 indicates valid provider.
     if(result == 2)
         return true;
 
     else
-       return true;
-       //return false; commenting out for now...the validation isn't working yet
+       return false; 
 }
 
 //TODO with tristan
@@ -113,7 +111,8 @@ bool datacenter::validateManager(string id) {
 //Is this member ID valid?
 bool datacenter::validateMember(string id)
 {
-
+    int valOrSus = 0;
+    int result = 0;
     //pull ID out of string object.
     const char * temp = id.data();
 
@@ -122,15 +121,19 @@ bool datacenter::validateMember(string id)
     entity memberID;
     memberID.addId(temp);
 
-    int result = authentication.authenticate(memberID);
+    result = authentication.authenticate(memberID);
 
     //1 indicates valid member.
     if(result == 1)
-        return true;
-
+    {
+       valOrSus = dataStorage.isSuspended(memberID);       
+       if(!valOrSus)  
+          return true;
+       else
+          return false;
+    }
     else
-        return true;
-        //return false; commenting out for now...validation doesn't work
+        return false; 
 }
 
 //TODO with tristan
@@ -139,14 +142,88 @@ string datacenter::getRandomId() {
   return "123456789";
 }
 
-//TODO with tristan
-//takes in service record data from terminal and copies to ???
-bool datacenter::fillServiceRec(servRecInfo & servRec)
+//takes in service record data from terminal and copies to user list
+bool datacenter::fillServiceRec(servRecInfo & myRec)
 {
-   //get memID, fill in for member
+   service my_service_pro;        //to hold the provider's record
+   service my_service_mem;        //to hold the member's record
    
-   //get provID, fill in for provider
-   //
+   provider numToFindPro;         //to get the provider's info.
+   member numToFindMem;           //to get the member's info.
+   
+   serviceNode copyPro;           //to use the getInfo. function
+   serviceNode copyMem;           //to use the getInfo. function
+
+   //get id nums from struct and put in entities
+   numToFindPro.addId(myRec.providerID);
+   numToFindMem.addId(myRec.memID);
+ 
+    
+   //get info from main lists 
+   dataStorage.getInfo(numToFindPro, copyPro);
+   dataStorage.getInfo(numToFindMem, copyMem);
+
+   myRec.providerName.add(copyPro.aPerson->getName());
+   myRec.servFee = copyPro.aPerson->getFee();
+
+   myRec.memberName.add(copyMem.aPerson->getName());
+
+   my_service_pro.addId(myRec.providerID);
+   my_service_mem.addId(myRec.memID); 
+  // service my_service_pro(dynamic_cast<service&>(**&copyPro.head));
+  // service my_service_mem(dynamic_cast<service&>(**&copyMem.head)); 
+
+   //input the service record for each
+   my_service_pro.inputService(myRec);
+   my_service_mem.inputService(myRec);
+
+   const entity my_pro_ent = dynamic_cast<const entity&>(**&copyPro.aPerson);
+   const entity my_mem_ent = dynamic_cast<const entity&>(**&copyMem.aPerson);
+   
+   //store the service record for each
+   dataStorage.addService(my_pro_ent, my_service_pro);
+   dataStorage.addService(my_mem_ent, my_service_mem);
+   
+   // EXAMPLE: const member * ptr = dynamic_cast<const member*>(*&temp->aPerson); 
+ 
+   //for testing delete before deploy!!!!!!!! 
+  // my_service_pro.display();
+
+   cout << "***************************************************\n";
+   cout << "This is the information for this record: \n";
+   cout << "***************************************************\n";
+   cout << "Current Date & Time: ";
+           my_service_pro.displayTime();
+   cout << "Service Date: ";
+           myRec.servDate.display();
+   cout << endl;
+   cout << "Provider Number: ";
+           myRec.providerID.display();
+   cout << endl;
+   cout << "Provider Name: ";
+           myRec.providerName.display();
+   cout << endl;
+   cout << "Member Number: ";
+           myRec.memID.display();
+   cout << endl;
+   cout << "Member Name: ";
+           myRec.memberName.display();
+   cout << endl;
+   cout << "Service Code: ";
+           myRec.servCode.display();
+   cout << endl;
+   cout << "Service Name: ";
+           myRec.servDescr.display();
+   cout << endl;
+   cout << "Comments: ";
+           myRec.commentField.display();
+   cout << endl;
+   cout << "Service Fee: " << myRec.servFee << endl << endl;
+   cout << "***************************************************\n";
+
+ //for testing delete before deployment  
+   my_service_pro.display();
+   my_service_mem.display();
 
    return true;
 

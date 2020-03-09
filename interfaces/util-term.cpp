@@ -30,7 +30,7 @@ using namespace std;
 
 
 //menu if you need to pass in strings and return ints for function pointer dt
-  int menu2(string menuText, string* choices, int (* dispatchTable[])(string), int numOfChoices, string id_num)
+  int menu2(string menuText, string* choices, int (* dispatchTable[])(tString), int numOfChoices, tString id_num)
   {
      int choice = 0;
      int tableResponse = 0;
@@ -78,7 +78,7 @@ int exitFunction()
    }
 }
 
-int exitFunction2(string id_num)
+int exitFunction2(tString id_num)
 {
    char toQuit = 'n';      //This will determine if the user wants to quit
 
@@ -117,6 +117,6 @@ int returnExitValue() {
   return EXITVALUE; 
 }
 
-int returnExitValue2(string id_num) {
+int returnExitValue2(tString id_num) {
   return EXITVALUE; 
 }

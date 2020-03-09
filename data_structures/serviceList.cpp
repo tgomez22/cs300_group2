@@ -9,6 +9,11 @@
 #include "../model/member.h"
 #include "defs.h"
 #include <cstdlib>
+#include <string>
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+using namespace std;
 //const int ID = 10;
 //const int SIZE = 101;
 //const int MULTBY = 97;
@@ -25,6 +30,7 @@ serviceList::serviceList()
 	}
 
 	table -= SIZE;
+	readIn();
 }
 
 
@@ -354,4 +360,59 @@ bool serviceList::suspendMember(const entity & toFind)
         }
 
     }
+}
+
+void serviceList::readIn()
+{
+	//read from member text file and populate
+	ifstream memberFile;
+    memberFile.open("data/member.txt");
+    member aMember;
+    json mRead;
+    while(!memberFile.eof() && memberFile >> mRead >> ws) 
+    {   
+        string tempID = mRead["memId"]; //json serialization library only compatible with string class
+		string tempName = mRead["name"];
+		string tempAddress = mRead["address"];
+		string tempCity = mRead["city"];
+		string tempState = mRead["state"];
+		string tempZip = mRead["zip"];
+		bool addSuspended = mRead["suspended"];
+		float addAmtDue = mRead["amtDue"];
+        const char * addID = tempID.c_str();
+		const char * addName = tempName.c_str();
+		const char * addAddress = tempAddress.c_str();
+		const char * addCity = tempCity.c_str();
+		const char * addState = tempState.c_str();
+		const char * addZip = tempZip.c_str();
+        aMember.addInfo(addID, addName, addAddress, addCity, addState, addZip, addSuspended, addAmtDue);
+        addPerson(aMember);
+    }   
+    memberFile.close();
+	//read from provider text file and populate
+	ifstream providerFile;
+    providerFile.open("data/provider.txt");
+    provider aProvider;
+    json pRead;
+    while(!providerFile.eof() && providerFile >> pRead >> ws) 
+    {   
+	    string tempID = pRead["memId"]; //json serialization library only compatible with string class
+        string tempName = pRead["name"];
+        string tempAddress = pRead["address"];
+        string tempCity = pRead["city"];
+        string tempState = pRead["state"];
+        string tempZip = pRead["zip"];
+        int addConsultNum = pRead["consultNum"];
+        float addWeeklyFee = pRead["weeklyFee"];
+        const char * addID = tempID.c_str();
+        const char * addName = tempName.c_str();
+        const char * addAddress = tempAddress.c_str();
+        const char * addCity = tempCity.c_str();
+        const char * addState = tempState.c_str();
+        const char * addZip = tempZip.c_str();
+        aProvider.addInfo(addID, addName, addAddress, addCity, addState, addZip, addConsultNum, addWeeklyFee);
+        addPerson(aProvider);
+    }   
+    providerFile.close();
+    return;
 }

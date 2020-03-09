@@ -146,6 +146,7 @@ int scanId()
 	 cout << "Successfully got ID!" << endl;
          cout << "The ID Number is: ";
          cout << id << endl;
+         cleanupCin();
       }
    } while (keepGoing == 0);
 

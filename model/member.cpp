@@ -146,8 +146,8 @@ void member::display()const
     using namespace std;
     if(suspended == true)
     {
-        cout<<"Your account is suspended. "<<endl;
-        cout<<"You owe: $"<<amtDue<<endl;
+        cout<<"The account is suspended. "<<endl;
+        cout<<"Amount owed: $"<<amtDue<<endl;
     }
 
     else
@@ -202,4 +202,12 @@ bool member::suspendMember()
 {
     suspended = true;
     return true;
+}
+
+void member::addInfo(const char * addID, const char * addName, const char * addAddress, const char * addCity, const char * addState, const char * addZip, bool addSuspended, float addAmtDue)
+{
+	person::addInfo(addID, addName, addAddress, addCity, addState, addZip);
+	suspended = addSuspended;
+	amtDue = addAmtDue;
+	return;
 }

@@ -7,6 +7,8 @@
 #include "hierarchy/service.h"
 #include "interfaces/provider-term.h"
 #include "model/member.h"
+#include "model/provider.h"
+#include "model/person.h"
 #include "model/entity.h"
 #include "data_structures/personList.h"
 #include "data_structures/serviceList.h"
@@ -33,7 +35,7 @@ class datacenter {
     //Does basic text validation (isNumber and length == 9)
     bool checkIdFormat(string scannedId);
     //Fills in the service record
-    bool fillServiceRec(servRecInfo & servRec);
+    bool fillServiceRec(servRecInfo &);
     //Run the friday night, mass report function. Returns true
     //If it was generated successfully.
     bool generateFridayNightReports();

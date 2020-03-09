@@ -38,6 +38,9 @@ class provider: public person
     
     //always returns false.
     bool suspendMember();
+	
+	//adds data to provider for use in serviceList	
+	void addInfo(const char * addID, const char * addName, const char * addAddress, const char * addCity, const char * addState, const char * addZip, int addConsultNum, float addWeeklyFee);
 
 	private:
 		int consultNum;

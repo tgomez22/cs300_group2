@@ -45,3 +45,14 @@ void person::showInfo()const
 
     return;
 }
+
+void person::addInfo(const char * addID, const char * addName, const char * addAddress, const char * addCity, const char * addState, const char * addZip)
+{
+	entity::addId(addID);
+	name.add(addName);
+	address.add(addAddress);
+	city.add(addCity);
+	state.add(addState);
+	zip.add(addZip);
+	return;
+}
