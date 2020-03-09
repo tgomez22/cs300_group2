@@ -111,7 +111,8 @@ bool datacenter::validateManager(string id) {
 //Is this member ID valid?
 bool datacenter::validateMember(string id)
 {
-
+    int valOrSus = 0;
+    int result = 0;
     //pull ID out of string object.
     const char * temp = id.data();
 
@@ -120,12 +121,17 @@ bool datacenter::validateMember(string id)
     entity memberID;
     memberID.addId(temp);
 
-    int result = authentication.authenticate(memberID);
+    result = authentication.authenticate(memberID);
 
     //1 indicates valid member.
     if(result == 1)
-        return true;
-
+    {
+       valOrSus = dataStorage.isSuspended(memberID);       
+       if(!valOrSus)  
+          return true;
+       else
+          return false;
+    }
     else
         return false; 
 }
@@ -218,9 +224,10 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    cout << endl;
    cout << "Service Fee: " << myRec.servFee << endl << endl;
    cout << "***************************************************\n";
-  
-   my_service_pro.display();
-   my_service_mem.display();
+
+ //for testing delete before deployment  
+ //  my_service_pro.display();
+ //  my_service_mem.display();
 
    return true;
 

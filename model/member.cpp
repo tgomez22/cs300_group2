@@ -146,8 +146,8 @@ void member::display()const
     using namespace std;
     if(suspended == true)
     {
-        cout<<"Your account is suspended. "<<endl;
-        cout<<"You owe: $"<<amtDue<<endl;
+        cout<<"The account is suspended. "<<endl;
+        cout<<"Amount owed: $"<<amtDue<<endl;
     }
 
     else
