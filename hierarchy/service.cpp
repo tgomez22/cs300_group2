@@ -51,9 +51,36 @@ bool service::inputService(servRecInfo & servRec)
    return true;
 }
 
+//Writes service data out to text file
 void service::writeOut()
 {
-
+    ofstream myFile;
+    myFile.open("data/service.txt", ios::app);
+    if(myFile)
+    {   
+        char * writeMemId = memId.getString();
+        char * writeDOS = dos.getString();
+        char * writeServName = servName.getString();
+        char * writeMemName = memName.getString();
+        char * writeProvName = provName.getString();
+        char * writeServDes = servDes.getString();
+		char * writeCode = servCode.getString();
+        json toWrite;
+        toWrite["memId"] = writeMemId;
+        toWrite["DOS"] = writeDOS;
+        toWrite["servName"] = writeServName;
+        toWrite["memName"] = writeMemName;
+        toWrite["provName"] = writeProvName;
+        toWrite["servDes"] = writeServDes;
+        toWrite["servCode"] = writeCode;
+		toWrite["servFee"] = servFee;
+        myFile << toWrite;
+        myFile.close();
+        system("openssl aes-256-cbc -salt -pbkdf2 -in data/service.txt -out data/serviceEncrypted.dat -pass pass:password"); //encryption
+    }   
+    else
+        cout << "Unable to open file." << endl;
+    return;	
 }
 
 //read in function for terminal folks. I (TRISTAN) filled this in for testing

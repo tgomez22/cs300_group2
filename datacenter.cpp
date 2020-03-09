@@ -185,6 +185,10 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    dataStorage.addService(my_pro_ent, my_service_pro);
    dataStorage.addService(my_mem_ent, my_service_mem);
    
+	//write each record to disk (text file)
+	my_service_pro.writeOut();
+	my_service_mem.writeOut();
+
    // EXAMPLE: const member * ptr = dynamic_cast<const member*>(*&temp->aPerson); 
  
    //for testing delete before deploy!!!!!!!! 
