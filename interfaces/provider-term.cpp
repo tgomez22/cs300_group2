@@ -1,6 +1,7 @@
 #include "provider-term.h"
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <string.h>  //for strcat
 #include <stdio.h>   //for strcat
@@ -290,14 +291,20 @@ bool fillServiceRecord(tString mem_id_num, tString id_num)
 }
 
 int runProviderReport(tString id_num)
-{  
+{ 
+   using namespace std;	
    bool checkValue = false;
    string id = id_num.getString();
-   ofstream providerEmail;
 
    while(true)
    {
-      //checkValue = datacenter::instance()->generateUserReport(id, providerEmail);
+      ofstream file_out("providerReport.txt", ios::app);
+      if(file_out)
+      {
+     // file_out << "WRITE THIS TO FILE!!" << endl;
+      checkValue = datacenter::instance()->generateUserReport(id, file_out);
+      file_out.close();
+      }
       if(checkValue == false)
       {
          cout << "Error Generating Report\n";

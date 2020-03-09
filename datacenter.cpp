@@ -171,8 +171,6 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
 
    my_service_pro.addId(myRec.providerID);
    my_service_mem.addId(myRec.memID); 
-  // service my_service_pro(dynamic_cast<service&>(**&copyPro.head));
-  // service my_service_mem(dynamic_cast<service&>(**&copyMem.head)); 
 
    //input the service record for each
    my_service_pro.inputService(myRec);
@@ -197,7 +195,7 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    cout << "***************************************************\n";
    cout << "This is the information for this record: \n";
    cout << "***************************************************\n";
-   cout << "Current Date & Time: ";
+   cout << "\nCurrent Date & Time: ";
            my_service_pro.displayTime();
    cout << "Service Date: ";
            myRec.servDate.display();
@@ -227,8 +225,8 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    cout << "***************************************************\n";
 
  //for testing delete before deployment  
-   my_service_pro.display();
-   my_service_mem.display();
+//   my_service_pro.display();
+//   my_service_mem.display();
 
    return true;
 
