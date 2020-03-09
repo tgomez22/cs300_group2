@@ -402,7 +402,7 @@ void serviceList::readIn()
         string tempCity = pRead["city"];
         string tempState = pRead["state"];
         string tempZip = pRead["zip"];
-        bool addConsultNum = pRead["consultNum"];
+        int addConsultNum = pRead["consultNum"];
         float addWeeklyFee = pRead["weeklyFee"];
         const char * addID = tempID.c_str();
         const char * addName = tempName.c_str();
