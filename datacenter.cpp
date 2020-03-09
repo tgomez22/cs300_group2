@@ -81,8 +81,7 @@ bool datacenter::validateProvider(string id) {
         return true;
 
     else
-       //return true;
-       return false; //commenting out for now...the validation isn't working yet
+       return false; 
 }
 
 //TODO with tristan
@@ -128,8 +127,7 @@ bool datacenter::validateMember(string id)
         return true;
 
     else
-        return true;
-        //return false; commenting out for now...validation doesn't work
+        return false; 
 }
 
 //TODO with tristan
@@ -138,47 +136,56 @@ string datacenter::getRandomId() {
   return "123456789";
 }
 
-//TODO with tristan
-//takes in service record data from terminal and copies to ???
+//takes in service record data from terminal and copies to user list
 bool datacenter::fillServiceRec(servRecInfo & myRec)
 {
-   char * p_name = new char(100);
-   char * m_name = new char(100);
-   service my_service_pro;
-   service my_service_mem;
+   service my_service_pro;        //to hold the provider's record
+   service my_service_mem;        //to hold the member's record
    
-   provider numToFindPro;
-   member numToFindMem;
-   serviceNode copyPro;
-   serviceNode copyMem;
+   provider numToFindPro;         //to get the provider's info.
+   member numToFindMem;           //to get the member's info.
+   
+   serviceNode copyPro;           //to use the getInfo. function
+   serviceNode copyMem;           //to use the getInfo. function
 
+   //get id nums from struct and put in entities
    numToFindPro.addId(myRec.providerID);
    numToFindMem.addId(myRec.memID);
-   
+  
+   //get info from main lists 
    dataStorage.getInfo(numToFindPro, copyPro);
    dataStorage.getInfo(numToFindMem, copyMem);
 
-   //my_service_pro.getMemId(myRec.providerID);
-   ///numToFindMem.getMemId(myRec.memID);
+   //for testing delete before deployment
+//   numToFindPro.display();
+//   cout << endl;
 
-   numToFindPro.display();
-   cout << endl;
+   //if there is info. add provider name and fee
+   if(numToFindPro.getName())
+      myRec.providerName.add(numToFindPro.getName()); 
+   if(numToFindPro.getFee())
+      myRec.servFee = numToFindPro.getFee();
+   else
+      myRec.servFee = 0.0;
 
-  // p_name = numToFindPro.getName(); 
-  // myRec.providerName.add(p_name);
-  // m_name = numToFindMem.getName();
-  // myRec.memberName.add(m_name);
+   //if there is info. add member name
+   if(numToFindMem.getName())
+      myRec.memberName.add(numToFindMem.getName());
 
+   //add the provider and member IDs 
    my_service_pro.addId(myRec.providerID);
    my_service_mem.addId(myRec.memID);
 
+   //input the service record for each
    my_service_pro.inputService(myRec);
    my_service_mem.inputService(myRec);
 
+   //store the service record for each
    dataStorage.addService(numToFindPro, my_service_pro);
    dataStorage.addService(numToFindMem, my_service_mem);
-  
-   my_service_pro.display();
+ 
+   //for testing delete before deploy!!!!!!!! 
+  // my_service_pro.display();
 
    cout << "***************************************************\n";
    cout << "This is the information for this record: \n";
@@ -203,7 +210,7 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    cout << "Service Code: ";
            myRec.servCode.display();
    cout << endl;
-   cout << "Service Description: ";
+   cout << "Service Name: ";
            myRec.servDescr.display();
    cout << endl;
    cout << "Comments: ";
@@ -211,7 +218,10 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    cout << endl;
    cout << "Service Fee: " << myRec.servFee << endl << endl;
    cout << "***************************************************\n";
-   
+  
+   my_service_pro.display();
+   my_service_mem.display();
+
    return true;
 
 }
