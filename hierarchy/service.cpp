@@ -240,7 +240,7 @@ void service::displayProviderDirectory()const
 }
 
 //Pass in a service code and get back the description and fee
-void service::getDescriptionFee(tString & servCode, tString & servName, float & servFee)
+void service::getDescription(tString & servCode, tString & servName)
 {
     ifstream myFile;
     myFile.open("data/providerDirectory.txt");
@@ -256,9 +256,6 @@ void service::getDescriptionFee(tString & servCode, tString & servName, float & 
 			string tempServName = service["servName"];
 			const char * addServName = tempServName.c_str();
 			servName.add(addServName);
-			//return service fee
-			float addServFee = service["servFee"];
-			servFee = addServFee;
 			delete [] addServName;
 		}
 		delete [] toCompare;
