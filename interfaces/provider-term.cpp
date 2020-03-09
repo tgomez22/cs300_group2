@@ -82,6 +82,8 @@ int createServiceRecord(tString id_num)
          {
             cout << "Error adding service record.\n";
          }
+         if(mem_id)
+            delete mem_id;
 	 break;  //Go back to terminal choice
       }
       else
@@ -100,8 +102,6 @@ int createServiceRecord(tString id_num)
       }
    }
     
-   if(mem_id)
-      delete mem_id;
    return 0;
 }
 //This function gets the info for the service record. Passes in member id and provider id
