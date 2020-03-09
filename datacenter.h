@@ -2,7 +2,7 @@
 #define __DATACENTER_H
 
 #include <string>
-#include <fstream>
+#include <iostream>
 
 #include "hierarchy/service.h"
 #include "interfaces/provider-term.h"
@@ -45,10 +45,10 @@ class datacenter {
     string getRandomId();
 
     //individual report functions
-    bool generateUserReport(string id, ofstream& email);
-    bool generateManagerReport(ofstream& email);
-    bool generateProviderServiceReports(serviceNode& list, ofstream& email);
-    bool generateMemberServiceReports(serviceNode& list, ofstream& email);
+    bool generateUserReport(string id, ostream& target = cout);
+    bool generateManagerReport(ostream& target = cout);
+    bool generateProviderServiceReports(serviceNode& list, ostream& target);
+    bool generateMemberServiceReports(serviceNode& list, ostream& target);
 
   private:
     static datacenter *s_instance; 
