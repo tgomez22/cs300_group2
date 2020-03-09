@@ -216,30 +216,18 @@ service *& service::toNext()
     return next;
 }
 
-//This function will display all the "stored providers". I am hard coding this in 
-//for now. I can't think of a good place to put this. I may consider making this char**
-//a private data member. 
+//This function will display all the "stored providers" 
 void service::displayProviderDirectory()const
 {
-    using namespace std;
-    //Change this to affect rest of function.
-    int directorySize = 8;
-
-
-    //magic number place holder.
-  char providerDirectory [directorySize][SIZE] = {"Dietitian (598470) ", "Aerobics Exercise Session (883948)", "Massage Therapy (623587)", "Acupuncture (117824)", 
-      "Hypnosis (534336)", "Yoga (001245)", "Zumba (566324)", "Cooking w/o Chocolate (667990)"};
-    
-
-  for(int i = 2; i < directorySize; ++i)
-  {
-        cout<<"Service: "<<providerDirectory[i]<<endl;
-  }
-
-  return;
-
-
-
+	ifstream myFile;
+	myFile.open("data/providerDirectory.txt");
+	json service;
+	while(!myFile.eof() && myFile >> service >> ws)
+	{
+		cout << "Service: " << service["servName"].get<string>() << " (" << service["servCode"] << ")" << endl;	
+	}
+	myFile.close();
+	return;
 }
 
 //getter functions
