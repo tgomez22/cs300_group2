@@ -30,6 +30,7 @@ serviceList::serviceList()
 	}
 
 	table -= SIZE;
+	readIn();
 }
 
 
@@ -370,9 +371,21 @@ void serviceList::readIn()
     json mRead;
     while(!memberFile.eof() && memberFile >> mRead >> ws) 
     {   
-        string temp = mRead["memId"];  
-        const char * toUse = temp.c_str();
-        aMember.addId(toUse);
+        string tempID = mRead["memId"]; //json serialization library only compatible with string class
+		string tempName = mRead["name"];
+		string tempAddress = mRead["address"];
+		string tempCity = mRead["city"];
+		string tempState = mRead["state"];
+		string tempZip = mRead["zip"];
+		bool addSuspended = mRead["suspended"];
+		float addAmtDue = mRead["amtDue"];
+        const char * addID = tempID.c_str();
+		const char * addName = tempName.c_str();
+		const char * addAddress = tempAddress.c_str();
+		const char * addCity = tempCity.c_str();
+		const char * addState = tempState.c_str();
+		const char * addZip = tempZip.c_str();
+        aMember.addInfo(addID, addName, addAddress, addCity, addState, addZip, addSuspended, addAmtDue);
         addPerson(aMember);
     }   
     memberFile.close();
@@ -383,9 +396,21 @@ void serviceList::readIn()
     json pRead;
     while(!providerFile.eof() && providerFile >> pRead >> ws) 
     {   
-        string temp = pRead["memId"];  
-        const char * toUse = temp.c_str();
-        aProvider.addId(toUse);
+	    string tempID = pRead["memId"]; //json serialization library only compatible with string class
+        string tempName = pRead["name"];
+        string tempAddress = pRead["address"];
+        string tempCity = pRead["city"];
+        string tempState = pRead["state"];
+        string tempZip = pRead["zip"];
+        int addConsultNum = pRead["consultNum"];
+        float addWeeklyFee = pRead["weeklyFee"];
+        const char * addID = tempID.c_str();
+        const char * addName = tempName.c_str();
+        const char * addAddress = tempAddress.c_str();
+        const char * addCity = tempCity.c_str();
+        const char * addState = tempState.c_str();
+        const char * addZip = tempZip.c_str();
+        aProvider.addInfo(addID, addName, addAddress, addCity, addState, addZip, addConsultNum, addWeeklyFee);
         addPerson(aProvider);
     }   
     providerFile.close();
