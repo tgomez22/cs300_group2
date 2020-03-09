@@ -34,8 +34,9 @@ class service: public entity
                                         //very easy implementation. tells you the current date
                 void displayTime(void); //this will display the time in a readable form.
                 int getWeek();
-                void displayProviderDirectory()const;	
-      
+		void displayProviderDirectory()const;	
+		void getDescriptionFee(tString & servCode, tString & servName, float & servFee);
+		      
       //getter functions
       char* getMemName();
       char* getProvName();

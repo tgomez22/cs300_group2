@@ -9,6 +9,12 @@
 #include <iostream>
 #include "service.h" 
 #include "../model/tString.h"
+#include <string>
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+using namespace std;
+
 service::service()
 {
   time_t numberTime;
@@ -214,31 +220,47 @@ service *& service::toNext()
     return next;
 }
 
-//This function will display all the "stored providers". I am hard coding this in 
-//for now. I can't think of a good place to put this. I may consider making this char**
-//a private data member. 
+//This function will display all the "stored providers" 
 void service::displayProviderDirectory()const
 {
-    using namespace std;
-    //Change this to affect rest of function.
-    int directorySize = 8;
-
-
-    //magic number place holder.
-  char providerDirectory [directorySize][SIZE] = {"Dietitian (598470) ", "Aerobics Exercise Session (883948)", "Massage Therapy (623587)", "Acupuncture (117824)", 
-      "Hypnosis (534336)", "Yoga (001245)", "Zumba (566324)", "Cooking w/o Chocolate (667990)"};
-    
-
-  for(int i = 2; i < directorySize; ++i)
-  {
-        cout<<"Service: "<<providerDirectory[i]<<endl;
-  }
-
-  return;
-
-
-
+	ifstream myFile;
+	myFile.open("data/providerDirectory.txt");
+	json service;
+	while(!myFile.eof() && myFile >> service >> ws)
+	{
+		cout << "Service: " << service["servName"].get<string>() << " (" << service["servCode"] << ")" << endl;	
+	}
+	myFile.close();
+	return;
 }
+
+//Pass in a service code and get back the description and fee
+void service::getDescriptionFee(tString & servCode, tString & servName, float & servFee)
+{
+    ifstream myFile;
+    myFile.open("data/providerDirectory.txt");
+    json service;
+    while(!myFile.eof() && myFile >> service >> ws) 
+    {
+		string tempServCode = service["servCode"];
+		const char * toCompare = tempServCode.c_str(); 
+		//if the service code passed in matches service in directory
+		if(servCode.compare(toCompare) == 0)
+		{
+			//return service description (name)
+			string tempServName = service["servName"];
+			const char * addServName = tempServName.c_str();
+			servName.add(addServName);
+			//return service fee
+			float addServFee = service["servFee"];
+			servFee = addServFee;
+			delete [] addServName;
+		}
+		delete [] toCompare;
+    }   
+    myFile.close();
+    return;
+} 
 
 //getter functions
 char* service::getMemName()
