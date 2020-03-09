@@ -202,10 +202,14 @@ bool fillServiceRecord(tString mem_id_num, tString id_num)
       cin.ignore(SIZE, '\n'); 
 
       cout << "You entered: " << serviceCode << endl;
-
+      my_serv_rec.servCode.add(serviceCode);
+      
       cout << "\nThe service corresponding to the code you entered is: \n";
+      my_service.getDescriptionFee(my_serv_rec.servCode, my_serv_rec.servDescr, my_serv_rec.servFee);
+         
       //run display service function serviceDescription(serviceCode)
-      cout << "FUNCTIONALITY TO COME\n";
+      my_serv_rec.servDescr.display();
+      cout << endl;
 
       cout << "Is this information correct? (y/n)\n";
       cin >> answerYN;
@@ -270,8 +274,8 @@ bool fillServiceRecord(tString mem_id_num, tString id_num)
    my_serv_rec.providerID.add(id_num);
    my_serv_rec.memID.add(mem_id_num);
    my_serv_rec.servDate.add(service_date);
-   my_serv_rec.servCode.add(serviceCode);
-   my_serv_rec.servDescr.add("TO ADD DESCRP");
+   //my_serv_rec.servCode.add(serviceCode);
+   //my_serv_rec.servDescr.add("TO ADD DESCRP");
    if(comments[0] != '\0')
       my_serv_rec.commentField.add(comments);
 
