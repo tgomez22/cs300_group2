@@ -9,6 +9,12 @@
 #include <iostream>
 #include "service.h" 
 #include "../model/tString.h"
+#include <string>
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+using namespace std;
+
 service::service()
 {
   time_t numberTime;
