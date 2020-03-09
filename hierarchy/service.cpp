@@ -119,6 +119,10 @@ void service::display(void) const
 {
   using namespace std;
 
+  cout << "User ID: ";
+  memId.display();
+  cout << endl;
+
   cout << "Date of Service: ";
   dos.display();
   cout << endl;

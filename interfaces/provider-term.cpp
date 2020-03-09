@@ -287,7 +287,20 @@ bool fillServiceRecord(tString mem_id_num, tString id_num)
 }
 
 int runProviderReport(tString id_num)
-{
+{  
+   bool checkValue = false;
+   string id = id_num.getString();
+   ofstream providerEmail;
+
+   while(true)
+   {
+      //checkValue = datacenter::instance()->generateUserReport(id, providerEmail);
+      if(checkValue == false)
+      {
+         cout << "Error Generating Report\n";
+      }
+      break;
+   }
    return 0;
 }
 

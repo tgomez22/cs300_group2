@@ -157,38 +157,34 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    //get id nums from struct and put in entities
    numToFindPro.addId(myRec.providerID);
    numToFindMem.addId(myRec.memID);
-  
+ 
+    
    //get info from main lists 
    dataStorage.getInfo(numToFindPro, copyPro);
    dataStorage.getInfo(numToFindMem, copyMem);
 
-   //for testing delete before deployment
-//   numToFindPro.display();
-//   cout << endl;
+   myRec.providerName.add(copyPro.aPerson->getName());
+   myRec.servFee = copyPro.aPerson->getFee();
 
-   //if there is info. add provider name and fee
-   if(numToFindPro.getName())
-      myRec.providerName.add(numToFindPro.getName()); 
-   if(numToFindPro.getFee())
-      myRec.servFee = numToFindPro.getFee();
-   else
-      myRec.servFee = 0.0;
+   myRec.memberName.add(copyMem.aPerson->getName());
 
-   //if there is info. add member name
-   if(numToFindMem.getName())
-      myRec.memberName.add(numToFindMem.getName());
-
-   //add the provider and member IDs 
    my_service_pro.addId(myRec.providerID);
-   my_service_mem.addId(myRec.memID);
+   my_service_mem.addId(myRec.memID); 
+  // service my_service_pro(dynamic_cast<service&>(**&copyPro.head));
+  // service my_service_mem(dynamic_cast<service&>(**&copyMem.head)); 
 
    //input the service record for each
    my_service_pro.inputService(myRec);
    my_service_mem.inputService(myRec);
 
+   const entity my_pro_ent = dynamic_cast<const entity&>(**&copyPro.aPerson);
+   const entity my_mem_ent = dynamic_cast<const entity&>(**&copyMem.aPerson);
+   
    //store the service record for each
-   dataStorage.addService(numToFindPro, my_service_pro);
-   dataStorage.addService(numToFindMem, my_service_mem);
+   dataStorage.addService(my_pro_ent, my_service_pro);
+   dataStorage.addService(my_mem_ent, my_service_mem);
+   
+   // EXAMPLE: const member * ptr = dynamic_cast<const member*>(*&temp->aPerson); 
  
    //for testing delete before deploy!!!!!!!! 
   // my_service_pro.display();
@@ -226,8 +222,8 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    cout << "***************************************************\n";
 
  //for testing delete before deployment  
- //  my_service_pro.display();
- //  my_service_mem.display();
+   my_service_pro.display();
+   my_service_mem.display();
 
    return true;
 
