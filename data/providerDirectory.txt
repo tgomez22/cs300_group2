@@ -1,0 +1,8 @@
+{"servCode":598470,"servName":"Dietitian","servFee":100.00}
+{"servCode":883948,"servName":"Aerobics Exercise Session","servFee":100.00}
+{"servCode":623587,"servName":"Massage Therapy","servFee":100.00}
+{"servCode":117824,"servName":"Acupuncture","servFee":100.00}
+{"servCode":534336,"servName":"Hypnosis","servFee":100.00}
+{"servCode":001245,"servName":"Yoga","servFee":100.00}
+{"servCode":566324,"servName":"Zumba","servFee":100.00}
+{"servCode":667990,"servName":"Cooking w/o Chocolate","servFee":100.00}
