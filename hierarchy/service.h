@@ -51,7 +51,7 @@ class service: public entity
 		tString servName;
 		tString memName;//MEMBER NAME!!!
                 tString provName;//PROVIDER NAME!
-        tString servDes; //service description.
+                tString servDes; //service description.
 		//has memNum from base class entity
 		tString servCode;
 		float servFee;

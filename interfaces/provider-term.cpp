@@ -66,23 +66,22 @@ int createServiceRecord(tString id_num)
       cout << "  to create a service record.\n\n";
       
       mem_id_num = getId();
-    
-      mem_id = new char[mem_id_num.length() +1];
-      strcpy(mem_id, mem_id_num.c_str());
-
-      m_ID.add(mem_id);
-
       if(mem_id_num == "")
       {
          break;
       }
       if(datacenter::instance()->validateMember(mem_id_num))
       {
-         successOrFail = fillServiceRecord(m_ID, id_num);
+         mem_id = new char[mem_id_num.length() +1];
+         strcpy(mem_id, mem_id_num.c_str());
+
+         m_ID.add(mem_id);
+        
+	 successOrFail = fillServiceRecord(m_ID, id_num);
 	 if(successOrFail == false)
-	 {
-	    cout << "Error Adding Service." << endl;
-	 }
+         {
+            cout << "Error adding service record.\n";
+         }
 	 break;  //Go back to terminal choice
       }
       else
@@ -110,6 +109,20 @@ bool fillServiceRecord(tString mem_id_num, tString id_num)
 {
    servRecInfo my_serv_rec;
    service my_service;
+   char temp[3];
+   temp[0] = 'N';
+   temp[1] = 'A';
+   temp[2] = '\0';
+
+   my_serv_rec.currentDateTime.add(temp);
+   my_serv_rec.providerID.add(temp);
+   my_serv_rec.providerName.add(temp);
+   my_serv_rec.memID.add(temp);
+   my_serv_rec.memberName.add(temp);
+   my_serv_rec.servDate.add(temp);
+   my_serv_rec.servDescr.add(temp);
+   my_serv_rec.servFee = 0.0;
+   my_serv_rec.commentField.add(temp);
 
    char service_date_m[MONTHSZ];
    char service_date_d[MONTHSZ];
@@ -126,6 +139,7 @@ bool fillServiceRecord(tString mem_id_num, tString id_num)
    bool successOrFail = false;
    bool goodToGo = false;
 
+
    cout << "\nThe Provider ID for this record is: ";
    id_num.display();
    cout << endl;
@@ -135,7 +149,7 @@ bool fillServiceRecord(tString mem_id_num, tString id_num)
    
    //Enter date of service in proper format
    do{
-      cout << "Enter the month of service: (ex. enter 04 for April) " << endl;
+      cout << "\nEnter the month of service: (ex. enter 04 for April) " << endl;
       cin.get(service_date_m, MONTHSZ, '\n');
       cin.ignore(SIZE, '\n');
 
@@ -258,7 +272,8 @@ bool fillServiceRecord(tString mem_id_num, tString id_num)
    my_serv_rec.servDate.add(service_date);
    my_serv_rec.servCode.add(serviceCode);
    my_serv_rec.servDescr.add("TO ADD DESCRP");
-   my_serv_rec.commentField.add(comments);
+   if(comments[0] != '\0')
+      my_serv_rec.commentField.add(comments);
 
    successOrFail = datacenter::instance()->fillServiceRec(my_serv_rec);
 
