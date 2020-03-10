@@ -461,6 +461,12 @@ void serviceList::displayStored()const
             while(temp)
             {   
                 temp->aPerson->display();
+				service * ptr = temp->head;
+				while(ptr)
+				{
+					ptr->display();
+					ptr = ptr->toNext();	
+				}
                 cout<<endl;
                 temp = temp->next;
             }   
