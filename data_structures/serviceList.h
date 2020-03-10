@@ -44,15 +44,27 @@ class serviceList
         //For Chris to use to pull individual member/provider profile and all services associated with that individual.
         bool getInfo(const entity & toFind, serviceNode & copy);
 
+        //For Mikayla, this will return false if the member doesn't exist. If member exists then it will display
+        //EVERYTHING about them, including services and return true. Pass mem num as arg.
+        bool displayInfo(const entity & toFind);
+
         bool copyServices(service *& dest, service * source)const;
 
         int isSuspended(const entity & toFind);
         
         //suspends a member's account.
         bool suspendMember(const entity & toFind);
+        
+        //remove a person fro the list and all of their services.Returns true if removes. returns false if 
+        //person isn't found.
+        bool removeMember(const entity & toRemove);
+
+        bool updateMemberInfo(const entity & toFind);
 
 private:
 		void readIn();
+
+        bool removeMember(serviceNode *& ptr, const entity & toRemove);
         void removeNodes(serviceNode *& toRemove);
         void removeServices(service *& toRemove);
         
