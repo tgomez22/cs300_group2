@@ -50,7 +50,8 @@ class serviceList
         
         //suspends a member's account.
         bool suspendMember(const entity & toFind);
-
+		//Displays stored person objects for testing
+		void displayStored()const;
 private:
 		void readIn();
         void removeNodes(serviceNode *& toRemove);

@@ -416,3 +416,23 @@ void serviceList::readIn()
     providerFile.close();
     return;
 }
+
+void serviceList::displayStored()const
+{
+    using namespace std;
+    for(int i = 0; i < SIZE; ++i)
+    {   
+        if(table[i])
+        {   
+            cout<<"At index: "<< i <<endl;
+            serviceNode * temp = table[i];
+            while(temp)
+            {   
+                temp->aPerson->display();
+                cout<<endl;
+                temp = temp->next;
+            }   
+        }   
+    }   
+    return;
+}
