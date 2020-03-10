@@ -319,3 +319,16 @@ char* service::getServDes()
 {
     return servDes.getString();
 }
+
+void service::addInfo(const char * addDOS, const char * addMemId, const char * addMemName, const char * addProvName, const char * addServCode, const char * addServDes, const char * addServName, float addServFee)
+{
+    entity::addId(addMemId);
+	dos.add(addDOS);
+	memName.add(addMemName);
+	provName.add(addProvName);
+	servCode.add(addServCode);
+	servDes.add(addServDes);
+	servName.add(addServName);
+	servFee = addServFee;	
+    return;
+}
