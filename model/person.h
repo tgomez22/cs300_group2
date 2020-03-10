@@ -33,10 +33,13 @@ class person: public entity
 		
 		//adds info to person for use in serviceList
 		void addInfo(const char * addID, const char * addName, const char * addAddress, const char * addCity, const char * addState, const char * addZip);
-    	//suspends a person's account.
-    	virtual bool suspendMember() = 0;
+    //suspends a person's account.
+    virtual bool suspendMember() = 0;
+	
 		virtual void display()const = 0;
 
+        //For terminal folks! used in member and provider classes.
+        virtual bool readIn() = 0;
 	protected:
 		tString name;
 		//memNum exists in entity
@@ -48,9 +51,7 @@ class person: public entity
         //Shawn let me know if this prototype needs to change.
         virtual void writeOut() = 0;
 
-        //For terminal folks! used in member and provider classes.
-        virtual bool readIn() = 0;
-		//Displays all private data, for terminal people.
+        //Displays all private data, for terminal people.
         void showInfo()const;
 };
 

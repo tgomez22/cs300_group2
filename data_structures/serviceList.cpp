@@ -468,3 +468,108 @@ void serviceList::displayStored()const
     }   
     return;
 }
+
+bool serviceList::displayInfo(const entity & toFind)
+{
+    int index = getKey(toFind.getIdValue());
+
+    if(!table[index])
+        return false;
+
+    else
+    {
+        serviceNode * temp = table[index];
+        
+        //search for person and stop traversing when compare == 0
+        while(temp && temp->aPerson->compare(toFind) != 0)
+        {
+            temp = temp->next;
+        }
+
+        if(!temp)
+            return false;
+
+        else
+        {
+            temp->aPerson->display();
+            service * ptr = temp->head;
+
+            while(ptr)
+            {
+                ptr->display();
+                ptr = ptr->toNext();
+            }
+
+            return true;
+        }
+
+
+
+    }
+}
+
+bool serviceList::removeMember(const entity & toRemove)
+{
+    int index = getKey(toRemove.getIdValue());
+
+    if(!table[index])
+        return false;
+
+    else
+    {
+        return removeMember(table[index], toRemove);
+    }
+}
+
+bool serviceList::removeMember(serviceNode *& ptr, const entity & toRemove)
+{
+    bool result = false;
+
+    if(!ptr)
+        return result;
+
+    result = removeMember(ptr->next, toRemove);
+
+    if(ptr->aPerson->compare(toRemove)==0)
+    {
+        removeServices(ptr->head);
+
+        if(ptr->aPerson)
+            delete ptr->aPerson;
+
+        ptr->aPerson = NULL;
+
+        serviceNode * temp = ptr->next;
+        delete ptr;
+        ptr = temp;
+
+        return true;
+    }
+}
+
+bool serviceList::updateMemberInfo(const entity & toFind)
+{
+    int index = getKey(toFind.getIdValue());
+
+    if(!table[index])
+        return false;
+
+    else
+    {
+        serviceNode * temp = table[index];
+
+        while(temp && temp->aPerson->compare(toFind) != 0)
+        {
+            temp = temp->next;
+        }
+        
+        if(!temp)
+            return false;
+
+        else
+        {
+            temp->aPerson->readIn();
+            return true;
+        }
+    }
+}

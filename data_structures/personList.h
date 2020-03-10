@@ -35,8 +35,13 @@ class personList
         void displayStored()const;
 
         bool add(const entity & toAdd);
+        
+
+        //removes a member. Returns false if member isn't in data structure. returns true if deleted.
+        bool removeMember(const entity & toRemove);
 
 	private:
+        bool removeMember(personNode *& head, const entity & toRemove);
         bool writeOut();
 		bool readIn();
         int getIndex(int keyValue);
