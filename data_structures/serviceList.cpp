@@ -417,6 +417,11 @@ void serviceList::readIn()
     return;
 }
 
+void serviceList::readInServices()
+{
+
+}
+
 void serviceList::displayStored()const
 {
     using namespace std;

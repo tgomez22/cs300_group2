@@ -53,7 +53,10 @@ class serviceList
 		//Displays stored person objects for testing
 		void displayStored()const;
 private:
+		//Read in member/provider and service data from text files
 		void readIn();
+		void readInServices()
+
         void removeNodes(serviceNode *& toRemove);
         void removeServices(service *& toRemove);
         
