@@ -35,8 +35,7 @@ class person: public entity
 		void addInfo(const char * addID, const char * addName, const char * addAddress, const char * addCity, const char * addState, const char * addZip);
     	//suspends a person's account.
     	virtual bool suspendMember() = 0;
-        //Displays all private data, for terminal people.
-        void showInfo()const;	
+		virtual void display()const = 0;
 
 	protected:
 		tString name;
@@ -45,13 +44,14 @@ class person: public entity
 		tString city;
 		tString state;
 	    tString zip;
-		virtual void display()const = 0;
 
         //Shawn let me know if this prototype needs to change.
         virtual void writeOut() = 0;
 
         //For terminal folks! used in member and provider classes.
         virtual bool readIn() = 0;
+		//Displays all private data, for terminal people.
+        void showInfo()const;
 };
 
 #endif
