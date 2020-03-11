@@ -54,6 +54,8 @@ class serviceList
         
         //suspends a member's account.
         bool suspendMember(const entity & toFind);
+		//Displays stored person objects for testing
+		void displayStored()const;
         
         //remove a person fro the list and all of their services.Returns true if removes. returns false if 
         //person isn't found.
@@ -62,8 +64,9 @@ class serviceList
         bool updateMemberInfo(const entity & toFind);
 
 private:
+		//Read in member/provider and service data from text files
 		void readIn();
-
+		void readInServices();
         bool removeMember(serviceNode *& ptr, const entity & toRemove);
         void removeNodes(serviceNode *& toRemove);
         void removeServices(service *& toRemove);

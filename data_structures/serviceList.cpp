@@ -31,6 +31,7 @@ serviceList::serviceList()
 
 	table -= SIZE;
 	readIn();
+	readInServices();
 }
 
 
@@ -414,6 +415,66 @@ void serviceList::readIn()
         addPerson(aProvider);
     }   
     providerFile.close();
+    return;
+}
+
+void serviceList::readInServices()
+{
+    ifstream serviceFile;
+    serviceFile.open("data/service.txt");
+	entity anEntity;
+    service aService;
+    json toRead;
+    while(!serviceFile.eof() && serviceFile >> toRead >> ws) 
+    {   
+		string tempDOS = toRead["DOS"];
+        string tempMemId = toRead["memId"]; //json serialization library only compatible with string class
+        string tempMemName = toRead["memName"];
+        string tempProvName = toRead["provName"];
+        string tempServCode = toRead["servCode"];
+        string tempServDes = toRead["servDes"];
+        string tempServName = toRead["servName"];
+        float addServFee = toRead["servFee"];
+        const char * addDOS = tempDOS.c_str();
+        const char * addMemId = tempMemId.c_str();
+        const char * addMemName = tempMemName.c_str();
+        const char * addProvName = tempProvName.c_str();
+        const char * addServCode = tempServCode.c_str();
+        const char * addServDes = tempServDes.c_str();
+		const char * addServName = tempServName.c_str();
+        aService.addInfo(addDOS, addMemId, addMemName, addProvName, addServCode, addServDes, addServName, addServFee);
+		anEntity.addId(addMemId);
+        addService(anEntity, aService);
+    }   
+    serviceFile.close();
+    return;
+}
+
+void serviceList::displayStored()const
+{
+    using namespace std;
+    for(int i = 0; i < SIZE; ++i)
+    {   
+        if(table[i])
+        {   
+            cout<<"At index: "<< i <<endl;
+            serviceNode * temp = table[i];
+            while(temp)
+            {   
+                temp->aPerson->display();
+				service * ptr = temp->head;
+				if(ptr)
+					cout << "\nThis member's services:" << endl;
+				while(ptr)
+				{
+					ptr->display();
+					ptr = ptr->toNext();	
+				}
+                cout<<endl;
+                temp = temp->next;
+            }   
+        }   
+    }   
     return;
 }
 

@@ -47,7 +47,8 @@ class service: public entity
       float getServFee();
       char* getDate();
       char* getServDes();
-
+		//Add service data to object for use in serviceList
+		void addInfo(const char * addDOS, const char * addMemId, const char * addMemName, const char * addProvName, const char * addServCode, const char * addServDes, const char * addServName, float servFee);
 	private:
 		tString dos; //date of service in form: www mmm dd hh:mm:ss yyyy
 		long numberTime; //number of seconds since jan 1st 1970 00:00:00 (good for week calculations

@@ -51,7 +51,6 @@ class person: public entity
         //Shawn let me know if this prototype needs to change.
         virtual void writeOut() = 0;
 
-
         //Displays all private data, for terminal people.
         void showInfo()const;
 };
