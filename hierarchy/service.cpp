@@ -4,8 +4,8 @@
 
 
 
-
-#include <time.h>
+#include <stdio.h>      //for time formatting
+#include <time.h>       //for time formatting
 #include <iostream>
 #include "service.h" 
 #include "../model/tString.h"
@@ -191,14 +191,25 @@ void service::displayTime(void)
   using namespace std;
   time(&numberTime);
   cout << ctime(&numberTime);
-
+  return;
 }
 
 char* service::getTime(void)
 {
   using namespace std;
-  time(&numberTime);
-  return ctime(&numberTime);
+  time_t rawtime;
+  struct tm * timeinfo;
+  char timeOut[SIZE];
+  char * retTime;
+
+  time(&rawtime);
+  timeinfo = localtime (&rawtime);
+
+  strftime(timeOut,SIZE," %F %T",timeinfo);
+
+  retTime = timeOut;
+
+  return retTime;
 
 }
 //ABBIE!!! I commented these out because curr_time doesnt
