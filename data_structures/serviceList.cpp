@@ -31,6 +31,7 @@ serviceList::serviceList()
 
 	table -= SIZE;
 	readIn();
+	readInServices();
 }
 
 
@@ -462,6 +463,8 @@ void serviceList::displayStored()const
             {   
                 temp->aPerson->display();
 				service * ptr = temp->head;
+				if(ptr)
+					cout << "\nThis member's services:" << endl;
 				while(ptr)
 				{
 					ptr->display();
