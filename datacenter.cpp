@@ -292,9 +292,9 @@ bool datacenter::runProviderReport(tString id_num)
    file_out.open(fileName);
    if(file_out)   
    {
-      //file_out << "TESTING FILE CREATION!\n";
       checkValue = datacenter::instance()->generateUserReport(proId, file_out);
       file_out.close();
+      cout << "\nProvider report sent to: " << fileName << endl << endl;
    }
    else
    {
