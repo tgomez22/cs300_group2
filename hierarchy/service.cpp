@@ -205,7 +205,7 @@ char* service::getTime(void)
   time(&rawtime);
   timeinfo = localtime (&rawtime);
 
-  strftime(timeOut,SIZE," %F %T",timeinfo);
+  strftime(timeOut,SIZE," %m-%d-%Y %T",timeinfo);
 
   retTime = timeOut;
 
