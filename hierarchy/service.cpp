@@ -189,6 +189,7 @@ void service::display(void) const
   cout<< endl;
 }
 
+
 void service::displayTime(void)
 {
   using namespace std;
@@ -197,6 +198,13 @@ void service::displayTime(void)
 
 }
 
+char* service::getTime(void)
+{
+  using namespace std;
+  time(&numberTime);
+  return ctime(&numberTime);
+
+}
 //ABBIE!!! I commented these out because curr_time doesnt
 //seem to exist in this class as a data member. Maybe it got 
 //deleted???
