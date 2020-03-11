@@ -252,8 +252,6 @@ bool datacenter::runProviderReport(tString id_num)
    service my_service_pro;        //to use to get the date/time 
    ofstream file_out;             //to send info to file
    bool checkValue = false;       //to check if function worked
-   int j = 0;
-   int k = 0;
 
    //to change to string
    proId = id_num.getString();
@@ -266,9 +264,6 @@ bool datacenter::runProviderReport(tString id_num)
   
    proPtr = providerName.getString();
    timePtr = my_service_pro.getTime();
-
-   cout << proPtr << endl;
-   cout << timePtr << endl;
 
    for(int i=0; i<FSIZE; ++i)
    {
