@@ -36,6 +36,8 @@ class datacenter {
     bool checkIdFormat(string scannedId);
     //Fills in the service record
     bool fillServiceRec(servRecInfo &);
+    //Runs the provider report
+    bool runProviderReport(tString id_num);
     //Run the friday night, mass report function. Returns true
     //If it was generated successfully.
     bool generateFridayNightReports();

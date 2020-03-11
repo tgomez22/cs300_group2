@@ -4,10 +4,15 @@
 #include <cstring>
 #include <functional>
 #include <random>
+#include <string.h>  //for strcat
+#include <stdio.h>   //for strcat
 
 #include "data_structures/personList.h"
 #include "model/entity.h"
 
+const int FSIZE = 101;
+const int NSIZE = 26;
+const int TSIZE = 51;
 using namespace std;
 
 datacenter* datacenter::s_instance = NULL;
@@ -232,6 +237,77 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
 
 }
 
+bool datacenter::runProviderReport(tString id_num)
+{
+   string proId;                  //to get string version
+   tString providerName;          //to store provider name 
+   char * proPtr;                 //to aid in getting info
+   char * timePtr;                //to aid in getting info
+   char proName[NSIZE];           //to store provider name
+   char currentTime[TSIZE];       //to store current time
+   char fileName[FSIZE];          //to store file name
+   provider numToFindPro;         //to get the provider's info.
+   serviceNode copyPro;           //to use the getInfo. function
+   numToFindPro.addId(id_num);    //to set ID to look for
+   service my_service_pro;        //to use to get the date/time 
+   ofstream file_out;             //to send info to file
+   bool checkValue = false;       //to check if function worked
+   int j = 0;
+   int k = 0;
+
+   //to change to string
+   proId = id_num.getString();
+
+   //to get info from record 
+   dataStorage.getInfo(numToFindPro, copyPro);
+ 
+   //copy over info 
+   providerName.add(copyPro.aPerson->getName());
+  
+   proPtr = providerName.getString();
+   timePtr = my_service_pro.getTime();
+
+   cout << proPtr << endl;
+   cout << timePtr << endl;
+
+   for(int i=0; i<FSIZE; ++i)
+   {
+      fileName[i] = '\0';
+   }
+   for(int i=0; i<NSIZE; ++i)
+   {
+      proName[i] = '\0';
+   }
+   for(int i=0; i<TSIZE; ++i)
+   {
+      currentTime[i] = '\0';
+   } 
+   for(int i=0; i<NSIZE; ++i)
+   { 
+      proName[i] = proPtr[i];
+   }
+   for(int i=0; i<TSIZE; ++i)
+   {
+      currentTime[i] = timePtr[i];
+   }
+
+   strcpy(fileName, proName);
+   strcat(fileName, currentTime);   
+ 
+   file_out.open(fileName);
+   if(file_out)   
+   {
+      //file_out << "TESTING FILE CREATION!\n";
+      checkValue = datacenter::instance()->generateUserReport(proId, file_out);
+      file_out.close();
+   }
+   else
+   {
+      cout << "\nError with generation of report.\n";
+   } 
+
+   return checkValue;
+}
 
 
 
