@@ -290,11 +290,11 @@ int runProviderReport(tString id_num)
 {  
    bool checkValue = false;
    string id = id_num.getString();
-   ofstream providerEmail;
+   //ofstream providerEmail;
 
    while(true)
    {
-      //checkValue = datacenter::instance()->generateUserReport(id, providerEmail);
+      checkValue = datacenter::instance()->generateUserReport(id);
       if(checkValue == false)
       {
          cout << "Error Generating Report\n";

@@ -259,7 +259,7 @@ bool datacenter::processAcmeRecords(acmeRecord*, int num) {
 //----------------------------------------------------------
 //report functions
 
-bool datacenter::generateUserReport(string id, ostream& target = cout)
+bool datacenter::generateUserReport(string id, ostream& target)
 {
   //TODO: write user info printing
 
@@ -280,7 +280,7 @@ bool datacenter::generateUserReport(string id, ostream& target = cout)
     return false;
 }
 
-bool datacenter::generateManagerReport(ostream& target = cout)
+bool datacenter::generateManagerReport(ostream& target)
 {
   return true;
 }

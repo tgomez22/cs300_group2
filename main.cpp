@@ -27,6 +27,9 @@ using namespace std;        //for standard I/O
 #include "interfaces/validation-term.h"
 #include "interfaces/cuecat.h"
 
+//can delete this include later, using it to test 'r'
+#include "datacenter.h"
+
 int main(int argc, char* argv[])
 {
    //Bypass all our terminal stuff for testing
@@ -36,6 +39,11 @@ int main(int argc, char* argv[])
        case 'd':
          datacenterTest();
          break;	
+       case 'r': {
+         datacenter* DCtest = datacenter::instance();
+         DCtest->generateUserReport("200000002");
+         }
+         break;
        case 't':
          return Catch::Session().run(); //Calls tests in testing/tests.cpp
          //If you want to make more testing files, just add more cases and call whatever you want.
