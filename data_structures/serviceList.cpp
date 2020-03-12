@@ -262,6 +262,7 @@ bool serviceList::getInfo(const entity & toFind, serviceNode & copy)
             {
                 copy.aPerson = new member(*ptr);
                 copy.next = NULL;
+                copy.head = NULL;
                 copyServices(copy.head, temp->head);
             }
 
@@ -272,6 +273,7 @@ bool serviceList::getInfo(const entity & toFind, serviceNode & copy)
                 {
                     copy.aPerson = new provider(*ptr2);
                     copy.next = NULL;
+                    copy.head = NULL;
                     copyServices(copy.head, temp->head);
                 }
             }
