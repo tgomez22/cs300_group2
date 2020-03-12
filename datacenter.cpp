@@ -4,10 +4,15 @@
 #include <cstring>
 #include <functional>
 #include <random>
+#include <string.h>  //for strcat
+#include <stdio.h>   //for strcat
 
 #include "data_structures/personList.h"
 #include "model/entity.h"
 
+const int FSIZE = 101;
+const int NSIZE = 26;
+const int TSIZE = 51;
 using namespace std;
 
 datacenter* datacenter::s_instance = NULL;
@@ -142,6 +147,7 @@ string datacenter::getRandomId() {
   return "123456789";
 }
 
+
 //takes in service record data from terminal and copies to user list
 bool datacenter::fillServiceRec(servRecInfo & myRec)
 {
@@ -170,8 +176,6 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
 
    my_service_pro.addId(myRec.providerID);
    my_service_mem.addId(myRec.memID); 
-  // service my_service_pro(dynamic_cast<service&>(**&copyPro.head));
-  // service my_service_mem(dynamic_cast<service&>(**&copyMem.head)); 
 
    //input the service record for each
    my_service_pro.inputService(myRec);
@@ -184,6 +188,10 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    dataStorage.addService(my_pro_ent, my_service_pro);
    dataStorage.addService(my_mem_ent, my_service_mem);
    
+	//write each record to disk (text file)
+	my_service_pro.writeOut();
+	my_service_mem.writeOut();
+
    // EXAMPLE: const member * ptr = dynamic_cast<const member*>(*&temp->aPerson); 
  
    //for testing delete before deploy!!!!!!!! 
@@ -192,7 +200,7 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    cout << "***************************************************\n";
    cout << "This is the information for this record: \n";
    cout << "***************************************************\n";
-   cout << "Current Date & Time: ";
+   cout << "\nCurrent Date & Time: ";
            my_service_pro.displayTime();
    cout << "Service Date: ";
            myRec.servDate.display();
@@ -222,13 +230,79 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    cout << "***************************************************\n";
 
  //for testing delete before deployment  
-   my_service_pro.display();
-   my_service_mem.display();
+//   my_service_pro.display();
+//   my_service_mem.display();
 
    return true;
 
 }
 
+bool datacenter::runProviderReport(tString id_num)
+{
+   string proId;                  //to get string version
+   tString providerName;          //to store provider name 
+   char * proPtr;                 //to aid in getting info
+   char * timePtr;                //to aid in getting info
+   char proName[NSIZE];           //to store provider name
+   char currentTime[TSIZE];       //to store current time
+   char fileName[FSIZE];          //to store file name
+   provider numToFindPro;         //to get the provider's info.
+   serviceNode copyPro;           //to use the getInfo. function
+   numToFindPro.addId(id_num);    //to set ID to look for
+   service my_service_pro;        //to use to get the date/time 
+   ofstream file_out;             //to send info to file
+   bool checkValue = false;       //to check if function worked
+
+   //to change to string
+   proId = id_num.getString();
+
+   //to get info from record 
+   dataStorage.getInfo(numToFindPro, copyPro);
+ 
+   //copy over info 
+   providerName.add(copyPro.aPerson->getName());
+  
+   proPtr = providerName.getString();
+   timePtr = my_service_pro.getTime();
+
+   for(int i=0; i<FSIZE; ++i)
+   {
+      fileName[i] = '\0';
+   }
+   for(int i=0; i<NSIZE; ++i)
+   {
+      proName[i] = '\0';
+   }
+   for(int i=0; i<TSIZE; ++i)
+   {
+      currentTime[i] = '\0';
+   } 
+   for(int i=0; i<NSIZE; ++i)
+   { 
+      proName[i] = proPtr[i];
+   }
+   for(int i=0; i<TSIZE; ++i)
+   {
+      currentTime[i] = timePtr[i];
+   }
+
+   strcpy(fileName, proName);
+   strcat(fileName, currentTime);   
+ 
+   file_out.open(fileName);
+   if(file_out)   
+   {
+      checkValue = datacenter::instance()->generateUserReport(proId, file_out);
+      file_out.close();
+      cout << "\nProvider report sent to: " << fileName << endl << endl;
+   }
+   else
+   {
+      cout << "\nError with generation of report.\n";
+   } 
+
+   return checkValue;
+}
 
 
 

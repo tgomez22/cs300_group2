@@ -36,6 +36,10 @@ class person: public entity
     //suspends a person's account.
     virtual bool suspendMember() = 0;
 	
+		virtual void display()const = 0;
+
+        //For terminal folks! used in member and provider classes.
+        virtual bool readIn() = 0;
 	protected:
 		tString name;
 		//memNum exists in entity
@@ -43,13 +47,9 @@ class person: public entity
 		tString city;
 		tString state;
 	    tString zip;
-		virtual void display()const = 0;
 
         //Shawn let me know if this prototype needs to change.
         virtual void writeOut() = 0;
-
-        //For terminal folks! used in member and provider classes.
-        virtual bool readIn() = 0;
 
         //Displays all private data, for terminal people.
         void showInfo()const;

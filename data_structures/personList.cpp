@@ -272,3 +272,36 @@ void personList::displayStored()const
 
     return;
 }
+
+bool personList::removeMember(const entity & toRemove)
+{
+    int index = getIndex(toRemove.getIdValue());
+
+    if(!table[index])
+        return false;
+
+    else
+    {
+        return removeMember(table[index], toRemove);
+    }
+}
+
+bool personList::removeMember(personNode *& head, const entity & toRemove)
+{
+    bool result = false;
+    if(!head)
+        return result;
+    
+    result = removeMember(head->next, toRemove);
+
+    if(head->anEntity.compare(toRemove) == 0)
+    {
+        personNode * temp = head->next;
+        delete head;
+        head = temp;
+        result = true;
+        return result;
+    }
+
+    return result;
+}

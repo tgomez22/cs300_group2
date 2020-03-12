@@ -15,7 +15,7 @@ struct servRecInfo{
    tString servDate;
    tString servCode;
    tString servDescr;
-   float servFee = 0.0;
+   float servFee;
    tString commentField;
 
 };

@@ -63,7 +63,7 @@ int tString::getArrayValue()const
     return toUse;
 }
 
-int tString::compare(char * toCompare)const
+int tString::compare(const char * toCompare)const
 {
 	return strcmp(array, toCompare);
 }

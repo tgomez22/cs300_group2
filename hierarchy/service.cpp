@@ -4,11 +4,17 @@
 
 
 
-
-#include <time.h>
+#include <stdio.h>      //for time formatting
+#include <time.h>       //for time formatting
 #include <iostream>
 #include "service.h" 
 #include "../model/tString.h"
+#include <string>
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
+using namespace std;
+
 service::service()
 {
   time_t numberTime;
@@ -43,6 +49,38 @@ bool service::inputService(servRecInfo & servRec)
       servDes.add(servRec.commentField);
    
    return true;
+}
+
+//Writes service data out to text file
+void service::writeOut()
+{
+    ofstream myFile;
+    myFile.open("data/service.txt", ios::app);
+    if(myFile)
+    {   
+        char * writeMemId = memId.getString();
+        char * writeDOS = dos.getString();
+        char * writeServName = servName.getString();
+        char * writeMemName = memName.getString();
+        char * writeProvName = provName.getString();
+        char * writeServDes = servDes.getString();
+		char * writeCode = servCode.getString();
+        json toWrite;
+        toWrite["memId"] = writeMemId;
+        toWrite["DOS"] = writeDOS;
+        toWrite["servName"] = writeServName;
+        toWrite["memName"] = writeMemName;
+        toWrite["provName"] = writeProvName;
+        toWrite["servDes"] = writeServDes;
+        toWrite["servCode"] = writeCode;
+		toWrite["servFee"] = servFee;
+        myFile << toWrite;
+        myFile.close();
+        system("openssl aes-256-cbc -salt -pbkdf2 -in data/service.txt -out data/serviceEncrypted.dat -pass pass:password"); //encryption
+    }   
+    else
+        cout << "Unable to open file." << endl;
+    return;	
 }
 
 //read in function for terminal folks. I (TRISTAN) filled this in for testing
@@ -119,10 +157,6 @@ void service::display(void) const
 {
   using namespace std;
 
-  cout << "User ID: ";
-  memId.display();
-  cout << endl;
-
   cout << "Date of Service: ";
   dos.display();
   cout << endl;
@@ -151,14 +185,33 @@ void service::display(void) const
   cout<< endl;
 }
 
+
 void service::displayTime(void)
 {
   using namespace std;
   time(&numberTime);
   cout << ctime(&numberTime);
-
+  return;
 }
 
+char* service::getTime(void)
+{
+  using namespace std;
+  time_t rawtime;
+  struct tm * timeinfo;
+  char timeOut[SIZE];
+  char * retTime;
+
+  time(&rawtime);
+  timeinfo = localtime (&rawtime);
+
+  strftime(timeOut,SIZE," %m-%d-%Y %T",timeinfo);
+
+  retTime = timeOut;
+
+  return retTime;
+
+}
 //ABBIE!!! I commented these out because curr_time doesnt
 //seem to exist in this class as a data member. Maybe it got 
 //deleted???
@@ -214,31 +267,42 @@ service *& service::toNext()
     return next;
 }
 
-//This function will display all the "stored providers". I am hard coding this in 
-//for now. I can't think of a good place to put this. I may consider making this char**
-//a private data member. 
+//This function will display all the "stored providers" 
 void service::displayProviderDirectory()const
 {
-    using namespace std;
-    //Change this to affect rest of function.
-    int directorySize = 8;
-
-
-    //magic number place holder.
-  char providerDirectory [directorySize][SIZE] = {"Dietitian (598470) ", "Aerobics Exercise Session (883948)", "Massage Therapy (623587)", "Acupuncture (117824)", 
-      "Hypnosis (534336)", "Yoga (001245)", "Zumba (566324)", "Cooking w/o Chocolate (667990)"};
-    
-
-  for(int i = 2; i < directorySize; ++i)
-  {
-        cout<<"Service: "<<providerDirectory[i]<<endl;
-  }
-
-  return;
-
-
-
+	ifstream myFile;
+	myFile.open("data/providerDirectory.txt");
+	json service;
+	while(!myFile.eof() && myFile >> service >> ws)
+	{
+		cout << "Service: " << service["servName"].get<string>() << " (" << service["servCode"] << ")" << endl;	
+	}
+	myFile.close();
+	return;
 }
+
+//Pass in a service code and get back the description and fee
+void service::getDescription(tString & servCode, tString & servName)
+{
+    ifstream myFile;
+    myFile.open("data/providerDirectory.txt");
+    json service;
+    while(!myFile.eof() && myFile >> service >> ws) 
+    {
+		string tempServCode = service["servCode"];
+		const char * toCompare = tempServCode.c_str(); 
+		//if the service code passed in matches service in directory
+		if(servCode.compare(toCompare) == 0)
+		{
+			//return service description (name)
+			string tempServName = service["servName"];
+			const char * addServName = tempServName.c_str();
+			servName.add(addServName);
+		}
+    }   
+    myFile.close();
+    return;
+} 
 
 //getter functions
 char* service::getMemName()
@@ -269,4 +333,17 @@ char* service::getDate()
 char* service::getServDes()
 {
     return servDes.getString();
+}
+
+void service::addInfo(const char * addDOS, const char * addMemId, const char * addMemName, const char * addProvName, const char * addServCode, const char * addServDes, const char * addServName, float addServFee)
+{
+    entity::addId(addMemId);
+	dos.add(addDOS);
+	memName.add(addMemName);
+	provName.add(addProvName);
+	servCode.add(addServCode);
+	servDes.add(addServDes);
+	servName.add(addServName);
+	servFee = addServFee;	
+    return;
 }

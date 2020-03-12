@@ -31,6 +31,7 @@ serviceList::serviceList()
 
 	table -= SIZE;
 	readIn();
+	readInServices();
 }
 
 
@@ -261,6 +262,7 @@ bool serviceList::getInfo(const entity & toFind, serviceNode & copy)
             {
                 copy.aPerson = new member(*ptr);
                 copy.next = NULL;
+                copy.head = NULL;
                 copyServices(copy.head, temp->head);
             }
 
@@ -271,6 +273,7 @@ bool serviceList::getInfo(const entity & toFind, serviceNode & copy)
                 {
                     copy.aPerson = new provider(*ptr2);
                     copy.next = NULL;
+                    copy.head = NULL;
                     copyServices(copy.head, temp->head);
                 }
             }
@@ -415,4 +418,169 @@ void serviceList::readIn()
     }   
     providerFile.close();
     return;
+}
+
+void serviceList::readInServices()
+{
+    ifstream serviceFile;
+    serviceFile.open("data/service.txt");
+	entity anEntity;
+    service aService;
+    json toRead;
+    while(!serviceFile.eof() && serviceFile >> toRead >> ws) 
+    {   
+		string tempDOS = toRead["DOS"];
+        string tempMemId = toRead["memId"]; //json serialization library only compatible with string class
+        string tempMemName = toRead["memName"];
+        string tempProvName = toRead["provName"];
+        string tempServCode = toRead["servCode"];
+        string tempServDes = toRead["servDes"];
+        string tempServName = toRead["servName"];
+        float addServFee = toRead["servFee"];
+        const char * addDOS = tempDOS.c_str();
+        const char * addMemId = tempMemId.c_str();
+        const char * addMemName = tempMemName.c_str();
+        const char * addProvName = tempProvName.c_str();
+        const char * addServCode = tempServCode.c_str();
+        const char * addServDes = tempServDes.c_str();
+		const char * addServName = tempServName.c_str();
+        aService.addInfo(addDOS, addMemId, addMemName, addProvName, addServCode, addServDes, addServName, addServFee);
+		anEntity.addId(addMemId);
+        addService(anEntity, aService);
+    }   
+    serviceFile.close();
+    return;
+}
+
+void serviceList::displayStored()const
+{
+    using namespace std;
+    for(int i = 0; i < SIZE; ++i)
+    {   
+        if(table[i])
+        {   
+            cout<<"At index: "<< i <<endl;
+            serviceNode * temp = table[i];
+            while(temp)
+            {   
+                temp->aPerson->display();
+				service * ptr = temp->head;
+				if(ptr)
+					cout << "\nThis member's services:" << endl;
+				while(ptr)
+				{
+					ptr->display();
+					ptr = ptr->toNext();	
+				}
+                cout<<endl;
+                temp = temp->next;
+            }   
+        }   
+    }   
+    return;
+}
+
+bool serviceList::displayInfo(const entity & toFind)
+{
+    int index = getKey(toFind.getIdValue());
+
+    if(!table[index])
+        return false;
+
+    else
+    {
+        serviceNode * temp = table[index];
+        
+        //search for person and stop traversing when compare == 0
+        while(temp && temp->aPerson->compare(toFind) != 0)
+        {
+            temp = temp->next;
+        }
+
+        if(!temp)
+            return false;
+
+        else
+        {
+            temp->aPerson->display();
+            service * ptr = temp->head;
+
+            while(ptr)
+            {
+                ptr->display();
+                ptr = ptr->toNext();
+            }
+
+            return true;
+        }
+
+
+
+    }
+}
+
+bool serviceList::removeMember(const entity & toRemove)
+{
+    int index = getKey(toRemove.getIdValue());
+
+    if(!table[index])
+        return false;
+
+    else
+    {
+        return removeMember(table[index], toRemove);
+    }
+}
+
+bool serviceList::removeMember(serviceNode *& ptr, const entity & toRemove)
+{
+    bool result = false;
+
+    if(!ptr)
+        return result;
+
+    result = removeMember(ptr->next, toRemove);
+
+    if(ptr->aPerson->compare(toRemove)==0)
+    {
+        removeServices(ptr->head);
+
+        if(ptr->aPerson)
+            delete ptr->aPerson;
+
+        ptr->aPerson = NULL;
+
+        serviceNode * temp = ptr->next;
+        delete ptr;
+        ptr = temp;
+
+        return true;
+    }
+}
+
+bool serviceList::updateMemberInfo(const entity & toFind)
+{
+    int index = getKey(toFind.getIdValue());
+
+    if(!table[index])
+        return false;
+
+    else
+    {
+        serviceNode * temp = table[index];
+
+        while(temp && temp->aPerson->compare(toFind) != 0)
+        {
+            temp = temp->next;
+        }
+        
+        if(!temp)
+            return false;
+
+        else
+        {
+            temp->aPerson->readIn();
+            return true;
+        }
+    }
 }
