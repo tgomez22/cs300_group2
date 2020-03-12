@@ -333,7 +333,7 @@ bool datacenter::processAcmeRecords(acmeRecord*, int num) {
 //----------------------------------------------------------
 //report functions
 
-bool datacenter::generateUserReport(string id, ofstream& email)
+bool datacenter::generateUserReport(string id, ostream& target)
 {
   //TODO: write user info printing
 
@@ -345,21 +345,21 @@ bool datacenter::generateUserReport(string id, ofstream& email)
 
     //iterate through list of services
     if(typeid(*(list.aPerson)) == typeid(member))
-      generateMemberServiceReports(list, email);
+      generateMemberServiceReports(list, target);
     if(typeid(*(list.aPerson)) == typeid(provider))
-      generateProviderServiceReports(list, email);
+      generateProviderServiceReports(list, target);
 
     return true;
   } else 
     return false;
 }
 
-bool datacenter::generateManagerReport(ofstream& email)
+bool datacenter::generateManagerReport(ostream& target)
 {
   return true;
 }
 
-bool datacenter::generateProviderServiceReports(serviceNode& list, ofstream& email)
+bool datacenter::generateProviderServiceReports(serviceNode& list, ostream& target)
 {
   //TODO: find way to get member ID + date received by computer,
   //      add up number of consultations and total fee,
@@ -371,12 +371,12 @@ bool datacenter::generateProviderServiceReports(serviceNode& list, ofstream& ema
     char* description = list.head->getServDes();
     float fee = list.head->getServFee();
 
-    email << "Service Date: " << date << endl;
-    email << "\tDate Received by computer: " << " " << endl;
-    email << "\tMember Provided to: " << member << endl;
-    email << "\tMember code: " << " " << endl;
-    email << "\tService Code: " << code << endl;
-    email << "\tFee: " << fee << endl;
+    target << "Service Date: " << date << endl;
+    target << "\tDate Received by computer: " << " " << endl;
+    target << "\tMember Provided to: " << member << endl;
+    target << "\tMember code: " << " " << endl;
+    target << "\tService Code: " << code << endl;
+    target << "\tFee: " << fee << endl;
 
     delete member;
     delete date;
@@ -388,16 +388,16 @@ bool datacenter::generateProviderServiceReports(serviceNode& list, ofstream& ema
   return true;
 }
 
-bool datacenter::generateMemberServiceReports(serviceNode& list, ofstream& email)
+bool datacenter::generateMemberServiceReports(serviceNode& list, ostream& target)
 {
   while(list.head != NULL) {
     char* provider = list.head->getProvName();
     char* service = list.head->getServName();
     char* date = list.head->getDate();
 
-    email << "Service Date: " << date << endl;
-    email << "\tProvider: " << provider << endl;
-    email << "\tService: " << service << endl;
+    target << "Service Date: " << date << endl;
+    target << "\tProvider: " << provider << endl;
+    target << "\tService: " << service << endl;
 
     delete provider;
     delete service;
