@@ -113,7 +113,27 @@ bool datacenter::validateManager(string id) {
         return false;
 }
 
-//TODO with tristan
+//Is this member ID valid?
+bool datacenter::memberExists(string id)
+{
+    int result = 0;
+    //pull ID out of string object.
+    const char * temp = id.data();
+
+    //package the char array into an entity object which is
+    //compatible with the personList class.  
+    entity memberID;
+    memberID.addId(temp);
+
+    result = authentication.authenticate(memberID);
+
+    //1 indicates valid member.
+    if(result == 1)
+      return true;
+    else
+      return false; 
+}
+
 //Is this member ID valid?
 bool datacenter::validateMember(string id)
 {
@@ -362,7 +382,7 @@ bool datacenter::runMemberReport(string id)
    {
       checkValue = datacenter::instance()->generateUserReport(memId, file_out);
       file_out.close();
-      cout << "\nProvider report sent to: " << fileName << endl << endl;
+      cout << "\nMember report sent to: " << fileName << endl << endl;
    }
    else
    {

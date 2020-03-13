@@ -149,9 +149,8 @@ int doMemberReport(tString id_num) {
 	cout << "Please enter the ID you want to generate the report for:" << endl;
 	id = getId();
         if(id.compare("") == 0) return 0;
-        cout << "hereee,"<<endl;
         //Validate
-        while(!datacenter::instance()->validateMember(id)) {
+        while(!datacenter::instance()->memberExists(id)) {
           cout << "The ID you entered is not associated with a valid member, please retry." << endl;
           id = getId();
           if(id.compare("") == 0) return 0;

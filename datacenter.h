@@ -31,6 +31,8 @@ class datacenter {
     //Is this ID associated with a manager?
     bool validateManager(string id);
     //Is this member ID valid?
+    bool memberExists(string id);
+    //Is this member ID valid?
     bool validateMember(string id);
     //Does basic text validation (isNumber and length == 9)
     bool checkIdFormat(string scannedId);
