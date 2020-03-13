@@ -85,3 +85,28 @@ TEST_CASE ( "check if a provider can be written out to text file" )
 	aProvider.addInfo("200000000", "John Doe", "246 Jefferson St", "Portland", "OR", "97201", 5, 100.00);
 	aProvider.writeOut();
 }
+
+TEST_CASE ( "add a member to serviceList" )
+{
+	serviceList table;
+	member aMember;
+	aMember.addInfo("100000011", "John Doe", "246 Jefferson St", "Portland", "OR", "97201", true, 150.00);
+	REQUIRE( table.addPerson(aMember) == 1 );
+}
+
+TEST_CASE ( "remove a member from serviceList" )
+{
+	serviceList table;
+	member aMember;
+	aMember.addInfo("100000011", "John Doe", "246 Jefferson St", "Portland", "OR", "97201", true, 150.00);
+	table.addPerson(aMember);
+	REQUIRE ( table.removeMember(aMember) == true );
+}
+
+TEST_CASE ( "remove a non-existent member from serviceList" )
+{
+	serviceList table;
+	member aMember;
+	aMember.addInfo("100000012", "John Doe", "246 Jefferson St", "Portland", "OR", "97201", true, 150.00);
+	REQUIRE ( table.removeMember(aMember) == false );
+}
