@@ -45,7 +45,7 @@ class entity
 
                 //strcmps arg against stored data. returns 0 if match
                 int compare(const entity & toCompare)const;
-                int compare(char * toCompare)const;
+                int compare(const char * toCompare)const;
                 int compare(const tString & toCompare)const;
 
                 //returns true if text file is successfully opened and written to, otherwise returns false.
