@@ -213,5 +213,6 @@ int doProviderReport(tString id_num)
    return 0;
 }
 int doAccountsPayable(tString id_num) {
-	cout << "Run an accounts Payable report" << endl;
+	cout << "Running an accounts Payable report..." << endl;
+        datacenter::instance()->generateManagerReport();
 }
