@@ -38,6 +38,7 @@ class datacenter {
     bool fillServiceRec(servRecInfo &);
     //Runs the provider report
     bool runProviderReport(tString id_num);
+    bool runMemberReport(string id);
     //Run the friday night, mass report function. Returns true
     //If it was generated successfully.
     bool generateFridayNightReports();

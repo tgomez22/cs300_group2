@@ -304,7 +304,72 @@ bool datacenter::runProviderReport(tString id_num)
    return checkValue;
 }
 
+bool datacenter::runMemberReport(string id)
+{
+   string memId;                  //to get string version
+   tString memberName;            //to store provider name 
+   char * memPtr;                 //to aid in getting info
+   char * timePtr;                //to aid in getting info
+   char memName[NSIZE];           //to store provider name
+   char currentTime[TSIZE];       //to store current time
+   char fileName[FSIZE];          //to store file name
+   member numToFindPro;           //to get the provider's info.
+   serviceNode copyPro;           //to use the getInfo. function
+   numToFindPro.addId(id_num);    //to set ID to look for
+   service my_service_pro;        //to use to get the date/time 
+   ofstream file_out;             //to send info to file
+   bool checkValue = false;       //to check if function worked
 
+   //to change to string
+   proId = id_num.getString();
+
+   //to get info from record 
+   dataStorage.getInfo(numToFindPro, copyPro);
+ 
+   //copy over info 
+   providerName.add(copyPro.aPerson->getName());
+  
+   proPtr = providerName.getString();
+   timePtr = my_service_pro.getTime();
+
+   for(int i=0; i<FSIZE; ++i)
+   {
+      fileName[i] = '\0';
+   }
+   for(int i=0; i<NSIZE; ++i)
+   {
+      proName[i] = '\0';
+   }
+   for(int i=0; i<TSIZE; ++i)
+   {
+      currentTime[i] = '\0';
+   } 
+   for(int i=0; i<NSIZE; ++i)
+   { 
+      proName[i] = proPtr[i];
+   }
+   for(int i=0; i<TSIZE; ++i)
+   {
+      currentTime[i] = timePtr[i];
+   }
+
+   strcpy(fileName, proName);
+   strcat(fileName, currentTime);   
+ 
+   file_out.open(fileName);
+   if(file_out)   
+   {
+      checkValue = datacenter::instance()->generateUserReport(proId, file_out);
+      file_out.close();
+      cout << "\nProvider report sent to: " << fileName << endl << endl;
+   }
+   else
+   {
+      cout << "\nError with generation of report.\n";
+   } 
+
+   return checkValue;
+}
 
 //TODO with chris
 //Run the mass report function
