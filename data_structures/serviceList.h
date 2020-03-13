@@ -15,6 +15,8 @@
 #include "../model/person.h"
 #include "../model/member.h"
 #include "../model/provider.h"
+#include <queue>
+#include <memory>
 
 struct serviceNode
 {
@@ -40,6 +42,9 @@ class serviceList
                 int memberFunctions();//use this function as a wrapper for member only functions. Put those functions into the private section.
                 int addPerson(const person & toAdd);
 	        bool addService(const entity & toFind, const service & toAdd);
+
+        //returns list of people
+        queue<provider> getProviderList();
 
         //For Chris to use to pull individual member/provider profile and all services associated with that individual.
         bool getInfo(const entity & toFind, serviceNode & copy);
