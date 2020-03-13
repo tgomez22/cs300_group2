@@ -43,6 +43,8 @@ class member: public person
     char* getZip();
     float getFee();
 	
+        void changeInfo(member & my_member);
+        void changeInfo(userInfo & my_info);
 	//adds info to member for use in serviceList
 	void addInfo(const char * addID, const char * addName, const char * addAddress, const char * addCity, const char * addState, const char * addZip, bool addSuspended, float addAmtDue);
 

@@ -63,7 +63,8 @@ class serviceList
         //person isn't found.
         bool removeMember(const entity & toRemove);
 
-        bool updateMemberInfo(const entity & toFind);
+        bool updateMemberInfo(const entity & toFind, member & memToUpdate);
+        bool updateProviderInfo(const entity & toFind, provider & proToUpdate);
 
 private:
 		//Read in member/provider and service data from text files

@@ -45,6 +45,27 @@ void person::showInfo()const
 
     return;
 }
+void person::addInfo(userInfo & my_user)
+{
+   name.add(my_user.name);
+   address.add(my_user.street);
+   city.add(my_user.city);
+   state.add(my_user.state);
+   zip.add(my_user.zip);
+
+   return;
+}
+
+void person::addInfo(person & my_person)
+{
+   name.add(my_person.name);
+   address.add(my_person.address);
+   city.add(my_person.city);
+   state.add(my_person.state);
+   zip.add(my_person.zip);
+
+   return;
+}
 
 void person::addInfo(const char * addID, const char * addName, const char * addAddress, const char * addCity, const char * addState, const char * addZip)
 {
