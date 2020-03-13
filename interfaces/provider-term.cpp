@@ -88,6 +88,7 @@ int createServiceRecord(tString id_num)
       }
       else
       {
+         datacenter::instance()->ifSuspendedDisplay(mem_id_num);
          cout << "Validation failed, would you like to try another ID number? (y/n)" << endl;
 	 cin >> tryAgain;
 	 cleanupCin();

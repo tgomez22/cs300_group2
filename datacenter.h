@@ -54,7 +54,7 @@ class datacenter {
     bool generateManagerReport(ostream& target = cout);
     bool generateProviderServiceReports(serviceNode& list, ostream& target);
     bool generateMemberServiceReports(serviceNode& list, ostream& target);
-
+    void ifSuspendedDisplay(tString);
   private:
     static datacenter *s_instance; 
     datacenter(); 

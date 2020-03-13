@@ -314,24 +314,24 @@ bool datacenter::runMemberReport(string id)
    char memName[NSIZE];           //to store provider name
    char currentTime[TSIZE];       //to store current time
    char fileName[FSIZE];          //to store file name
-   member numToFindPro;           //to get the provider's info.
-   serviceNode copyPro;           //to use the getInfo. function
-   numToFindPro.addId(id_num);    //to set ID to look for
-   service my_service_pro;        //to use to get the date/time 
+   member numToFindMem;           //to get the provider's info.
+   serviceNode copyMem;           //to use the getInfo. function
+   numToFindMem.addId(id.data()); //to set ID to look for
+   service my_service_mem;        //to use to get the date/time 
    ofstream file_out;             //to send info to file
    bool checkValue = false;       //to check if function worked
 
    //to change to string
-   proId = id_num.getString();
+   memId = id;
 
    //to get info from record 
-   dataStorage.getInfo(numToFindPro, copyPro);
+   dataStorage.getInfo(numToFindMem, copyMem);
  
    //copy over info 
-   providerName.add(copyPro.aPerson->getName());
+   memberName.add(copyMem.aPerson->getName());
   
-   proPtr = providerName.getString();
-   timePtr = my_service_pro.getTime();
+   memPtr = memberName.getString();
+   timePtr = my_service_mem.getTime();
 
    for(int i=0; i<FSIZE; ++i)
    {
@@ -339,7 +339,7 @@ bool datacenter::runMemberReport(string id)
    }
    for(int i=0; i<NSIZE; ++i)
    {
-      proName[i] = '\0';
+      memName[i] = '\0';
    }
    for(int i=0; i<TSIZE; ++i)
    {
@@ -347,20 +347,20 @@ bool datacenter::runMemberReport(string id)
    } 
    for(int i=0; i<NSIZE; ++i)
    { 
-      proName[i] = proPtr[i];
+      memName[i] = memPtr[i];
    }
    for(int i=0; i<TSIZE; ++i)
    {
       currentTime[i] = timePtr[i];
    }
 
-   strcpy(fileName, proName);
+   strcpy(fileName, memName);
    strcat(fileName, currentTime);   
  
    file_out.open(fileName);
    if(file_out)   
    {
-      checkValue = datacenter::instance()->generateUserReport(proId, file_out);
+      checkValue = datacenter::instance()->generateUserReport(memId, file_out);
       file_out.close();
       cout << "\nProvider report sent to: " << fileName << endl << endl;
    }
@@ -479,4 +479,17 @@ bool datacenter::generateMemberServiceReports(serviceNode& list, ostream& target
     list.head = list.head->toNext();
   }
   return true;
+}
+
+void datacenter::ifSuspendedDisplay(tString mem_id_num) {
+  const char * temp = id.data();
+
+  entity memberID;
+  memberID.addId(temp);
+
+  valOrSus = dataStorage.isSuspended(memberID);       
+
+  if(valOrSus) {
+    member.display();
+  }
 }
