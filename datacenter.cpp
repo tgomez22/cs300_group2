@@ -134,6 +134,27 @@ bool datacenter::memberExists(string id)
       return false; 
 }
 
+//Is this provider ID valid?
+bool datacenter::providerExists(string id)
+{
+    int result = 0;
+    //pull ID out of string object.
+    const char * temp = id.data();
+
+    //package the char array into an entity object which is
+    //compatible with the personList class.  
+    entity provID;
+    provID.addId(temp);
+
+    result = authentication.authenticate(provID);
+
+    //2 indicates valid provider.
+    if(result == 2)
+      return true;
+    else
+      return false; 
+}
+
 //Is this member ID valid?
 bool datacenter::validateMember(string id)
 {
@@ -174,6 +195,14 @@ bool datacenter::deleteMember(string id) {
 
     return authentication.removeMember(memberID);
 }
+
+bool datacenter::deleteProvider(string id) {
+    entity provID;
+    provID.addId(id.data());
+
+    return authentication.removeMember(provID);
+}
+
 
 void datacenter::display(string id) {
   entity memberID;

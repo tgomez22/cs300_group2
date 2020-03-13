@@ -71,12 +71,40 @@ int crudProvider(tString id_num) {
 }
 
 int deleteProvider(tString id_num) {
-        
+        cout << "Please enter the ID you want to delete:" << endl;
+	string id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->providerExists(id)) {
+          cout << "The ID you entered is not associated with a valid provider, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+
+	cout << "Deleting provider..." << endl;
+       if(datacenter::instance()->deleteProvider(id)) {
+         cout << "Deleted provider!" << endl;
+       } else {
+         cout << "Failed to delete provider" << endl;
+       }
+       return 0;
+
 	cout << "delete a provider" << endl;
 } 
 
 int viewProvider(tString id_num) {
-	cout << "view a provider" << endl;
+        cout << "Please enter the ID you want to view:" << endl;
+	string id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->providerExists(id)) {
+          cout << "The ID you entered is not associated with a valid provider, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+
+        datacenter::instance()->display(id);
+        return 0;
 }
 
 int updateProvider(tString id_num) {

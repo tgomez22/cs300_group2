@@ -32,6 +32,7 @@ class datacenter {
     bool validateManager(string id);
     //Is this member ID valid?
     bool memberExists(string id);
+    bool providerExists(string id);
     //Is this member ID valid?
     bool validateMember(string id);
     //Does basic text validation (isNumber and length == 9)
@@ -51,6 +52,8 @@ class datacenter {
     //Get a random ID from the datacenter
     string getRandomId();
     bool deleteMember(string);
+    bool deleteProvider(string);
+    
     void display(string);
 
     //individual report functions
