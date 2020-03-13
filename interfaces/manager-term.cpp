@@ -71,6 +71,7 @@ int crudProvider(tString id_num) {
 }
 
 int deleteProvider(tString id_num) {
+        
 	cout << "delete a provider" << endl;
 } 
 
@@ -87,14 +88,15 @@ int createProvider(tString id_num) {
 }
 
 int crudMember(tString id_num) {
+
    int numChoices = 6;
 
-   string choices[numChoices] = {"Delete Provider", "View Provider", 
-	                         "Update Provider", "Create Provider",
+   string choices[numChoices] = {"Delete Member", "View Member", 
+	                         "Update Member", "Create Member",
                                  "Quit", "Exit Program"};
 
-   int (* dt[numChoices])(tString) = {deleteProvider, viewProvider, updateProvider,
-	                               createProvider, returnExitValue2, exitFunction2};
+   int (* dt[numChoices])(tString) = {deleteMember, viewMember, updateMember,
+	                               createMember, returnExitValue2, exitFunction2};
 
 
 
@@ -145,7 +147,20 @@ int doReports(tString id_num) {
 
 
 int doMemberReport(tString id_num) {
-	cout << "Run a member Report" << endl;
+        string id;
+        //Get ID number
+	cout << "Please enter the ID you want to generate the report for:" << endl;
+	id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->memberExists(id)) {
+          cout << "The ID you entered is not associated with a valid member, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+        //Run
+	cout << "Running a member Report..." << endl;
+        datacenter::instance()->runMemberReport(id);
 }
 int doProviderReport(tString id_num)
 {

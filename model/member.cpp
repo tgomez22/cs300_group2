@@ -164,7 +164,6 @@ bool member::isSuspended()const
 
     if(suspended == true)
     {
-        display();
         return true;
     }
 

@@ -113,7 +113,27 @@ bool datacenter::validateManager(string id) {
         return false;
 }
 
-//TODO with tristan
+//Is this member ID valid?
+bool datacenter::memberExists(string id)
+{
+    int result = 0;
+    //pull ID out of string object.
+    const char * temp = id.data();
+
+    //package the char array into an entity object which is
+    //compatible with the personList class.  
+    entity memberID;
+    memberID.addId(temp);
+
+    result = authentication.authenticate(memberID);
+
+    //1 indicates valid member.
+    if(result == 1)
+      return true;
+    else
+      return false; 
+}
+
 //Is this member ID valid?
 bool datacenter::validateMember(string id)
 {
@@ -305,7 +325,72 @@ bool datacenter::runProviderReport(tString id_num)
    return checkValue;
 }
 
+bool datacenter::runMemberReport(string id)
+{
+   string memId;                  //to get string version
+   tString memberName;            //to store provider name 
+   char * memPtr;                 //to aid in getting info
+   char * timePtr;                //to aid in getting info
+   char memName[NSIZE];           //to store provider name
+   char currentTime[TSIZE];       //to store current time
+   char fileName[FSIZE];          //to store file name
+   member numToFindMem;           //to get the provider's info.
+   serviceNode copyMem;           //to use the getInfo. function
+   numToFindMem.addId(id.data()); //to set ID to look for
+   service my_service_mem;        //to use to get the date/time 
+   ofstream file_out;             //to send info to file
+   bool checkValue = false;       //to check if function worked
 
+   //to change to string
+   memId = id;
+
+   //to get info from record 
+   dataStorage.getInfo(numToFindMem, copyMem);
+ 
+   //copy over info 
+   memberName.add(copyMem.aPerson->getName());
+  
+   memPtr = memberName.getString();
+   timePtr = my_service_mem.getTime();
+
+   for(int i=0; i<FSIZE; ++i)
+   {
+      fileName[i] = '\0';
+   }
+   for(int i=0; i<NSIZE; ++i)
+   {
+      memName[i] = '\0';
+   }
+   for(int i=0; i<TSIZE; ++i)
+   {
+      currentTime[i] = '\0';
+   } 
+   for(int i=0; i<NSIZE; ++i)
+   { 
+      memName[i] = memPtr[i];
+   }
+   for(int i=0; i<TSIZE; ++i)
+   {
+      currentTime[i] = timePtr[i];
+   }
+
+   strcpy(fileName, memName);
+   strcat(fileName, currentTime);   
+ 
+   file_out.open(fileName);
+   if(file_out)   
+   {
+      checkValue = datacenter::instance()->generateUserReport(memId, file_out);
+      file_out.close();
+      cout << "\nMember report sent to: " << fileName << endl << endl;
+   }
+   else
+   {
+      cout << "\nError with generation of report.\n";
+   } 
+
+   return checkValue;
+}
 
 //TODO with chris
 //Run the mass report function
@@ -414,4 +499,17 @@ bool datacenter::generateMemberServiceReports(serviceNode& list, ostream& target
     list.head = list.head->toNext();
   }
   return true;
+}
+
+void datacenter::ifSuspendedDisplay(string id) {
+  const char * temp = id.data();
+
+  entity memberID;
+  memberID.addId(temp);
+
+  int valOrSus = dataStorage.isSuspended(memberID);       
+
+  if(valOrSus) {
+    memberID.display();
+  }
 }
