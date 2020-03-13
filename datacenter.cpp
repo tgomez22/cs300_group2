@@ -486,9 +486,9 @@ bool datacenter::generateManagerReport()
   ofstream reportFile = ofstream("manager-report.XXX");
   queue<provider> people = dataStorage.getProviderList();
   while(!people.empty()) {
-    people.front().getName();
-    people.front().getFee();
-    people.front().getConsultNum();
+    cout<< people.front().getName();
+    cout<< people.front().getFee();
+    cout<< people.front().getConsultNum();
   }
 }
 
