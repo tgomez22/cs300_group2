@@ -62,6 +62,7 @@ class datacenter {
     bool generateProviderServiceReports(serviceNode& list, ostream& target);
     bool generateMemberServiceReports(serviceNode& list, ostream& target);
     void ifSuspendedDisplay(string);
+    void update(string);
   private:
     static datacenter *s_instance; 
     datacenter(); 

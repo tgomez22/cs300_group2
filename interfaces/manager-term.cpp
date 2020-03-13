@@ -108,10 +108,25 @@ int viewProvider(tString id_num) {
 }
 
 int updateProvider(tString id_num) {
-	cout << "update a provider" << endl;
+	cout << "Please enter the ID you want to update:" << endl;
+	string id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->providerExists(id)) {
+          cout << "The ID you entered is not associated with a valid provider, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+	 
+        datacenter::instance()->update(id);
 }
 
 int createProvider(tString id_num) {
+      //create a person
+      //USE person.readIn(), does it all (Thanks kristin!)
+      //Hand to:
+      //serviceList::addPerson
+      //personList::add
        cout << "create a provider" << endl;
 }
 
@@ -172,7 +187,17 @@ int viewMember(tString id_num) {
 }
 
 int updateMember(tString id_num) {
-	cout << "update a member" << endl;
+	cout << "Please enter the ID you want to update:" << endl;
+	string id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->memberExists(id)) {
+          cout << "The ID you entered is not associated with a valid member, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+	 
+        datacenter::instance()->update(id);
 }
 
 int createMember(tString id_num) {

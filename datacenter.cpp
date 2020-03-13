@@ -211,6 +211,13 @@ void datacenter::display(string id) {
   dataStorage.displayInfo(memberID);
 }
 
+void datacenter::update(string id) {
+  entity memberID;
+  memberID.addId(id.data());
+
+  dataStorage.updateMemberInfo(memberID);
+}
+
 //takes in service record data from terminal and copies to user list
 bool datacenter::fillServiceRec(servRecInfo & myRec)
 {
