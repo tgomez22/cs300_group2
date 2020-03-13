@@ -186,7 +186,7 @@ int entity::compare(const entity & toCompare)const
 {
 	return memId.compare(toCompare.memId);
 }
-int entity::compare(char * toCompare)const
+int entity::compare(const char * toCompare)const
 {
 	return memId.compare(toCompare);
 }
