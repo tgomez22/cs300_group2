@@ -108,6 +108,16 @@ int viewProvider(tString id_num) {
 }
 
 int updateProvider(tString id_num) {
+   
+   char correctYN = 'n';
+   char temp_name[NAMESZ];
+   char temp_address[NAMESZ];
+   char temp_city[CITYSZ];
+   char temp_state[STATESZ];
+   char temp_zip[ZIPSZ];
+   float fee = 0.0;
+   userInfo my_user;
+
 	cout << "Please enter the ID you want to update:" << endl;
 	string id = getId();
         if(id.compare("") == 0) return 0;
@@ -118,7 +128,79 @@ int updateProvider(tString id_num) {
           if(id.compare("") == 0) return 0;
 	}
 	 
-        datacenter::instance()->update(id);
+   do{
+
+      for(int i=0; i < NAMESZ; ++i)
+      {
+         temp_name[i] = '\0';
+         temp_address[i] = '\0';
+      }
+
+      for(int i=0; i < CITYSZ; ++i)
+      {
+         temp_city[i] = '\0';
+      }
+
+      for(int i=0; i < STATESZ; ++i)
+      {
+         temp_state[i] = '\0';
+      }
+
+      for(int i=0; i < ZIPSZ; ++i)
+      {
+         temp_zip[i] = '\0';
+      }
+
+
+      cout << "Please add the user information.\n\n";
+      cout << "Name (Ex. Jane Smith): \n";
+      cin.get(temp_name, NAMESZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "Address Street (Ex. 4432 NE 44th Way): \n";
+      cin.get(temp_address, NAMESZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "Address City (Ex. Portland): \n";
+      cin.get(temp_city, CITYSZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "Address State Abbreviation (Ex. OR): \n";
+      cin.get(temp_state, STATESZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "Address Zip Code (Ex. 97201): \n";
+      cin.get(temp_zip, ZIPSZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "Fee for Services: \n";
+      cin >> fee;
+      cin.ignore(SIZE, '\n');
+
+      cout << "You provided the following. Is it correct Y/N?\n";
+      cout << "Name: " << temp_name << endl;
+      cout << "Street: " << temp_address << endl;
+      cout << "City: " << temp_city << endl;
+      cout << "State: " << temp_state << endl;
+      cout << "Zip Code: " << temp_zip << endl;
+      cout << "Fee: " << fee << endl;
+
+      cin >> correctYN;
+      cin.ignore(SIZE, '\n');
+
+      correctYN = tolower(correctYN);
+
+   } while (correctYN == 'n');
+
+   my_user.name.add(temp_name);
+   my_user.street.add(temp_address);
+   my_user.city.add(temp_city);
+   my_user.state.add(temp_state);
+   my_user.zip.add(temp_zip);
+
+   datacenter::instance()->updateProvider(id, my_user, fee);
+
+   return 0;
 }
 
 int createProvider(tString id_num) {
@@ -187,6 +269,15 @@ int viewMember(tString id_num) {
 }
 
 int updateMember(tString id_num) {
+   
+   char correctYN = 'n';
+   char temp_name[NAMESZ];
+   char temp_address[NAMESZ];
+   char temp_city[CITYSZ];
+   char temp_state[STATESZ];
+   char temp_zip[ZIPSZ];
+   userInfo my_user;
+
 	cout << "Please enter the ID you want to update:" << endl;
 	string id = getId();
         if(id.compare("") == 0) return 0;
@@ -197,7 +288,74 @@ int updateMember(tString id_num) {
           if(id.compare("") == 0) return 0;
 	}
 	 
-        datacenter::instance()->update(id);
+   do{
+
+      for(int i=0; i < NAMESZ; ++i)
+      {
+         temp_name[i] = '\0';
+         temp_address[i] = '\0';
+      }
+
+      for(int i=0; i < CITYSZ; ++i)
+      {
+         temp_city[i] = '\0';
+      }
+
+      for(int i=0; i < STATESZ; ++i)
+      {
+         temp_state[i] = '\0';
+      }
+
+      for(int i=0; i < ZIPSZ; ++i)
+      {
+         temp_zip[i] = '\0';
+      }
+
+
+      cout << "Please add the user information.\n\n";
+      cout << "Name (Ex. Jane Smith): \n";
+      cin.get(temp_name, NAMESZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "Address Street (Ex. 4432 NE 44th Way): \n";
+      cin.get(temp_address, NAMESZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "Address City (Ex. Portland): \n";
+      cin.get(temp_city, CITYSZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "Address State Abbreviation (Ex. OR): \n";
+      cin.get(temp_state, STATESZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "Address Zip Code (Ex. 97201): \n";
+      cin.get(temp_zip, ZIPSZ, '\n');
+      cin.ignore(SIZE, '\n');
+
+      cout << "You provided the following. Is it correct Y/N?\n";
+      cout << "Name: " << temp_name << endl;
+      cout << "Street: " << temp_address << endl;
+      cout << "City: " << temp_city << endl;
+      cout << "State: " << temp_state << endl;
+      cout << "Zip Code: " << temp_zip << endl;
+
+      cin >> correctYN;
+      cin.ignore(SIZE, '\n');
+
+      correctYN = tolower(correctYN);
+
+   } while (correctYN == 'n');
+
+   my_user.name.add(temp_name);
+   my_user.street.add(temp_address);
+   my_user.city.add(temp_city);
+   my_user.state.add(temp_state);
+   my_user.zip.add(temp_zip);
+
+   datacenter::instance()->updateMember(id, my_user);
+
+   return 0;
 }
 
 int createMember(tString id_num) {

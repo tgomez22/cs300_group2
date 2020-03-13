@@ -215,6 +215,20 @@ bool member::suspendMember()
     return true;
 }
 
+void member::changeInfo(userInfo & my_info)
+{
+   person::addInfo(my_info);
+   return;
+}
+
+
+void member::changeInfo(member & my_member)
+{
+   person::addInfo(my_member);
+   return;
+
+}
+
 void member::addInfo(const char * addID, const char * addName, const char * addAddress, const char * addCity, const char * addState, const char * addZip, bool addSuspended, float addAmtDue)
 {
 	person::addInfo(addID, addName, addAddress, addCity, addState, addZip);
