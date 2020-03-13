@@ -354,6 +354,45 @@ int serviceList::isSuspended(const entity & toFind)
 
 }
 
+
+//returns 1 if member is suspended and couts their balance due. 
+//returns 0 if member is active.
+//returns 2 if member doesn't exist.
+int serviceList::isSuspendedAndPrint(const entity & toFind)
+{
+    int index = getKey(toFind.getIdValue()); 
+
+    if(!table[index])
+        return 2;
+
+    else
+    {
+        serviceNode * temp = table[index];
+
+        while(temp && temp->aPerson->compare(toFind))
+        {
+            temp = temp->next;
+        }
+
+        //pointer fell off the list, no match exists.
+        if(!temp)
+            return 2;
+        
+        //person found
+        else
+        {
+           bool suspend = temp->aPerson->isSuspendedAndPrint();
+           if(suspend == false)
+               return 0;
+           else
+               return 1;
+        }
+    }
+
+
+}
+
+
 bool serviceList::suspendMember(const entity & toFind)
 {
     int index = getKey(toFind.getIdValue());

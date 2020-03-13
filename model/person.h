@@ -22,6 +22,7 @@ class person: public entity
         
         //asks if person is suspended account/
         virtual bool isSuspended()const = 0;
+        virtual bool isSuspendedAndPrint()const = 0;
 
     //getter functions
     virtual char* getName() = 0;

@@ -31,6 +31,9 @@ class datacenter {
     //Is this ID associated with a manager?
     bool validateManager(string id);
     //Is this member ID valid?
+    bool memberExists(string id);
+    bool providerExists(string id);
+    //Is this member ID valid?
     bool validateMember(string id);
     //Does basic text validation (isNumber and length == 9)
     bool checkIdFormat(string scannedId);
@@ -38,6 +41,7 @@ class datacenter {
     bool fillServiceRec(servRecInfo &);
     //Runs the provider report
     bool runProviderReport(tString id_num);
+    bool runMemberReport(string id);
     //Run the friday night, mass report function. Returns true
     //If it was generated successfully.
     bool generateFridayNightReports();
@@ -47,13 +51,18 @@ class datacenter {
     bool processAcmeRecords(acmeRecord*, int);
     //Get a random ID from the datacenter
     string getRandomId();
+    bool deleteMember(string);
+    bool deleteProvider(string);
+    
+    void display(string);
 
     //individual report functions
     bool generateUserReport(string id, ostream& target = cout);
     bool generateManagerReport();
     bool generateProviderServiceReports(serviceNode& list, ostream& target);
     bool generateMemberServiceReports(serviceNode& list, ostream& target);
-
+    void ifSuspendedDisplay(string);
+    void update(string);
   private:
     static datacenter *s_instance; 
     datacenter(); 

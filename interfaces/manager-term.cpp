@@ -3,8 +3,13 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <string.h>  //for strcat
+#include <stdio.h>   //for strcat
 
+#include "../datacenter.h"
 #include "util-term.h"
+#include "validation-term.h"
+#include "../hierarchy/service.h"
 
 using namespace std;
 
@@ -66,30 +71,75 @@ int crudProvider(tString id_num) {
 }
 
 int deleteProvider(tString id_num) {
+        cout << "Please enter the ID you want to delete:" << endl;
+	string id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->providerExists(id)) {
+          cout << "The ID you entered is not associated with a valid provider, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+
+	cout << "Deleting provider..." << endl;
+       if(datacenter::instance()->deleteProvider(id)) {
+         cout << "Deleted provider!" << endl;
+       } else {
+         cout << "Failed to delete provider" << endl;
+       }
+       return 0;
+
 	cout << "delete a provider" << endl;
 } 
 
 int viewProvider(tString id_num) {
-	cout << "view a provider" << endl;
+        cout << "Please enter the ID you want to view:" << endl;
+	string id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->providerExists(id)) {
+          cout << "The ID you entered is not associated with a valid provider, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+
+        datacenter::instance()->display(id);
+        return 0;
 }
 
 int updateProvider(tString id_num) {
-	cout << "update a provider" << endl;
+	cout << "Please enter the ID you want to update:" << endl;
+	string id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->providerExists(id)) {
+          cout << "The ID you entered is not associated with a valid provider, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+	 
+        datacenter::instance()->update(id);
 }
 
 int createProvider(tString id_num) {
+      //create a person
+      //USE person.readIn(), does it all (Thanks kristin!)
+      //Hand to:
+      //serviceList::addPerson
+      //personList::add
        cout << "create a provider" << endl;
 }
 
 int crudMember(tString id_num) {
+
    int numChoices = 6;
 
-   string choices[numChoices] = {"Delete Provider", "View Provider", 
-	                         "Update Provider", "Create Provider",
+   string choices[numChoices] = {"Delete Member", "View Member", 
+	                         "Update Member", "Create Member",
                                  "Quit", "Exit Program"};
 
-   int (* dt[numChoices])(tString) = {deleteProvider, viewProvider, updateProvider,
-	                               createProvider, returnExitValue2, exitFunction2};
+   int (* dt[numChoices])(tString) = {deleteMember, viewMember, updateMember,
+	                               createMember, returnExitValue2, exitFunction2};
 
 
 
@@ -102,15 +152,52 @@ int crudMember(tString id_num) {
 } 
 
 int deleteMember(tString id_num) {
-	cout << "delete a member" << endl;
+	cout << "Please enter the ID you want to delete:" << endl;
+	string id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->memberExists(id)) {
+          cout << "The ID you entered is not associated with a valid member, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+
+	cout << "Deleting member..." << endl;
+       if(datacenter::instance()->deleteMember(id)) {
+         cout << "Deleted member!" << endl;
+       } else {
+         cout << "Failed to delete member" << endl;
+       }
+       return 0;
 } 
 
 int viewMember(tString id_num) {
-	cout << "view a member" << endl;
+        cout << "Please enter the ID you want to view:" << endl;
+	string id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->memberExists(id)) {
+          cout << "The ID you entered is not associated with a valid member, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+
+        datacenter::instance()->display(id);
+        return 0;
 }
 
 int updateMember(tString id_num) {
-	cout << "update a member" << endl;
+	cout << "Please enter the ID you want to update:" << endl;
+	string id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->memberExists(id)) {
+          cout << "The ID you entered is not associated with a valid member, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+	 
+        datacenter::instance()->update(id);
 }
 
 int createMember(tString id_num) {
@@ -140,11 +227,72 @@ int doReports(tString id_num) {
 
 
 int doMemberReport(tString id_num) {
-	cout << "Run a member Report" << endl;
+        string id;
+        //Get ID number
+	cout << "Please enter the ID you want to generate the report for:" << endl;
+	id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->memberExists(id)) {
+          cout << "The ID you entered is not associated with a valid member, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+        //Run
+	cout << "Running a member Report..." << endl;
+        datacenter::instance()->runMemberReport(id);
 }
-int doProviderReport(tString id_num) {
-	cout << "Run a provider report" << endl;
+int doProviderReport(tString id_num)
+{
+   string id;
+   char * idNum;
+   tString ID;
+   bool checkValue = false;
+
+   while(true)
+   {
+      //Get ID Number
+      cout << "Please enter the ID you want to generate the report for: " << endl;
+      id = getId();
+  
+      idNum = new char[id.length() + 1];
+      strcpy(idNum, id.c_str());
+
+      ID.add(idNum);
+   
+      if(idNum)
+         delete [] idNum;
+
+      if(ID.compare("") == 0) return 0;
+   
+      //Validate
+      while(!datacenter::instance()->validateProvider(id))
+      {
+         cout << "The ID you entered is not associated with a provider, please retry." << endl;
+         id = getId();
+
+         idNum = new char[id.length() + 1];
+         strcpy(idNum, id.c_str());
+
+         ID.add(idNum);
+   
+         if(idNum)
+            delete [] idNum;
+
+         if(ID.compare("") == 0) return 0;
+      }
+
+      checkValue = datacenter::instance()->runProviderReport(ID);
+      if(checkValue == false)
+      {
+         cout << "Error Generating Report\n";
+      }
+      break;
+   }
+	
+   return 0;
 }
 int doAccountsPayable(tString id_num) {
-	cout << "Run an accounts Payable report" << endl;
+	cout << "Running an accounts Payable report..." << endl;
+        datacenter::instance()->generateManagerReport();
 }

@@ -11,12 +11,8 @@
 
 
 #include "person.h"
+#include "provider.h"
 #include "entity.h"
-
-const int NAMESZ = 26;      //for the name & street address size
-const int CITYSZ = 15;      //for the city name size
-const int STATESZ = 3;      //for the state name size
-const int ZIPSZ = 6;        //for the zip code size
 
 class member: public person
 {
@@ -28,6 +24,7 @@ class member: public person
 
         //asks if member is suspended.
         bool isSuspended()const;
+        bool isSuspendedAndPrint()const;
         
         //actually suspends the member.
         bool suspendMember();

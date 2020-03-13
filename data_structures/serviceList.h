@@ -56,6 +56,8 @@ class serviceList
         bool copyServices(service *& dest, service * source)const;
 
         int isSuspended(const entity & toFind);
+        int isSuspendedAndPrint(const entity & toFind);
+ 
         
         //suspends a member's account.
         bool suspendMember(const entity & toFind);

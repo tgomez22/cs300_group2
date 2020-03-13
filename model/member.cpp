@@ -45,6 +45,7 @@ void member::writeOut()
 		toWrite["name"] = fileName;
 		toWrite["address"] = fileAddress;
 		toWrite["city"] = fileCity;
+		toWrite["state"] = fileState;
 		toWrite["zip"] = fileZip;
 		toWrite["suspended"] = suspended;
 		toWrite["amtDue"] = amtDue;
@@ -94,7 +95,6 @@ bool member::readIn()
       }
 
 
-      cout << "This member is not in our records.\n";
       cout << "Please add the member information.\n\n";
       cout << "Name (Ex. Jane Smith): \n";
       cin.get(temp_name, NAMESZ, '\n');
@@ -159,6 +159,18 @@ void member::display()const
 }
 
 bool member::isSuspended()const
+{
+    using namespace std;
+
+    if(suspended == true)
+    {
+        return true;
+    }
+
+    else
+        return false;
+}
+bool member::isSuspendedAndPrint()const
 {
     using namespace std;
 

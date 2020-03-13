@@ -8,6 +8,12 @@
 
 #include "person.h"
 
+const int NAMESZ = 26;      //for the name & street address size
+const int CITYSZ = 15;      //for the city name size
+const int STATESZ = 3;      //for the state name size
+const int ZIPSZ = 6;        //for the zip code size
+
+
 class provider: public person
 {
 	public:
@@ -27,6 +33,7 @@ class provider: public person
         //cant be suspended. I did this so I wouldn't have to cast down to a 
         //member object.
         bool isSuspended()const;
+        bool isSuspendedAndPrint()const;
     
     //getter functions
     char* getName();
