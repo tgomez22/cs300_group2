@@ -23,6 +23,23 @@ TEST_CASE( "succesfully add an entity to personList" )
     REQUIRE( table.add(toAdd) == true );
 }
 
+TEST_CASE ( "remove an entity that exists in personList" )
+{
+	personList table;
+	entity toAdd;
+	toAdd.addId("100000000");
+	table.add(toAdd);
+	REQUIRE( table.removeMember(toAdd) == true );
+}
+
+TEST_CASE( "remove an entity that doesn't exist in personList" )
+{
+	personList table;	
+	entity toAdd;
+	toAdd.addId("100000000");
+	REQUIRE( table.removeMember(toAdd) == false );
+}
+
 TEST_CASE( "get first index of member entity for auth" )
 {
     entity aMember;
@@ -53,4 +70,18 @@ TEST_CASE( "check if a suspended member is suspended" )
 		aMember.addInfo("100000001", "Jane Doe", "246 Jefferson St", "Portland", "OR", "97201", false, 150.00);
 		REQUIRE( aMember.isSuspended() == false );	
 	}
+}
+
+TEST_CASE ( "check if a member can be written out to text file" )
+{
+	member aMember;
+	aMember.addInfo("100000000", "John Doe", "246 Jefferson St", "Portland", "OR", "97201", true, 150.00);
+	aMember.writeOut();
+}
+
+TEST_CASE ( "check if a provider can be written out to text file" )
+{
+	provider aProvider;
+	aProvider.addInfo("200000000", "John Doe", "246 Jefferson St", "Portland", "OR", "97201", 5, 100.00);
+	aProvider.writeOut();
 }
