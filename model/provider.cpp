@@ -78,6 +78,10 @@ bool provider::isSuspended()const
 {
     return false;
 }
+bool provider::isSuspendedAndPrint()const
+{
+    return false;
+}
 
 //getter functions
 char* provider::getName()

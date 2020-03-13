@@ -28,6 +28,7 @@ class member: public person
 
         //asks if member is suspended.
         bool isSuspended()const;
+        bool isSuspendedAndPrint()const;
         
         //actually suspends the member.
         bool suspendMember();

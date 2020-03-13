@@ -170,6 +170,19 @@ bool member::isSuspended()const
     else
         return false;
 }
+bool member::isSuspendedAndPrint()const
+{
+    using namespace std;
+
+    if(suspended == true)
+    {
+        display();
+        return true;
+    }
+
+    else
+        return false;
+}
 
 //getter functions
 char* member::getName()
