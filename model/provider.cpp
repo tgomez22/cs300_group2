@@ -104,6 +104,10 @@ float provider::getFee()
 {
   return weeklyFee;
 }
+int provider::getConsultNum()
+{
+  return consultNum;
+}
 
 //always returns false. Easier to do this
 //as the implementation of a virtual function

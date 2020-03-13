@@ -227,6 +227,24 @@ bool serviceList::addService(const entity & toFind, const class service & toAdd)
 
 }
 
+//iterate through people
+queue<provider> serviceList::getProviderList()
+{
+  queue<provider> personStack;
+  for(int i = 0; i < SIZE; i++) {
+    serviceNode* curr = table[i];
+    while(curr) {
+      const provider * ptr = dynamic_cast<const provider*>(*&curr->aPerson);
+      if(ptr) {
+        provider newProv = *ptr;
+        personStack.push(newProv);
+      }
+      curr = curr->next;
+    }
+  }
+
+  return personStack;
+}
 
 //Search and pull records function for chris.
 //I can change the prototype to accept a char * or tString object to search for.

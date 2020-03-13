@@ -355,15 +355,20 @@ bool datacenter::generateUserReport(string id, ostream& target)
     return false;
 }
 
-bool datacenter::generateManagerReport(ostream& target)
+bool datacenter::generateManagerReport()
 {
-  return true;
+  ofstream reportFile = ofstream("manager-report.XXX");
+  queue<provider> people = dataStorage.getProviderList();
+  while(!people.empty()) {
+    people.front().getName();
+    people.front().getFee();
+    people.front().getConsultNum();
+  }
 }
 
 bool datacenter::generateProviderServiceReports(serviceNode& list, ostream& target)
 {
-  //TODO: find way to get member ID + date received by computer,
-  //      add up number of consultations and total fee,
+  //TODO: find way to get member ID received by computer,
   //      find something to do with service name and description
   int serviceNum = 0;
   float totalFee = 0.0;
@@ -371,11 +376,13 @@ bool datacenter::generateProviderServiceReports(serviceNode& list, ostream& targ
     char* member = list.head->getMemName();
     char* date = list.head->getDate();
     char* code = list.head->getServCode();
-    char* description = list.head->getServDes();
+    //char* description = list.head->getServDes();
     float fee = list.head->getServFee();
+    //tString memId;
+    //list.head->getMemId(memId);
 
     target << "Service Date: " << date << endl;
-    target << "\tDate Received by Computer: " << " " << endl;
+    target << "\tDate Received by Computer: " << list.head->getEntryTime() << endl;
     target << "\tMember Serviced: " << member << endl;
     target << "\tMember Code: " << " " << endl;
     target << "\tService Code: " << code << endl;
@@ -384,7 +391,7 @@ bool datacenter::generateProviderServiceReports(serviceNode& list, ostream& targ
     delete member;
     delete date;
     delete code;
-    delete description;
+    //delete description;
 
     totalFee += fee;
     serviceNum++;

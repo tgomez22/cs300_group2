@@ -50,7 +50,7 @@ class datacenter {
 
     //individual report functions
     bool generateUserReport(string id, ostream& target = cout);
-    bool generateManagerReport(ostream& target = cout);
+    bool generateManagerReport();
     bool generateProviderServiceReports(serviceNode& list, ostream& target);
     bool generateMemberServiceReports(serviceNode& list, ostream& target);
 

@@ -22,7 +22,7 @@ service::service()
                       //tells you at allocation
   next = NULL;
   servFee = 0.0;
-
+  entryTime = time(NULL); //save current time 
 }
 
 service::service(const service & toAdd)
@@ -35,8 +35,10 @@ service::service(const service & toAdd)
   servCode.add(toAdd.servCode);
   servDes.add(toAdd.servDes);
   servFee = toAdd.servFee;
+  memId.add(toAdd.memId);
   next = NULL;
 
+  entryTime = time(NULL); //save current time 
 }
 bool service::inputService(servRecInfo & servRec)
 {
@@ -47,7 +49,9 @@ bool service::inputService(servRecInfo & servRec)
       servFee = servRec.servFee;
       servCode.add(servRec.servCode);
       servDes.add(servRec.commentField);
+      //TODO: save memId?
    
+      entryTime = time(NULL); //save current time 
    return true;
 }
 
@@ -333,6 +337,10 @@ char* service::getDate()
 char* service::getServDes()
 {
     return servDes.getString();
+}
+char* service::getEntryTime()
+{
+  return ctime(&entryTime);
 }
 
 void service::addInfo(const char * addDOS, const char * addMemId, const char * addMemName, const char * addProvName, const char * addServCode, const char * addServDes, const char * addServName, float addServFee)
