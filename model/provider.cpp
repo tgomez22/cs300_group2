@@ -127,6 +127,7 @@ void provider::writeOut()
 		toWrite["name"] = writeName;
 		toWrite["address"] = writeAddress;
 		toWrite["city"] = writeCity;
+		toWrite["state"] = writeState;
 		toWrite["zip"] = writeZip;
 		toWrite["consultNum"] = consultNum;
 		toWrite["weeklyFee"] = weeklyFee;

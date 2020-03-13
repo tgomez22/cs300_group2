@@ -45,6 +45,7 @@ void member::writeOut()
 		toWrite["name"] = fileName;
 		toWrite["address"] = fileAddress;
 		toWrite["city"] = fileCity;
+		toWrite["state"] = fileState;
 		toWrite["zip"] = fileZip;
 		toWrite["suspended"] = suspended;
 		toWrite["amtDue"] = amtDue;
