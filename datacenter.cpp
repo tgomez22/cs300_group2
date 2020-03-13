@@ -262,11 +262,6 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
 	my_service_pro.writeOut();
 	my_service_mem.writeOut();
 
-   // EXAMPLE: const member * ptr = dynamic_cast<const member*>(*&temp->aPerson); 
- 
-   //for testing delete before deploy!!!!!!!! 
-  // my_service_pro.display();
-
    cout << "***************************************************\n";
    cout << "This is the information for this record: \n";
    cout << "***************************************************\n";
@@ -299,9 +294,6 @@ bool datacenter::fillServiceRec(servRecInfo & myRec)
    cout << "Service Fee: " << myRec.servFee << endl << endl;
    cout << "***************************************************\n";
 
- //for testing delete before deployment  
-//   my_service_pro.display();
-//   my_service_mem.display();
 
    return true;
 
