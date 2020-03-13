@@ -481,15 +481,15 @@ bool datacenter::generateMemberServiceReports(serviceNode& list, ostream& target
   return true;
 }
 
-void datacenter::ifSuspendedDisplay(tString mem_id_num) {
+void datacenter::ifSuspendedDisplay(string id) {
   const char * temp = id.data();
 
   entity memberID;
   memberID.addId(temp);
 
-  valOrSus = dataStorage.isSuspended(memberID);       
+  int valOrSus = dataStorage.isSuspended(memberID);       
 
   if(valOrSus) {
-    member.display();
+    memberID.display();
   }
 }
