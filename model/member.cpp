@@ -94,7 +94,6 @@ bool member::readIn()
       }
 
 
-      cout << "This member is not in our records.\n";
       cout << "Please add the member information.\n\n";
       cout << "Name (Ex. Jane Smith): \n";
       cin.get(temp_name, NAMESZ, '\n');
