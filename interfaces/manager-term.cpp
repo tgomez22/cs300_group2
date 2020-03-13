@@ -109,11 +109,38 @@ int crudMember(tString id_num) {
 } 
 
 int deleteMember(tString id_num) {
-	cout << "delete a member" << endl;
+	cout << "Please enter the ID you want to delete:" << endl;
+	string id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->memberExists(id)) {
+          cout << "The ID you entered is not associated with a valid member, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+
+	cout << "Deleting member..." << endl;
+       if(datacenter::instance()->deleteMember(id)) {
+         cout << "Deleted member!" << endl;
+       } else {
+         cout << "Failed to delete member" << endl;
+       }
+       return 0;
 } 
 
 int viewMember(tString id_num) {
-	cout << "view a member" << endl;
+        cout << "Please enter the ID you want to view:" << endl;
+	string id = getId();
+        if(id.compare("") == 0) return 0;
+        //Validate
+        while(!datacenter::instance()->memberExists(id)) {
+          cout << "The ID you entered is not associated with a valid member, please retry." << endl;
+          id = getId();
+          if(id.compare("") == 0) return 0;
+	}
+
+        datacenter::instance()->display(id);
+        return 0;
 }
 
 int updateMember(tString id_num) {

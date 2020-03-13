@@ -165,9 +165,22 @@ bool datacenter::validateMember(string id)
 //TODO with tristan
 //Gets a random ID from the datacenter for acme update generation
 string datacenter::getRandomId() {
-  return "123456789";
+  return "100000001";
 }
 
+bool datacenter::deleteMember(string id) {
+    entity memberID;
+    memberID.addId(id.data());
+
+    return authentication.removeMember(memberID);
+}
+
+void datacenter::display(string id) {
+  entity memberID;
+  memberID.addId(id.data());
+
+  dataStorage.displayInfo(memberID);
+}
 
 //takes in service record data from terminal and copies to user list
 bool datacenter::fillServiceRec(servRecInfo & myRec)

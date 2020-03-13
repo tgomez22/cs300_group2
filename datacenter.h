@@ -50,6 +50,8 @@ class datacenter {
     bool processAcmeRecords(acmeRecord*, int);
     //Get a random ID from the datacenter
     string getRandomId();
+    bool deleteMember(string);
+    void display(string);
 
     //individual report functions
     bool generateUserReport(string id, ostream& target = cout);
