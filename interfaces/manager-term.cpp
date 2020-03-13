@@ -3,10 +3,13 @@
 #include <iostream>
 #include <string>
 #include <cstring>
+#include <string.h>  //for strcat
+#include <stdio.h>   //for strcat
 
 #include "../datacenter.h"
 #include "util-term.h"
 #include "validation-term.h"
+#include "../hierarchy/service.h"
 
 using namespace std;
 
@@ -159,8 +162,55 @@ int doMemberReport(tString id_num) {
 	cout << "Running a member Report..." << endl;
         datacenter::instance()->runMemberReport(id);
 }
-int doProviderReport(tString id_num) {
-	cout << "Run a provider report" << endl;
+int doProviderReport(tString id_num)
+{
+   string id;
+   char * idNum;
+   tString ID;
+   bool checkValue = false;
+
+   while(true)
+   {
+      //Get ID Number
+      cout << "Please enter the ID you want to generate the report for: " << endl;
+      id = getId();
+  
+      idNum = new char[id.length() + 1];
+      strcpy(idNum, id.c_str());
+
+      ID.add(idNum);
+   
+      if(idNum)
+         delete [] idNum;
+
+      if(ID.compare("") == 0) return 0;
+   
+      //Validate
+      while(!datacenter::instance()->validateProvider(id))
+      {
+         cout << "The ID you entered is not associated with a provider, please retry." << endl;
+         id = getId();
+
+         idNum = new char[id.length() + 1];
+         strcpy(idNum, id.c_str());
+
+         ID.add(idNum);
+   
+         if(idNum)
+            delete [] idNum;
+
+         if(ID.compare("") == 0) return 0;
+      }
+
+      checkValue = datacenter::instance()->runProviderReport(ID);
+      if(checkValue == false)
+      {
+         cout << "Error Generating Report\n";
+      }
+      break;
+   }
+	
+   return 0;
 }
 int doAccountsPayable(tString id_num) {
 	cout << "Run an accounts Payable report" << endl;
