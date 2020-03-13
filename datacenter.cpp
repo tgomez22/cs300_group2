@@ -6,6 +6,7 @@
 #include <random>
 #include <string.h>  //for strcat
 #include <stdio.h>   //for strcat
+#include <fstream>   //for file I/O
 
 #include "data_structures/personList.h"
 #include "model/entity.h"
