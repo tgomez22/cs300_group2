@@ -507,9 +507,5 @@ void datacenter::ifSuspendedDisplay(string id) {
   entity memberID;
   memberID.addId(temp);
 
-  int valOrSus = dataStorage.isSuspended(memberID);       
-
-  if(valOrSus) {
-    memberID.display();
-  }
+  int valOrSus = dataStorage.isSuspendedAndPrint(memberID);       
 }

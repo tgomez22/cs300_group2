@@ -27,6 +27,7 @@ class provider: public person
         //cant be suspended. I did this so I wouldn't have to cast down to a 
         //member object.
         bool isSuspended()const;
+        bool isSuspendedAndPrint()const;
     
     //getter functions
     char* getName();
