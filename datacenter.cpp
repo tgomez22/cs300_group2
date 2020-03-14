@@ -536,12 +536,16 @@ bool datacenter::generateUserReport(string id, ostream& target)
 
 bool datacenter::generateManagerReport()
 {
-  ofstream reportFile = ofstream("manager-report.XXX");
+  //struct tm * thisTime = localtime(&time(NULL));
+  //string fileName = "manager report ";
+  oftream reportFile = ofstream("manager-report.xxx");
+                                  //+ to_string(thisTime->tm_mon));
   queue<provider> people = dataStorage.getProviderList();
   while(!people.empty()) {
-    cout<< people.front().getName();
-    cout<< people.front().getFee();
-    cout<< people.front().getConsultNum();
+    reportFile<< people.front().getName() << endl;
+    reportFile<< people.front().getFee() << endl;
+    reportFile<< people.front().getConsultNum() << endl;
+    people.pop();
   }
 }
 
@@ -555,10 +559,7 @@ bool datacenter::generateProviderServiceReports(serviceNode& list, ostream& targ
     char* member = list.head->getMemName();
     char* date = list.head->getDate();
     char* code = list.head->getServCode();
-    //char* description = list.head->getServDes();
     float fee = list.head->getServFee();
-    //tString memId;
-    //list.head->getMemId(memId);
 
     target << "Service Date: " << date << endl;
     target << "\tDate Received by Computer: " << list.head->getEntryTime() << endl;
@@ -570,7 +571,6 @@ bool datacenter::generateProviderServiceReports(serviceNode& list, ostream& targ
     delete member;
     delete date;
     delete code;
-    //delete description;
 
     totalFee += fee;
     serviceNum++;
@@ -601,6 +601,9 @@ bool datacenter::generateMemberServiceReports(serviceNode& list, ostream& target
   }
   return true;
 }
+
+//end report functions
+//--------------------------------------------------------
 
 void datacenter::ifSuspendedDisplay(string id) {
   const char * temp = id.data();
