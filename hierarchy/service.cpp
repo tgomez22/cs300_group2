@@ -38,7 +38,7 @@ service::service(const service & toAdd)
   memId.add(toAdd.memId);
   next = NULL;
 
-  entryTime = time(NULL); //save current time 
+  entryTime =  toAdd.entryTime;
 }
 bool service::inputService(servRecInfo & servRec)
 {
@@ -49,7 +49,6 @@ bool service::inputService(servRecInfo & servRec)
       servFee = servRec.servFee;
       servCode.add(servRec.servCode);
       servDes.add(servRec.commentField);
-      //TODO: save memId?
    
       entryTime = time(NULL); //save current time 
    return true;
@@ -340,7 +339,10 @@ char* service::getServDes()
 }
 char* service::getEntryTime()
 {
-  return ctime(&entryTime);
+  struct tm* thisTime = localtime(&entryTime);
+  char* out = new char[20];
+  strftime(out, 20, "%m-%d-%Y %T", thisTime);
+  return out;
 }
 
 void service::addInfo(const char * addDOS, const char * addMemId, const char * addMemName, const char * addProvName, const char * addServCode, const char * addServDes, const char * addServName, float addServFee)
