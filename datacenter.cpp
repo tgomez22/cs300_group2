@@ -538,7 +538,7 @@ bool datacenter::generateManagerReport()
 {
   //struct tm * thisTime = localtime(&time(NULL));
   //string fileName = "manager report ";
-  oftream reportFile = ofstream("manager-report.xxx");
+  ofstream reportFile = ofstream("manager-report.txt");
                                   //+ to_string(thisTime->tm_mon));
   queue<provider> people = dataStorage.getProviderList();
   while(!people.empty()) {
@@ -560,6 +560,7 @@ bool datacenter::generateProviderServiceReports(serviceNode& list, ostream& targ
     char* date = list.head->getDate();
     char* code = list.head->getServCode();
     float fee = list.head->getServFee();
+    //struct tm * serviceTime = localtime(list.head->getEntryTime());
 
     target << "Service Date: " << date << endl;
     target << "\tDate Received by Computer: " << list.head->getEntryTime() << endl;
