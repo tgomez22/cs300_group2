@@ -1,0 +1,30 @@
+Packston Bramstom
+Fee owed: 533.14
+Consultations: 9
+Alli Larby
+Fee owed: 858.05
+Consultations: 5
+Corissa Crighten
+Fee owed: 381.84
+Consultations: 9
+Swen Hugueville
+Fee owed: 472.14
+Consultations: 8
+Hartwell Scay
+Fee owed: 506.43
+Consultations: 6
+Letta Kersley
+Fee owed: 906.54
+Consultations: 5
+Eyde Scutching
+Fee owed: 799.09
+Consultations: 2
+Marylinda Duddy
+Fee owed: 999.63
+Consultations: 0
+Kizzee Stothard
+Fee owed: 302.09
+Consultations: 8
+Birch Kenn
+Fee owed: 121.39
+Consultations: 7

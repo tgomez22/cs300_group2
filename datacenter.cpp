@@ -515,8 +515,14 @@ bool datacenter::processAcmeRecords(acmeRecord*, int num) {
 
 bool datacenter::generateUserReport(string id, ostream& target)
 {
-  //TODO: write user info printing
-
+  tString aMemId;
+  list.aPerson->getMemId(aMemId);
+  target << "Name: " << list.aPerson->getName() << endl;
+  target << "Number: " << aMemId << endl;
+  target << "Street Address: " << list.aPerson->getAddress() << endl;
+  target << "City: " << list.aPerson->getCity() << endl;
+  target << "State: " << list.aPerson->getState() << endl;
+  target << "Zip Code: " << list.aPerson->getZip() << endl;
   //initialize list of services
   entity IdWrapper;
   IdWrapper.addId(id.data());
@@ -536,15 +542,12 @@ bool datacenter::generateUserReport(string id, ostream& target)
 
 bool datacenter::generateManagerReport()
 {
-  //struct tm * thisTime = localtime(&time(NULL));
-  //string fileName = "manager report ";
   ofstream reportFile = ofstream("manager-report.txt");
-                                  //+ to_string(thisTime->tm_mon));
   queue<provider> people = dataStorage.getProviderList();
   while(!people.empty()) {
     reportFile<< people.front().getName() << endl;
-    reportFile<< people.front().getFee() << endl;
-    reportFile<< people.front().getConsultNum() << endl;
+    reportFile<< "\tFee owed: " << people.front().getFee() << endl;
+    reportFile<< "\tConsultations: " << people.front().getConsultNum() << endl;
     people.pop();
   }
 }
@@ -552,7 +555,6 @@ bool datacenter::generateManagerReport()
 bool datacenter::generateProviderServiceReports(serviceNode& list, ostream& target)
 {
   //TODO: find way to get member ID received by computer,
-  //      find something to do with service name and description
   int serviceNum = 0;
   float totalFee = 0.0;
   while(list.head != NULL) { 
@@ -560,7 +562,6 @@ bool datacenter::generateProviderServiceReports(serviceNode& list, ostream& targ
     char* date = list.head->getDate();
     char* code = list.head->getServCode();
     float fee = list.head->getServFee();
-    //struct tm * serviceTime = localtime(list.head->getEntryTime());
 
     target << "Service Date: " << date << endl;
     target << "\tDate Received by Computer: " << list.head->getEntryTime() << endl;
