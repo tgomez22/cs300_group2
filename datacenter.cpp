@@ -515,19 +515,19 @@ bool datacenter::processAcmeRecords(acmeRecord*, int num) {
 
 bool datacenter::generateUserReport(string id, ostream& target)
 {
-  tString aMemId;
-  list.aPerson->getMemId(aMemId);
-  target << "Name: " << list.aPerson->getName() << endl;
-  target << "Number: " << aMemId << endl;
-  target << "Street Address: " << list.aPerson->getAddress() << endl;
-  target << "City: " << list.aPerson->getCity() << endl;
-  target << "State: " << list.aPerson->getState() << endl;
-  target << "Zip Code: " << list.aPerson->getZip() << endl;
   //initialize list of services
   entity IdWrapper;
   IdWrapper.addId(id.data());
   serviceNode list;
   if(dataStorage.getInfo(IdWrapper, list)) {
+    tString aMemId;
+    list.aPerson->getMemId(aMemId);
+    target << "Name: " << list.aPerson->getName() << endl;
+    target << "Number: " << aMemId.getString() << endl;
+    target << "Street Address: " << list.aPerson->getAddress() << endl;
+    target << "City: " << list.aPerson->getCity() << endl;
+    target << "State: " << list.aPerson->getState() << endl;
+    target << "Zip Code: " << list.aPerson->getZip() << endl;
 
     //iterate through list of services
     if(typeid(*(list.aPerson)) == typeid(member))
