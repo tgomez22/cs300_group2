@@ -615,7 +615,7 @@ bool serviceList::removeMember(serviceNode *& ptr, const entity & toRemove)
     }
 }
 
-bool serviceList::updateMemberInfo(const entity & toFind)
+bool serviceList::updateMemberInfo(const entity & toFind, member & memToUpdate)
 {
     int index = getKey(toFind.getIdValue());
 
@@ -636,7 +636,34 @@ bool serviceList::updateMemberInfo(const entity & toFind)
 
         else
         {
-            temp->aPerson->readIn();
+	    static_cast<member*>(temp->aPerson)->changeInfo(memToUpdate);
+            return true;
+        }
+    }
+}
+
+bool serviceList::updateProviderInfo(const entity & toFind, provider & proToUpdate)
+{
+    int index = getKey(toFind.getIdValue());
+
+    if(!table[index])
+        return false;
+
+    else
+    {
+        serviceNode * temp = table[index];
+
+        while(temp && temp->aPerson->compare(toFind) != 0)
+        {
+            temp = temp->next;
+        }
+        
+        if(!temp)
+            return false;
+
+        else
+        {
+	    static_cast<provider*>(temp->aPerson)->changeInfo(proToUpdate);
             return true;
         }
     }

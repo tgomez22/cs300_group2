@@ -6,6 +6,7 @@
 
 #include "hierarchy/service.h"
 #include "interfaces/provider-term.h"
+#include "interfaces/manager-term.h"
 #include "model/member.h"
 #include "model/provider.h"
 #include "model/person.h"
@@ -62,7 +63,8 @@ class datacenter {
     bool generateProviderServiceReports(serviceNode& list, ostream& target);
     bool generateMemberServiceReports(serviceNode& list, ostream& target);
     void ifSuspendedDisplay(string);
-    void update(string);
+    void updateProvider(string, userInfo &, float);
+    void updateMember(string, userInfo &);
   private:
     static datacenter *s_instance; 
     datacenter(); 

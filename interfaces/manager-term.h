@@ -7,6 +7,17 @@
 
 using namespace std;
 
+struct userInfo{
+
+   tString ID;
+   tString name;
+   tString street;
+   tString city;
+   tString state;
+   tString zip;
+
+};
+
 //Begin all manager terminal stuff here. When this function returns, the app will pop back up to the 'choose terminal' interface.
 //Use exitFunction() to quit
 void managerTerm(string id_num);

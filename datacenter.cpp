@@ -210,12 +210,65 @@ void datacenter::display(string id) {
 
   dataStorage.displayInfo(memberID);
 }
+void datacenter::updateMember(string id, userInfo & myInfo)
+{
+   char * id_num;               //to convert to tString
+   tString ID;                  //to put in tString format
+   member numToFindMem;         //to get the member's info.
+   serviceNode copyMem;         //to use the getInfo. function
 
-void datacenter::update(string id) {
-  entity memberID;
-  memberID.addId(id.data());
+   id_num = new char[id.length() + 1];
+   strcpy(id_num, id.c_str());
 
-  dataStorage.updateMemberInfo(memberID);
+   ID.add(id_num);
+
+   if(id_num)
+      delete [] id_num;
+
+   numToFindMem.addId(ID);
+
+   //get info. from main lists
+   dataStorage.getInfo(numToFindMem, copyMem);
+
+   const entity my_mem_ent = dynamic_cast<const entity&>(**&copyMem.aPerson);
+
+   numToFindMem.changeInfo(myInfo);
+   
+   dataStorage.updateMemberInfo(my_mem_ent, numToFindMem);
+   
+   return;
+}
+void datacenter::updateProvider(string id, userInfo & myInfo, float fee) {
+
+   char * id_num;                //to convert to tString
+   tString ID;                   //to put in tString format
+   provider numToFindPro;        //to get the provider's info.
+   serviceNode copyPro;          //to use the getInfo. function
+
+   id_num = new char[id.length() + 1];
+   strcpy(id_num, id.c_str());
+
+   ID.add(id_num);
+
+   if(id_num)
+      delete [] id_num;
+
+   numToFindPro.addId(ID);
+
+   //get info. from main lists
+   dataStorage.getInfo(numToFindPro, copyPro);
+
+   const entity my_pro_ent = dynamic_cast<const entity&>(**&copyPro.aPerson);
+
+   numToFindPro.changeInfo(myInfo, fee);
+   
+   dataStorage.updateProviderInfo(my_pro_ent, numToFindPro);
+
+   //write record to disk (text file)
+//   my_provider.writeOut();
+
+   return;
+   
 }
 
 //takes in service record data from terminal and copies to user list
